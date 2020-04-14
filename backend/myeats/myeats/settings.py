@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myeats_user',
+    'myeats_scheduler',
 ]
 
 MIDDLEWARE = [
