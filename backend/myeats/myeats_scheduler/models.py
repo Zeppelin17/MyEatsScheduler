@@ -22,3 +22,29 @@ class Week(models.Model):
     to_date = models.DateField(blank=True)
 
     myeats_user = models.ForeignKey('myeats_user.MyEatsUser', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+
+
+class Day(models.Model):
+    name = models.CharField(max_length=20)
+    week = models.ForeignKey(Week, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
+class Split(models.Model):
+    name = models.CharField(max_length=20)
+    order = models.PositiveIntegerField()
+    day = models.ForeignKey(Day, on_delete=models.CASCADE)
+    recipes = models.ManyToManyField('myeats_recipes.Recipe')
+
+    def __str__(self):
+        return self.name

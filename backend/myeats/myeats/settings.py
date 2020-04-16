@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-13 17:35:07 
- * Last modified  : 2020-04-13 18:44:14
+ * Last modified  : 2020-04-16 06:32:26
  */
  
 For more information on this file, see
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myeats_user',
     'myeats_scheduler',
+    'myeats_recipes',
 ]
 
 MIDDLEWARE = [
