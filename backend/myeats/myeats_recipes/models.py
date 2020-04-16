@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-15 06:47:49 
- * Last modified  : 2020-04-16 06:32:59
+ * Last modified  : 2020-04-16 06:50:57
  */"""
 
 from django.db import models
