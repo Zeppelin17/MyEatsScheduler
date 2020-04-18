@@ -6,9 +6,10 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-13 17:35:07 
- * Last modified  : 2020-04-16 06:32:26
+ * Last modified  : 2020-04-18 11:00:00
  */
- 
+
+
 For more information on this file, see
 https://docs.djangoproject.com/en/3.0/topics/settings/
 
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'myeats_user',
     'myeats_scheduler',
     'myeats_recipes',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
