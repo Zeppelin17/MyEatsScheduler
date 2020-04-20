@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-18 11:44:43 
- * Last modified  : 2020-04-18 11:45:05
+ * Last modified  : 2020-04-19 09:08:56
  */
  """
 
@@ -16,4 +16,4 @@ from myeats_user.models import MyEatsUser
 class MyEatsUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyEatsUser
-        fields = ['email', 'first_name', 'last_name', 'is_active', 'is_staff', 'date_joined']
+        fields = ['email', 'first_name', 'last_name', 'password', 'is_active', 'is_staff', 'date_joined']

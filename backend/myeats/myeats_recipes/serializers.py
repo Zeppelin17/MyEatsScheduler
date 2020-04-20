@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-18 11:43:22 
- * Last modified  : 2020-04-18 11:43:57
+ * Last modified  : 2020-04-19 10:55:44
  */
  """
 
@@ -16,14 +16,14 @@ from myeats_recipes.models import Category, Recipe, Ingredient
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name']
+        fields = ['name', 'color', 'myeats_user']
 
 
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ['name', 'description', 'steps', 'categories']
+        fields = ['name', 'description', 'steps', 'categories', 'myeats_user']
 
 
 

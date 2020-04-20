@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-18 11:08:59 
- * Last modified  : 2020-04-18 11:09:31
+ * Last modified  : 2020-04-19 10:51:26
  */
  """
 
@@ -32,4 +32,7 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
+    path('', include('myeats_user.urls')),
+    path('', include('myeats_scheduler.urls')),
+    path('', include('myeats_recipes.urls'))
 ]
