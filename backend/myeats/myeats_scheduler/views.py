@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-19 09:09:52 
- * Last modified  : 2020-04-19 10:33:39
+ * Last modified  : 2020-04-21 18:53:34
  */
 
 """
@@ -14,10 +14,11 @@
 from myeats_scheduler.models import Week, Day, Split
 from myeats_scheduler.serializers import WeekSerializer, DaySerializer, SplitSerializer
 from rest_framework import generics, permissions
+from myeats_scheduler.permissions import isOwnerOfWeek, isOwnerOfDay, isOwnerOfSplit
 
 class WeekList(generics.ListAPIView):
     serializer_class = WeekSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfWeek]
 
     def get_queryset(self):
         """
@@ -32,16 +33,16 @@ class WeekList(generics.ListAPIView):
 class WeekCreate(generics.CreateAPIView):
     queryset = Week.objects.all()
     serializer_class = WeekSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfWeek]
 
 class WeekDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Week.objects.all()
     serializer_class = WeekSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfWeek]
 
 class DayList(generics.ListAPIView):
     serializer_class = DaySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfDay]
 
     def get_queryset(self):
         """
@@ -56,16 +57,16 @@ class DayList(generics.ListAPIView):
 class DayCreate(generics.CreateAPIView):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfDay]
 
 class DayDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfDay]
 
 class SplitList(generics.ListAPIView):
     serializer_class = SplitSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfSplit]
 
     def get_queryset(self):
         """
@@ -80,9 +81,9 @@ class SplitList(generics.ListAPIView):
 class SplitCreate(generics.CreateAPIView):
     queryset = Split.objects.all()
     serializer_class = SplitSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfSplit]
 
 class SplitDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Split.objects.all()
     serializer_class = SplitSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, isOwnerOfSplit]
