@@ -14,6 +14,10 @@ from rest_framework import serializers
 from myeats_user.models import MyEatsUser
 
 class MyEatsUserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(min_length=6, write_only=True, required=True)
     class Meta:
         model = MyEatsUser
-        fields = ['email', 'first_name', 'last_name', 'password', 'is_active', 'is_staff', 'date_joined']
+        fields = ['email', 'first_name', 'last_name', 'password']
+    
+    def create(self, validated_data):
+        return MyEatsUser.objects.create_user(**validated_data)
