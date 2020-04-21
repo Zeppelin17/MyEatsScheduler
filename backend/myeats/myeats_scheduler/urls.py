@@ -15,13 +15,13 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from myeats_scheduler import views
 
 urlpatterns = [
-    path('week/create/', views.WeekCreate.as_view()),
-    path('week/list/', views.WeekList.as_view()),
-    path('week/<int:pk>', views.WeekDetail.as_view()),
-    path('day/create/', views.DayCreate.as_view()),
-    path('day/list/', views.DayList.as_view()),
-    path('day/<int:pk>', views.DayDetail.as_view()),
-    path('split/create/', views.SplitCreate.as_view()),
-    path('split/list/', views.SplitList.as_view()),
-    path('split/<int:pk>', views.SplitDetail.as_view())
+    path('api/week/create/', views.WeekCreate.as_view()),
+    path('api/week/list/', views.WeekList.as_view()),
+    path('api/week/<int:pk>', views.WeekDetail.as_view()),
+    path('api/day/create/', views.DayCreate.as_view()),
+    path('api/day/list/', views.DayList.as_view()),
+    path('api/day/<int:pk>', views.DayDetail.as_view()),
+    path('api/split/create/', views.SplitCreate.as_view()),
+    path('api/split/list/', views.SplitList.as_view()),
+    path('api/split/<int:pk>', views.SplitDetail.as_view())
 ]

@@ -15,6 +15,6 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from myeats_user import views
 
 urlpatterns = [
-    path('user/create/', views.MyEatsUserCreate.as_view()),
-    path('user/<int:pk>', views.MyEatsUserDetail.as_view())
+    path('api/user/create/', views.MyEatsUserCreate.as_view()),
+    path('api/user/<int:pk>', views.MyEatsUserDetail.as_view())
 ]

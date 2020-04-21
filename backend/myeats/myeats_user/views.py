@@ -12,12 +12,14 @@
 
 from myeats_user.models import MyEatsUser
 from myeats_user.serializers import MyEatsUserSerializer
-from rest_framework import generics
+from rest_framework import generics, permissions
 
 class MyEatsUserCreate(generics.CreateAPIView):
     queryset = MyEatsUser.objects.all()
     serializer_class = MyEatsUserSerializer
+    permission_classes = [permissions.IsAdminUser]
 
 class MyEatsUserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = MyEatsUser.objects.all()
     serializer_class = MyEatsUserSerializer
+    permission_classes = [permissions.IsAuthenticated]

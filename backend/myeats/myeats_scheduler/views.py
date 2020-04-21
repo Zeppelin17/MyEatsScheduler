@@ -13,10 +13,11 @@
 
 from myeats_scheduler.models import Week, Day, Split
 from myeats_scheduler.serializers import WeekSerializer, DaySerializer, SplitSerializer
-from rest_framework import generics
+from rest_framework import generics, permissions
 
 class WeekList(generics.ListAPIView):
     serializer_class = WeekSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -31,13 +32,16 @@ class WeekList(generics.ListAPIView):
 class WeekCreate(generics.CreateAPIView):
     queryset = Week.objects.all()
     serializer_class = WeekSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class WeekDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Week.objects.all()
     serializer_class = WeekSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class DayList(generics.ListAPIView):
     serializer_class = DaySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -52,13 +56,16 @@ class DayList(generics.ListAPIView):
 class DayCreate(generics.CreateAPIView):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class DayDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class SplitList(generics.ListAPIView):
     serializer_class = SplitSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -73,7 +80,9 @@ class SplitList(generics.ListAPIView):
 class SplitCreate(generics.CreateAPIView):
     queryset = Split.objects.all()
     serializer_class = SplitSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class SplitDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Split.objects.all()
     serializer_class = SplitSerializer
+    permission_classes = [permissions.IsAuthenticated]

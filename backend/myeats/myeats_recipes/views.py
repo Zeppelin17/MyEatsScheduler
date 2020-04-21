@@ -12,10 +12,11 @@
 
 from myeats_recipes.models import Recipe, Ingredient, Category
 from myeats_recipes.serializers import RecipeSerializer, IngredientSerializer, CategorySerializer
-from rest_framework import generics
+from rest_framework import generics, permissions
 
 class RecipeList(generics.ListAPIView):
     serializer_class = RecipeSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -30,13 +31,16 @@ class RecipeList(generics.ListAPIView):
 class RecipeCreate(generics.CreateAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class IngredientList(generics.ListAPIView):
     serializer_class = IngredientSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -51,13 +55,16 @@ class IngredientList(generics.ListAPIView):
 class IngredientCreate(generics.CreateAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class IngredientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class CategoryList(generics.ListAPIView):
     serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -72,7 +79,9 @@ class CategoryList(generics.ListAPIView):
 class CategoryCreate(generics.CreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticated]
