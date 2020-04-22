@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-18 11:44:05 
- * Last modified  : 2020-04-19 09:42:35
+ * Last modified  : 2020-04-22 06:20:14
  */
 """
 
@@ -16,18 +16,18 @@ from myeats_scheduler.models import Week, Day, Split
 class WeekSerializer(serializers.ModelSerializer):
     class Meta:
         model = Week
-        fields = ['name', 'first_day', 'from_date', 'to_date', 'myeats_user']
+        fields = ['id', 'name', 'first_day', 'from_date', 'to_date', 'myeats_user']
     
 
 
 class DaySerializer(serializers.ModelSerializer):
     class Meta:
         model = Day
-        fields = ['name', 'week']
+        fields = ['id', 'name', 'week']
 
 
 
 class SplitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Split
-        fields = ['name', 'order', 'day', 'recipes']
+        fields = ['id', 'name', 'order', 'day', 'recipes']

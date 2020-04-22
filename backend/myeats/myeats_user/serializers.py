@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-18 11:44:43 
- * Last modified  : 2020-04-19 09:08:56
+ * Last modified  : 2020-04-22 06:19:48
  */
  """
 
@@ -17,7 +17,7 @@ class MyEatsUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(min_length=6, write_only=True, required=True)
     class Meta:
         model = MyEatsUser
-        fields = ['email', 'first_name', 'last_name', 'password']
+        fields = ['id', 'email', 'first_name', 'last_name', 'password']
     
     def create(self, validated_data):
         return MyEatsUser.objects.create_user(**validated_data)

@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-18 11:43:22 
- * Last modified  : 2020-04-19 10:55:44
+ * Last modified  : 2020-04-22 06:20:37
  */
  """
 
@@ -16,18 +16,18 @@ from myeats_recipes.models import Category, Recipe, Ingredient
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name', 'color', 'myeats_user']
+        fields = ['id', 'name', 'color', 'myeats_user']
 
 
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ['name', 'description', 'steps', 'categories', 'myeats_user']
+        fields = ['id', 'name', 'description', 'steps', 'categories', 'myeats_user']
 
 
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['name', 'quantity', 'unit_of_measure', 'recipe']
+        fields = ['id', 'name', 'quantity', 'unit_of_measure', 'recipe']
