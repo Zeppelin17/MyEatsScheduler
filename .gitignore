@@ -1,2 +1,7 @@
 backend/myeats/db.sqlite3
+backend/myeats/*.log
+backend/myeats/*.pot
+backend/myeats/*.pyc
+backend/myeats/__pycache__
+backend/myeats/media
 .vscode
