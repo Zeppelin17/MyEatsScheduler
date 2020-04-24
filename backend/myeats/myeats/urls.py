@@ -28,10 +28,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
+from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin-myeats/', admin.site.urls),
-    url('api/auth/', include('rest_framework.urls')),
+    #url('api/auth/', include('rest_framework.urls')),
+    url('api/auth/', views.obtain_auth_token),
     path('', include('myeats_user.urls')),
     path('', include('myeats_scheduler.urls')),
     path('', include('myeats_recipes.urls'))

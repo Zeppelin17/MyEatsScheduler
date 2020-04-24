@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-13 17:35:07 
- * Last modified  : 2020-04-18 11:00:00
+ * Last modified  : 2020-04-22 06:50:02
  */
 
 
@@ -48,7 +48,10 @@ INSTALLED_APPS = [
     'myeats_scheduler',
     'myeats_recipes',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

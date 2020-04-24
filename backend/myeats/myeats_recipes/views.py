@@ -6,17 +6,19 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-19 10:32:54 
- * Last modified  : 2020-04-21 06:45:51
+ * Last modified  : 2020-04-24 06:21:51
  */
 """
 
 from myeats_recipes.models import Recipe, Ingredient, Category
 from myeats_recipes.serializers import RecipeSerializer, IngredientSerializer, CategorySerializer
 from rest_framework import generics, permissions
+from rest_framework.authentication import TokenAuthentication
 from myeats_recipes.permissions import isOwnerOfRecipeCategory, isOwnerOfIngredient
 
 class RecipeList(generics.ListAPIView):
     serializer_class = RecipeSerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfRecipeCategory]
 
     def get_queryset(self):
@@ -32,15 +34,18 @@ class RecipeList(generics.ListAPIView):
 class RecipeCreate(generics.CreateAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfRecipeCategory]
 
 class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfRecipeCategory]
 
 class IngredientList(generics.ListAPIView):
     serializer_class = IngredientSerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfIngredient]
 
     def get_queryset(self):
@@ -56,15 +61,18 @@ class IngredientList(generics.ListAPIView):
 class IngredientCreate(generics.CreateAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfIngredient]
 
 class IngredientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfIngredient]
 
 class CategoryList(generics.ListAPIView):
     serializer_class = CategorySerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfRecipeCategory]
 
     def get_queryset(self):
@@ -80,9 +88,11 @@ class CategoryList(generics.ListAPIView):
 class CategoryCreate(generics.CreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfRecipeCategory]
 
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated, isOwnerOfRecipeCategory]
