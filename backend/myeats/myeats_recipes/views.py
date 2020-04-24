@@ -19,16 +19,13 @@ from myeats_recipes.permissions import isOwnerOfRecipeCategory, isOwnerOfIngredi
 class RecipeList(generics.ListAPIView):
     serializer_class = RecipeSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated, isOwnerOfRecipeCategory]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
         Get recipes filtered by user
         """
-        queryset = Recipe.objects.none()
-        userId = self.request.query_params.get('userid', None)
-        if userId is not None:
-            queryset = Recipe.objects.filter(myeats_user=userId)
+        queryset = Recipe.objects.filter(myeats_user=self.request.user)
         return queryset
 
 class RecipeCreate(generics.CreateAPIView):
@@ -46,7 +43,7 @@ class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
 class IngredientList(generics.ListAPIView):
     serializer_class = IngredientSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated, isOwnerOfIngredient]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -54,7 +51,8 @@ class IngredientList(generics.ListAPIView):
         """
         queryset = Ingredient.objects.none()
         recipeId = self.request.query_params.get('recipeid', None)
-        if recipeId is not None:
+        recipe = Recipe.objects.get(pk=recipeId)
+        if recipeId is not None and self.request.user == recipe.myeats_user:
             queryset = Ingredient.objects.filter(recipe=recipeId)
         return queryset
 
@@ -73,16 +71,13 @@ class IngredientDetail(generics.RetrieveUpdateDestroyAPIView):
 class CategoryList(generics.ListAPIView):
     serializer_class = CategorySerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated, isOwnerOfRecipeCategory]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
         Get user's categories
         """
-        queryset = Category.objects.none()
-        userId = self.request.query_params.get('userid', None)
-        if userId is not None:
-            queryset = Category.objects.filter(myeats_user=userId)
+        queryset = Category.objects.filter(myeats_user=self.request.user)
         return queryset
 
 class CategoryCreate(generics.CreateAPIView):

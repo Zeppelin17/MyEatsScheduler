@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-19 09:09:52 
- * Last modified  : 2020-04-24 06:19:00
+ * Last modified  : 2020-04-24 16:12:00
  */
 
 """
@@ -17,19 +17,17 @@ from rest_framework import generics, permissions
 from rest_framework.authentication import TokenAuthentication
 from myeats_scheduler.permissions import isOwnerOfWeek, isOwnerOfDay, isOwnerOfSplit
 
+
 class WeekList(generics.ListAPIView):
     serializer_class = WeekSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated, isOwnerOfWeek]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
         Get weeks filtered by userId
         """
-        queryset = Week.objects.none()
-        userId = self.request.query_params.get('userid', None)
-        if userId is not None:
-            queryset = Week.objects.filter(myeats_user=userId)
+        queryset = Week.objects.filter(myeats_user=self.request.user)
         return queryset
 
 class WeekCreate(generics.CreateAPIView):
@@ -47,7 +45,7 @@ class WeekDetail(generics.RetrieveUpdateDestroyAPIView):
 class DayList(generics.ListAPIView):
     serializer_class = DaySerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated, isOwnerOfDay]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -55,7 +53,8 @@ class DayList(generics.ListAPIView):
         """
         queryset = Day.objects.none()
         weekId = self.request.query_params.get('weekid', None)
-        if weekId is not None:
+        week = Week.objects.get(pk=weekId)
+        if weekId is not None and self.request.user == week.myeats_user:
             queryset = Day.objects.filter(week=weekId)
         return queryset
 
@@ -74,7 +73,7 @@ class DayDetail(generics.RetrieveUpdateDestroyAPIView):
 class SplitList(generics.ListAPIView):
     serializer_class = SplitSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated, isOwnerOfSplit]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -82,7 +81,8 @@ class SplitList(generics.ListAPIView):
         """
         queryset = Split.objects.none()
         dayId = self.request.query_params.get('dayid', None)
-        if dayId is not None:
+        day = Day.objects.get(pk=dayId)
+        if dayId is not None and self.request.user == day.week.myeats_user:
             queryset = Split.objects.filter(day=dayId)
         return queryset
 
