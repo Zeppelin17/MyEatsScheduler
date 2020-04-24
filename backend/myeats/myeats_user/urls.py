@@ -16,5 +16,5 @@ from myeats_user import views
 
 urlpatterns = [
     path('api/user/create/', views.MyEatsUserCreate.as_view()),
-    path('api/user/<int:pk>', views.MyEatsUserDetail.as_view())
+    path('api/user/<int:pk>/', views.MyEatsUserDetail.as_view())
 ]

@@ -17,11 +17,11 @@ from myeats_scheduler import views
 urlpatterns = [
     path('api/week/create/', views.WeekCreate.as_view()),
     path('api/week/list/', views.WeekList.as_view()),
-    path('api/week/<int:pk>', views.WeekDetail.as_view()),
+    path('api/week/<int:pk>/', views.WeekDetail.as_view()),
     path('api/day/create/', views.DayCreate.as_view()),
     path('api/day/list/', views.DayList.as_view()),
-    path('api/day/<int:pk>', views.DayDetail.as_view()),
+    path('api/day/<int:pk>/', views.DayDetail.as_view()),
     path('api/split/create/', views.SplitCreate.as_view()),
     path('api/split/list/', views.SplitList.as_view()),
-    path('api/split/<int:pk>', views.SplitDetail.as_view())
+    path('api/split/<int:pk>/', views.SplitDetail.as_view())
 ]
