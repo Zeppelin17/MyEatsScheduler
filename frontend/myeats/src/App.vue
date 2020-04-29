@@ -1,12 +1,37 @@
+<script>
+/**
+ * Main App file
+ *
+ * @summary Main App file
+ * @author Zeppelin17 <elzeppelin17@gmail.com>
+ *
+ * Created at     : 2020-04-29 17:23:13 
+ * Last modified  : 2020-04-29 17:23:28
+ */
+</script>
+
+
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <LocaleSwitcher />
+    <MainMenu />
     <router-view/>
   </div>
 </template>
+
+
+<script>
+import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
+import MainMenu from '@/components/MainMenu.vue'
+
+export default {
+  name: 'App',
+  components: {
+    LocaleSwitcher,
+    MainMenu
+  }
+}
+</script>
 
 <style>
 #app {

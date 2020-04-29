@@ -1,0 +1,17 @@
+{
+  "mainMenu": {
+    "en": "Inglés",
+    "es": "Español"
+  },
+  "menu": {
+    "home": "Inicio",
+    "about": "Acerca de"
+  },
+  "home": {
+    "welcome": "Hola, esta es la aplicación {appName}.",
+    "newMessage": "sin mensajes | 1 mensaje | {count} mensajes"
+  },
+  "about": {
+    "welcome": "Bienvenid@ a la página Acerca de."
+  }
+}

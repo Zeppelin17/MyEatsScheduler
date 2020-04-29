@@ -1,23 +1,62 @@
+/**
+ * Routes configuration
+ *
+ * @summary Routes configuration
+ * @author Zeppelin17 <elzeppelin17@gmail.com>
+ *
+ * Created at     : 2020-04-29 16:41:03 
+ * Last modified  : 2020-04-29 17:22:02
+ */
+
 import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import VueRouter from 'vue-router'
+import { Trans } from '@/plugins/Translation'
 
-Vue.use(Router)
+function load(component) {
+  // '@' is aliased to src/components
+  return () => import(`@/views/${component}.vue`)
+}
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/:locale',
+    component: {
+      template: "<router-view></router-view>"
     },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    beforeEnter: Trans.routeMiddleware,
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: load('Home')
+      },
+      {
+        path: 'about',
+        name: 'About',
+        component: load('About')
+      },
+      {
+        path: '*',
+        redirect() {
+          return Trans.defaultLocale
+        }
+      }
+    ]
+  },
+  {
+    path: '',
+    redirect() {
+      return Trans.defaultLocale
     }
-  ]
+  }
+]
+
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
+export default router
