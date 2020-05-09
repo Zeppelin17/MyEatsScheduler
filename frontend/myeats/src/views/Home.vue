@@ -17,7 +17,7 @@
     <h2>{{ $t('home.welcome', {appName: 'MyEats Scheduler'}) }}</h2>
     <p>{{ $tc("home.newMessage", 0) }}</p>
 
-    <img class="m-auto" alt="Vue logo" src="../assets/logo.png">
+    <img class="m-auto" alt="Vue logo" src="../assets/img/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>

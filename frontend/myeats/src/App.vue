@@ -6,16 +6,20 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:13 
- * Last modified  : 2020-04-29 17:23:28
+ * Last modified  : 2020-05-06 07:01:50
  */
 </script>
 
 
 <template>
   <div id="app">
-    <LocaleSwitcher />
-    <MainMenu />
-    <router-view/>
+    <header class="flex flex-wrap items-center justify-end px-3">
+      <MainMenu />
+      <LocaleSwitcher />
+    </header>
+    <div class="container mx-auto">
+      <router-view/>
+    </div>
   </div>
 </template>
 

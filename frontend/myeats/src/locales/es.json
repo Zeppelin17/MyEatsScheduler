@@ -1,9 +1,16 @@
 {
-  "mainMenu": {
-    "en": "Inglés",
-    "es": "Español"
+  "langMenu": {
+    "en": {
+      "name": "Inglés",
+      "flag": "en.png"
+    },
+    "es": {
+      "name": "Español",
+      "flag": "es.png"
+    },
+    "selectDropdown": "Escoger idioma"
   },
-  "menu": {
+  "mainMenu": {
     "home": "Inicio",
     "about": "Acerca de"
   },
