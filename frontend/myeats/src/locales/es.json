@@ -12,7 +12,8 @@
   },
   "mainMenu": {
     "home": "Inicio",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "login": "Entrar"
   },
   "home": {
     "welcome": "Hola, esta es la aplicación {appName}.",

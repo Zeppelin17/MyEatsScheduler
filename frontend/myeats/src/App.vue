@@ -6,18 +6,18 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:13 
- * Last modified  : 2020-05-06 07:01:50
+ * Last modified  : 2020-05-12 07:00:22
  */
 </script>
 
 
 <template>
   <div id="app">
-    <header class="flex flex-wrap items-center justify-end px-3">
+    <header class="flex flex-wrap items-center justify-end px-3 bg-blue-200 mb-6">
       <MainMenu />
       <LocaleSwitcher />
     </header>
-    <div class="container mx-auto">
+    <div class="container mx-auto text-lg sm:text-xl text-gray-800">
       <router-view/>
     </div>
   </div>
@@ -38,23 +38,42 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,700;1,400;1,700&family=Righteous&display=swap');
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
-#nav {
-  padding: 30px;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Righteous', cursive;
+  line-height: 1.25;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+#app .primary-color {
+  @apply text-blue-900
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+#app .primary-color-light {
+  @apply text-blue-400
+}
+#app h1 {
+  font-size: 2.25rem
+}
+#app h2 {
+  font-size: 1.875rem
+}
+#app h3 {
+  font-size: 1.5rem
+}
+#app h4 {
+  font-size: 1.25rem
+}
+#app h5 {
+  font-size: 1.125rem
+}
+#app h6 {
+  font-size: 1rem
 }
 </style>

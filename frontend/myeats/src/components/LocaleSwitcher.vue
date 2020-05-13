@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:49:31 
- * Last modified  : 2020-05-09 06:49:25
+ * Last modified  : 2020-05-12 06:58:02
  */
 </script>
 
@@ -31,11 +31,11 @@
         </div>
         <div 
             v-if="showLangSelector"
-            class="absolute right-0 w-32"
+            class="locale-list absolute right-0 w-32"
         >
-            <div class="flex flex-col items-start bg-indigo-300 shadow-xl rounded">
+            <div class="locale-wrap">
                 <div 
-                    class="flex p-2 w-full rounded text-gray-800 hover:bg-indigo-600 hover:text-gray-300"
+                    class="locale"
                     v-for="locale in locales" 
                     :key="locale"
                     @click="showLangSelector = !showLangSelector"
@@ -92,5 +92,16 @@ export default {
 </script>
 
 <style scoped>
-.locale-flag:hover .tooltip {display: block;}
+.locale-list .locale-wrap {
+    @apply flex flex-col items-start bg-blue-300 shadow-xl rounded
+}
+.locale-list .locale-wrap .locale {
+    @apply flex p-2 w-full rounded text-gray-800
+}
+.locale-list .locale-wrap .locale:hover {
+    @apply bg-blue-900 text-gray-200
+}
+.locale-list .locale-wrap .locale:hover a img{
+    @apply border-gray-200 border-2 rounded-full
+}
 </style>

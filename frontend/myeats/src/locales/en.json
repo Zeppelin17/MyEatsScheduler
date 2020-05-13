@@ -12,7 +12,8 @@
   },
   "mainMenu": {
     "home": "Home",
-    "about": "About"
+    "about": "About",
+    "login": "Login"
   },
   "home": {
     "welcome": "Hello, this is {appName} app.",
