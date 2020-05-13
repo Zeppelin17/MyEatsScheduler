@@ -15,6 +15,9 @@
     "about": "About",
     "login": "Login"
   },
+  "header": {
+    "logoAltText": "MyEats Scheduler"
+  },
   "home": {
     "welcome": "Hello, this is {appName} app.",
     "newMessage": "no messages | 1 message | {count} messages"

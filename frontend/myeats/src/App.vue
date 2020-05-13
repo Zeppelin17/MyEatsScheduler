@@ -13,9 +13,15 @@
 
 <template>
   <div id="app">
-    <header class="flex flex-wrap items-center justify-end px-3 bg-blue-200 mb-6">
-      <MainMenu />
-      <LocaleSwitcher />
+    <header class="flex justify-between items-center px-3 py-1 bg-blue-200 mb-6">
+      <img 
+          class="h-20"
+          src="./assets/img/logo.png" :alt="$t('header.logoAltText')"
+        >
+      <div class="flex flex-wrap items-center justify-end ">
+        <MainMenu />
+        <LocaleSwitcher />
+      </div>
     </header>
     <div class="container mx-auto text-lg sm:text-xl text-gray-800">
       <router-view/>
