@@ -13,16 +13,35 @@
 
 <template>
   <div id="app">
-    <header class="flex justify-between items-center px-3 py-1 bg-blue-200 mb-6">
+    <header class="flex justify-between items-center sm:items-end px-3 py-1 bg-blue-200 mb-6">
       <img 
           class="h-20"
           src="./assets/img/logo.png" :alt="$t('header.logoAltText')"
         >
-      <div class="flex flex-wrap items-center justify-end ">
-        <MainMenu />
-        <LocaleSwitcher />
-      </div>
+      
+        <div class="block sm:hidden">
+          <button
+            @click="dropdownMenuVisible = !dropdownMenuVisible"
+            class="flex items-center px-3 py-2 border rounded primary-color border-blue-900 hover:text-white hover:border-blue-400"
+          >
+            <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button>
+        </div>
+
+        <div class="hidden sm:flex sm:items-end">
+          <MainMenu />
+          <LocaleSwitcher />
+        </div>
     </header>
+
+    <div 
+      @click="dropdownMenuVisible = !dropdownMenuVisible"
+      :class="dropdownMenuVisible ? 'dropdown' : 'hidden'"
+    >
+      <MainMenu />
+    </div>
+
+
     <div class="container mx-auto text-lg sm:text-xl text-gray-800">
       <router-view/>
     </div>
@@ -39,6 +58,11 @@ export default {
   components: {
     LocaleSwitcher,
     MainMenu
+  },
+  data() {
+    return {
+      dropdownMenuVisible: false
+    }
   }
 }
 </script>
@@ -53,6 +77,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
+#app .dropdown {
+  @apply -mt-6 static w-full bg-blue-200
+}
+#app .dropdown #nav {
+  @apply flex flex-col
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Righteous', cursive;
   line-height: 1.25;

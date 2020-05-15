@@ -12,7 +12,7 @@
 
 
 <template>
-    <div class="relative">
+    <div class="relative py-3">
         <div 
             v-if="showLangSelector"
             class="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-25"
@@ -22,9 +22,9 @@
             class="flex cursor-pointer"
             @click="showLangSelector = !showLangSelector"
         >
-            <span class="text-indigo-600">{{ this.$i18n.locale }}</span>
+            <span class="text-blue-900">{{ this.$i18n.locale }}</span>
             <img
-                class="w-3 text-indigo-600"
+                class="w-3 text-blue-900"
                 :src="requireImage('caret-down-outline.svg')" 
                 :alt="$t('langMenu.selectDropdown')"
             >

@@ -11,16 +11,16 @@
 </script>
 
 <template>
-  <div id="nav" class="text-xl py-6 px-3">
-    <router-link :to="$i18nRoute({ name: 'Home' })" class="primary-color-light menu-item ">
-      {{ $t('mainMenu.home') }}
-    </router-link>
-    <router-link :to="$i18nRoute({ name: 'About' })" class="primary-color-light menu-item">
-      {{ $t('mainMenu.about') }}
-    </router-link>
-    <router-link :to="$i18nRoute({ name: 'Login' })" class="primary-color-light menu-item">
-      {{ $t('mainMenu.login') }}
-    </router-link>
+  <div id="nav" class="text-xl py-3 px-3">
+      <router-link :to="$i18nRoute({ name: 'Home' })" class="primary-color-light menu-item ">
+        {{ $t('mainMenu.home') }}
+      </router-link>
+      <router-link :to="$i18nRoute({ name: 'About' })" class="primary-color-light menu-item">
+        {{ $t('mainMenu.about') }}
+      </router-link>
+      <router-link :to="$i18nRoute({ name: 'Login' })" class="primary-color-light menu-item">
+        {{ $t('mainMenu.login') }}
+      </router-link>
   </div>
 </template>
 
