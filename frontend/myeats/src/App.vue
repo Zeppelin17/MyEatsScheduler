@@ -13,25 +13,25 @@
 
 <template>
   <div id="app">
-    <header class="flex justify-between items-center sm:items-end px-3 py-1 bg-blue-200 mb-6">
+    <header class="std-container header-container px-3 py-1 mb-6 sm:px-12 sm:items-end">
       <img 
           class="h-20"
           src="./assets/img/logo.png" :alt="$t('header.logoAltText')"
         >
       
-        <div class="block sm:hidden">
-          <button
-            @click="dropdownMenuVisible = !dropdownMenuVisible"
-            class="flex items-center px-3 py-2 border rounded primary-color border-blue-900 hover:text-white hover:border-blue-400"
-          >
-            <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-          </button>
-        </div>
+      <div class="block sm:hidden">
+        <button
+          @click="dropdownMenuVisible = !dropdownMenuVisible"
+          class="flex items-center px-3 py-2 border rounded primary-color border-blue-900 hover:text-white hover:border-blue-400"
+        >
+          <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+        </button>
+      </div>
 
-        <div class="hidden sm:flex sm:items-end">
-          <MainMenu />
-          <LocaleSwitcher />
-        </div>
+      <div class="hidden sm:flex sm:items-end">
+        <MainMenu />
+        <LocaleSwitcher />
+      </div>
     </header>
 
     <div 
@@ -42,7 +42,7 @@
     </div>
 
 
-    <div class="container mx-auto text-lg sm:text-xl text-gray-800">
+    <div class="std-container px-3 sm:px-12 sm:text-xl">
       <router-view/>
     </div>
   </div>
@@ -75,14 +75,21 @@ export default {
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+}
+
+#app .std-container {
+  @apply text-lg text-gray-800
+}
+
+#app .header-container {
+  @apply flex justify-between items-center bg-blue-200
 }
 
 #app .dropdown {
   @apply -mt-6 static w-full bg-blue-200
 }
 #app .dropdown #nav {
-  @apply flex flex-col
+  @apply flex flex-col items-center
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -97,21 +104,21 @@ h1, h2, h3, h4, h5, h6 {
   @apply text-blue-400
 }
 #app h1 {
-  font-size: 2.25rem
+  @apply text-4xl
 }
 #app h2 {
-  font-size: 1.875rem
+  @apply text-3xl
 }
 #app h3 {
-  font-size: 1.5rem
+  @apply text-2xl
 }
 #app h4 {
-  font-size: 1.25rem
+  @apply text-xl
 }
 #app h5 {
-  font-size: 1.125rem
+  @apply text-lg
 }
 #app h6 {
-  font-size: 1rem
+  @apply text-base
 }
 </style>
