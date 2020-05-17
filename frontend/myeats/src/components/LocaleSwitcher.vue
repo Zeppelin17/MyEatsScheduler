@@ -15,7 +15,7 @@
     <div class="relative py-3">
         <div 
             v-if="showLangSelector"
-            class="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-25"
+            class="fixed inset-0 w-full h-full bg-gray-500 bg-opacity-25 z-10"
             @click="showLangSelector = !showLangSelector"
         ></div>
         <div 
@@ -92,11 +92,17 @@ export default {
 </script>
 
 <style scoped>
+.locale-list {
+    @apply z-20
+}
 .locale-list .locale-wrap {
     @apply flex flex-col items-start bg-blue-300 shadow-xl rounded
 }
 .locale-list .locale-wrap .locale {
-    @apply flex p-2 w-full rounded text-gray-800
+    @apply flex rounded text-gray-800 w-full
+}
+.locale-list .locale-wrap .locale a {
+    @apply p-2 w-full rounded
 }
 .locale-list .locale-wrap .locale:hover {
     @apply bg-blue-900 text-gray-200

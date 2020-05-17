@@ -19,8 +19,8 @@
     "logoAltText": "MyEats Scheduler"
   },
   "home": {
-    "welcome": "Hola, esta es la aplicación {appName}.",
-    "newMessage": "sin mensajes | 1 mensaje | {count} mensajes"
+    "heroBannerText": "Planifica tus comidas, mejora tu estilo de vida",
+    "mainHeader": "MyEats Scheduler"
   },
   "about": {
     "welcome": "Bienvenid@ a la página Acerca de."

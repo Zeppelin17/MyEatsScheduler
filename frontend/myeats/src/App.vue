@@ -6,14 +6,14 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:13 
- * Last modified  : 2020-05-12 07:00:22
+ * Last modified  : 2020-05-17 07:03:22
  */
 </script>
 
 
 <template>
   <div id="app">
-    <header class="std-container header-container px-3 py-1 mb-6 sm:px-12 sm:items-end">
+    <header class="std-container header-container text-lg px-3 py-1 sm:px-12 sm:items-end">
       <img 
           class="h-20"
           src="./assets/img/logo.png" :alt="$t('header.logoAltText')"
@@ -42,7 +42,7 @@
     </div>
 
 
-    <div class="std-container px-3 sm:px-12 sm:text-xl">
+    <div class="std-container text-lg px-3 sm:px-12 sm:text-xl">
       <router-view/>
     </div>
   </div>
@@ -78,15 +78,15 @@ export default {
 }
 
 #app .std-container {
-  @apply text-lg text-gray-800
+  @apply text-gray-800
 }
 
 #app .header-container {
-  @apply flex justify-between items-center bg-blue-200
+  @apply h-20 flex justify-between items-center bg-blue-200 overflow-visible
 }
 
 #app .dropdown {
-  @apply -mt-6 static w-full bg-blue-200
+  @apply static w-full bg-blue-200
 }
 #app .dropdown #nav {
   @apply flex flex-col items-center
