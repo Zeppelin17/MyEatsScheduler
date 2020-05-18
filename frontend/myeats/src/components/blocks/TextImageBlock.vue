@@ -6,22 +6,25 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-17 06:49:29 
- * Last modified  : 2020-05-17 09:33:53
+ * Last modified  : 2020-05-18 06:30:45
  */
 </script>
 <template>
   <div 
-    class="text-img-block sm:flex sm:items-center"
+    class="text-img-block"
     :class="imageAlign == 'right' ? 'flex-row-reverse' : ''"
   >
-    <div v-if="imageName !== ''" class="image max-w-full mb-5 sm:max-w-sm sm:w-4/12 sm:mb-0">
+    <div v-if="imageName !== ''" class="image">
       <img 
         :src="require('../../assets/img/' + imageName)" 
         :alt="title"
       >
     </div>
     
-    <div class="content sm:w-8/12">
+    <div 
+      class="content"
+      :class="imageName !== '' ? 'sm:w-8/12' : ''"  
+    >
       <h2 class="mb-2">{{ title }}</h2>
       <p>{{ content }}</p>
     </div>
@@ -59,7 +62,21 @@ export default {
 .text-img-block {
   @apply mb-16
 }
+
 .text-img-block .image, .text-img-block .content {
   @apply mx-3
+}
+
+.text-img-block .image {
+  @apply max-w-full mb-5
+}
+
+@media (min-width: 640px) {
+  .text-img-block {
+    @apply flex items-center
+  }
+  .text-img-block .image {
+    @apply max-w-sm w-4/12 mb-0
+  }
 }
 </style>
