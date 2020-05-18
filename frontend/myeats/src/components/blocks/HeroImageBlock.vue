@@ -6,21 +6,20 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-17 06:49:05 
- * Last modified  : 2020-05-17 07:05:15
+ * Last modified  : 2020-05-18 06:42:48
  */
 </script>
 <template>
-  <div class="text-img-block">
-    <div class="image -mx-3 sm:-mx-12">
+  <div class="hero-wrapper">
+    <div class="image">
       <img 
-        class="mx-auto"
         :src="require('../../assets/img/' + imageName)" 
         :alt="content"
       >
     </div>
     
     <div class="content primary-color-light">
-      <h1 class="mb-4">{{ $t("home.mainHeader") }}</h1>
+      <h1>{{ $t("home.mainHeader") }}</h1>
       <h2>{{ content }}</h2>
     </div>
     
@@ -46,16 +45,31 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.text-img-block {
+.hero-wrapper {
   @apply mb-16 relative
 }
-.text-img-block .image img{
-  @apply object-cover object-bottom w-full;
+
+.hero-wrapper .image {
+  @apply -mx-3
+}
+
+.hero-wrapper .image img{
+  @apply mx-auto object-cover object-bottom w-full;
   height: calc(100vh - 5rem);
 }
 
-.text-img-block .content{
+.hero-wrapper .content{
   @apply absolute z-0 inset-0 pt-20 w-full text-center
+}
+
+.hero-wrapper .content h1{
+  @apply mb-4
+}
+
+@media (min-width: 640px) {
+  .hero-wrapper .image {
+    @apply -mx-12
+  }
 }
 
 </style>
