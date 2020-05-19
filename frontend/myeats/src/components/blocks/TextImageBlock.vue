@@ -26,7 +26,7 @@
       :class="imageName !== '' ? 'sm:w-9/12' : ''"  
     >
       <h2 class="mb-2">{{ title }}</h2>
-      <p>{{ content }}</p>
+      <p v-html="content"></p>
     </div>
     
     
