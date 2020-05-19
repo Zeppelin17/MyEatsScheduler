@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-17 06:49:29 
- * Last modified  : 2020-05-18 06:30:45
+ * Last modified  : 2020-05-19 06:55:05
  */
 </script>
 <template>
@@ -23,7 +23,7 @@
     
     <div 
       class="content"
-      :class="imageName !== '' ? 'sm:w-8/12' : ''"  
+      :class="imageName !== '' ? 'sm:w-9/12' : ''"  
     >
       <h2 class="mb-2">{{ title }}</h2>
       <p>{{ content }}</p>
@@ -68,7 +68,11 @@ export default {
 }
 
 .text-img-block .image {
-  @apply max-w-full mb-5
+  @apply mb-5
+}
+
+.text-img-block .image img {
+  @apply w-40 mx-auto
 }
 
 @media (min-width: 640px) {
@@ -76,7 +80,7 @@ export default {
     @apply flex items-center
   }
   .text-img-block .image {
-    @apply max-w-sm w-4/12 mb-0
+    @apply w-3/12 mb-0
   }
 }
 </style>
