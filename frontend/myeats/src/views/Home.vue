@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:47 
- * Last modified  : 2020-05-17 09:23:13
+ * Last modified  : 2020-05-18 07:02:11
  */
 </script>
 
@@ -19,17 +19,24 @@
     />
     
     <TextImageBlock 
-      title="This is the TextImageBlock title" 
-      content="Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet"
-      imageName="breakfast.svg"
-      imageAlign="right"
+      :title="$t('home.whatIs.title')" 
+      :content="$t('home.whatIs.text')"
+      imageName="refreshing_beverage.svg"
+      imageAlign="right" 
     />
 
     <TextImageBlock 
-      title="This is the TextImageBlock title" 
-      content="Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet Lorem Ipsum dolor sit amet"
-      imageName="breakfast.svg"
-      imageAlign="left"
+      :title="$t('home.whyPlanning.title')" 
+      :content="$t('home.whyPlanning.text')"
+      imageName="healthy_options.svg"
+      imageAlign="left" 
+    />
+
+    <TextImageBlock 
+      :title="$t('home.whatCanIDo.title')" 
+      :content="$t('home.whatCanIDo.text')"
+      imageName="online_test.svg"
+      imageAlign="right" 
     />
   </div>
 </template>

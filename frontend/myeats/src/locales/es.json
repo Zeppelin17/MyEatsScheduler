@@ -20,7 +20,19 @@
   },
   "home": {
     "heroBannerText": "Planifica tus comidas, mejora tu estilo de vida",
-    "mainHeader": "MyEats Scheduler"
+    "mainHeader": "MyEats Scheduler",
+    "whatIs": {
+      "title": "Qué es MyEats Scheduler",
+      "text": "Es un planificador para ayudarte a <b>organizar tus comidas</b>. Muchas veces no sabes qué vas a comer, a lo mejor ni siquiera sabes qué hay en tu nevera. Si a menudo pierdes tiempo pensando qué vas a hacerte de comer, probablemente acabes pillando cualquier cosa de la nevera o pidiendo comida poco saludable. Y lo sabes."
+    },
+    "whyPlanning": {
+      "title": "¿Por qué debería planificar mis comidas?",
+      "text": "Hacerlo conlleva muchos beneficios. Por ejemplo, vas a... <br/><br/><b>1)</b> <b>parar de perder tiempo</b> pensando qué vas a cocinar <br/><b>2)</b> comer de forma más <b>saludable</b> <br/><b>3)</b> mejorar tus habilidades de cocinillas mientras <b>cocinas platos más elaborados</b> <br/><b>4)</b> tener la posibilidad de organizarte un <b>menú más diverso y equilibrado</b> <br/><b>5)</b> <b>ahorrar dinero</b> optimizando tus compras"
+    },
+    "whatCanIDo": {
+      "title": "Functionalities",
+      "text": "El funcionamiento es muy sencillo. El primer paso es <b>crear algunas <i>Recetas</i></b>. Entonces, puedes <b>crear <i>Semanas</i></b>. Una <i>Semana</i> es una cuadrícula donde puedes ver siete días. Puedes <b><i>Dividir</i> cada día en varias partes</b>, tantas como quieras. Las <i>Divisiones</i> son simplemente una forma de dividir el día en varias franjas, como 'Desayuno', 'Comida' or 'Cena'. Finalmente, puedes <b>añadir tus <i>Recetas</i></b> a cada <i>Día</i> y <i>División</i> correspondientes."
+    }
   },
   "about": {
     "welcome": "Bienvenid@ a la página Acerca de."

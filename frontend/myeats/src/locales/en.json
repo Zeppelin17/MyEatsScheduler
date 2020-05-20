@@ -20,7 +20,19 @@
   },
   "home": {
     "heroBannerText": "Plan your meals, improve your lifestyle",
-    "mainHeader": "MyEats Scheduler"
+    "mainHeader": "MyEats Scheduler",
+    "whatIs": {
+      "title": "What is MyEats Scheduler",
+      "text": "This app was made to help you <b>organize your meals</b>. Lots of times you don't know what you're going to have for lunch, maybe you don't even know what's in your fridge. If you're often wasting time figuring out your next meal, you probably end up feeding yourself with the first thing you get from the refrigerator or ordering unhealthy food. And you know it."
+    },
+    "whyPlanning": {
+      "title": "Why should I plan my meals?",
+      "text": "There's a lot of benefits in scheduling your meals. To mention some, you will... <br/><br/><b>1)</b> <b>stop wasting time</b> thinking in what to cook next <br/><b>2)</b> eat more <b>healthy food</b> <br/><b>3)</b> improve your cooking skills by practicing more <b>elaborate dishes</b><br/><b>4)</b> be able to plan some <b>menus a way lot diverse and equilibrate</b> <br/><b>5)</b> <b>save money</b> by optimizing your groceries shopping carts"
+    },
+    "whatCanIDo": {
+      "title": "Functionalities",
+      "text": "This is a very simple app. The first thing you need is <b>create some <i>recipes</i></b>. Then, you can <b>create <i>Weeks</i></b>. A <i>Week</i> is a grid where you can see seven days, Obvious right? You can <b><i>Split</i> every day in parts</b>, as many as you want. A <i>Split</i> is just a logical divider for the day, like 'Breakfast', 'Lunch' or 'Dinner'. Finally, you can <b>add your <i>Recipes</i></b> to each corresponding <i>Day</i> and <i>Split</i>."
+    }
   },
   "about": {
     "welcome": "Welcome to the About page."
