@@ -23,7 +23,7 @@
     
     <div 
       class="content"
-      :class="imageName !== '' ? 'sm:w-9/12' : ''"  
+      :class="imageName !== '' ? 'sm:w-8/12' : ''"  
     >
       <h2 class="mb-2">{{ title }}</h2>
       <p v-html="content"></p>
@@ -72,7 +72,7 @@ export default {
 }
 
 .text-img-block .image img {
-  @apply w-40 mx-auto
+  @apply w-48 mx-auto
 }
 
 @media (min-width: 640px) {
@@ -80,7 +80,7 @@ export default {
     @apply flex items-center
   }
   .text-img-block .image {
-    @apply w-3/12 mb-0
+    @apply w-4/12 mb-0
   }
 }
 </style>
