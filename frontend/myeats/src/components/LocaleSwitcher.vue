@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:49:31 
- * Last modified  : 2020-05-12 06:58:02
+ * Last modified  : 2020-05-23 17:51:10
  */
 </script>
 
@@ -159,7 +159,7 @@ export default {
     @apply p-2 w-full rounded
 }
 .locale-wrap.footer .locale:hover {
-    @apply border-2 border-blue-900 text-blue-900
+    @apply border-2 border-blue-900 text-blue-900 bg-blue-200
 }
 .locale-wrap.footer .locale:hover a img{
     @apply border-blue-900 border-2 rounded-full
