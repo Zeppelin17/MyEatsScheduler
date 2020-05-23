@@ -36,5 +36,13 @@
   },
   "about": {
     "welcome": "Bienvenid@ a la página Acerca de."
+  },
+  "footer": {
+    "linksMenu": "Enlaces",
+    "contact": "Contacto",
+    "contactMe": "Email",
+    "langSwitcher": "Idioma",
+    "buttonSignIn": "Entrar",
+    "buttonSignUp": "Registrarse"
   }
 }
