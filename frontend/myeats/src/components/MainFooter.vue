@@ -83,7 +83,7 @@ footer .footer-column.sign {
 
 
 footer .footer-column.sign button {
-    @apply w-32 mb-4 py-3 px-5 bg-blue-900 text-white font-medium border-blue-900 border-2 rounded-lg
+    @apply w-32 mb-3 py-3 px-5 bg-blue-900 text-white font-medium border-blue-900 border-2 rounded-lg
 }
 
 footer .footer-column.sign button:hover {
@@ -101,6 +101,9 @@ footer .footer-column .logo {
     }
     footer .footer-column {
         @apply mb-0 
+    }
+    footer .footer-column.sign button {
+        @apply w-48
     }
 }
 </style>
