@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-17 06:49:29 
- * Last modified  : 2020-05-19 06:55:05
+ * Last modified  : 2020-05-25 06:49:28
  */
 </script>
 <template>
@@ -37,19 +37,19 @@
 export default {
   name: 'TextImageBlock',
   props: {
-    title: {
+    title: {            // Required heading for the block of content
+      type: String,       
+      required: true
+    },
+    content: {          // Required text for the block of content
       type: String,
       required: true
     },
-    content: {
-      type: String,
-      required: true
-    },
-    imageName: {
+    imageName: {        // Optional image to show with the content
       type: String,
       default: ""
     },
-    imageAlign: {
+    imageAlign: {       // Optional positional value for the image: left or right
       type: String,
       default: "left"
     }
@@ -57,7 +57,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .text-img-block {
   @apply mb-16

@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-23 17:42:10
- * Last modified  : 2020-05-24 08:42:37
+ * Last modified  : 2020-05-25 06:44:03
  */
 </script>
 <template>
@@ -36,29 +36,30 @@
 export default {
   name: 'CallToActionBanner',
   props: {
-    title: {
+    title: {            // Main text of the CTA
       type: String,
       required: true
     },
-    button1Text: {
+    button1Text: {      // Required button value
       type: String,
       required: true
     },
-    button1Link: {
+    button1Link: {      // Required button link
       type: String,
       required: true
     },
-    button2Text: {
+    button2Text: {      // Optional button value
       type: String,
       default: null
     },
-    button2Link: {
+    button2Link: {      // Optional button link
       type: String,
       default: null
     }
 
   },
   computed: {
+    // return an array with the buttons to show in the template
     allButtons: function() {
       let buttons = Array()
       buttons.push({"text": this.button1Text, "link": this.button1Link})
@@ -73,7 +74,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 .cta-banner {
   @apply flex items-center justify-between -mx-3 px-5 py-20 mb-16 bg-blue-900 text-blue-200 shadow-xl
@@ -96,7 +97,7 @@ export default {
 }
 
 .cta-banner .cta-buttons .cta-btn:hover {
-  @apply border-blue-200 bg-blue-400 shadow-xl
+  @apply border-blue-200 bg-blue-700 shadow-xl text-blue-200
 }
 
 @media (min-width: 640px) {

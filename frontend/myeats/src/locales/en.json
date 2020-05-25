@@ -32,6 +32,11 @@
     "whatCanIDo": {
       "title": "Functionalities",
       "text": "This is a very simple app. The first thing you need is <b>create some <i>recipes</i></b>. Then, you can <b>create <i>Weeks</i></b>. A <i>Week</i> is a grid where you can see seven days, Obvious right? You can <b><i>Split</i> every day in parts</b>, as many as you want. A <i>Split</i> is just a logical divider for the day, like 'Breakfast', 'Lunch' or 'Dinner'. Finally, you can <b>add your <i>Recipes</i></b> to each corresponding <i>Day</i> and <i>Split</i>."
+    },
+    "ctaSignUp": {
+      "title": "Start planning your meals, create an account in seconds",
+      "btnText": "Sign up Now",
+      "btnLink": "/en/signup"
     }
   },
   "about": {

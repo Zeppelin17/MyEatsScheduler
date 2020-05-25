@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import FooterMenu from '@/components/FooterMenu.vue'
+import FooterMenu from '@/components/menus/FooterMenu.vue'
 import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
 
 export default {
@@ -83,7 +83,7 @@ footer .footer-column.sign {
 
 
 footer .footer-column.sign button {
-    @apply w-32 mb-3 py-3 px-5 bg-blue-900 text-white font-medium border-blue-900 border-2 rounded-lg
+    @apply w-32 mb-3 py-3 px-5 bg-blue-900 text-blue-200 font-medium border-blue-900 border-2 rounded-lg
 }
 
 footer .footer-column.sign button:hover {

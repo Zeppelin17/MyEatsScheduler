@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-17 06:49:05 
- * Last modified  : 2020-05-18 06:42:48
+ * Last modified  : 2020-05-25 06:47:50
  */
 </script>
 <template>
@@ -18,7 +18,7 @@
       >
     </div>
     
-    <div class="content primary-color-light">
+    <div v-if="content" class="content primary-color-light">
       <h1>{{ $t("home.mainHeader") }}</h1>
       <h2>{{ content }}</h2>
     </div>
@@ -31,11 +31,10 @@
 export default {
   name: 'HeroImageBlock',
   props: {
-    content: {
-      type: String,
-      required: true
+    content: {            // Optional title above the hero image
+      type: String
     },
-    imageName: {
+    imageName: {          // Required image to show
       type: String,
       required: true,
     }
@@ -43,7 +42,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .hero-wrapper {
   @apply mb-16 relative

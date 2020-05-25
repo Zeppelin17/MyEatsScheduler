@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:47 
- * Last modified  : 2020-05-24 08:42:47
+ * Last modified  : 2020-05-25 06:46:38
  */
 </script>
 
@@ -26,9 +26,9 @@
     />
 
     <CallToActionBanner
-      title="Start planning your meals"
-      button1Text="Create an account"
-      button1Link="/en/register"
+      :title="$t('home.ctaSignUp.title')"
+      :button1Text="$t('home.ctaSignUp.btnText')"
+      :button1Link="$t('home.ctaSignUp.btnLink')"
 
     />
 

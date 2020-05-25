@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:13 
- * Last modified  : 2020-05-20 18:32:44
+ * Last modified  : 2020-05-25 06:40:44
  */
 </script>
 
@@ -66,7 +66,7 @@
 
 <script>
 import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
-import MainMenu from '@/components/MainMenu.vue'
+import MainMenu from '@/components/menus/MainMenu.vue'
 import MainFooter from '@/components/MainFooter.vue'
 
 export default {
