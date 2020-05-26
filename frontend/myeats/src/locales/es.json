@@ -49,5 +49,12 @@
     "langSwitcher": "Idioma",
     "buttonSignIn": "Entrar",
     "buttonSignUp": "Registrarse"
+  },
+  "error": {
+    "404": {
+      "title": "Página no encontrada",
+      "message": "La página que buscas no existe",
+      "help": "Puedes ir a la página principal y empezar de nuevo"
+    }
   }
 }

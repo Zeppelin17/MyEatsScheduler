@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:41:03 
- * Last modified  : 2020-05-16 11:22:46
+ * Last modified  : 2020-05-26 06:32:35
  */
 
 import Vue from 'vue'
@@ -39,16 +39,15 @@ const routes = [
       },
       {
         path: '*',
-        redirect() {
-          return Trans.defaultLocale
-        }
+        name: '404NotFound',
+        component: load('404NotFound')
       }
     ]
   },
   {
     path: '',
     redirect() {
-      return Trans.defaultLocale
+      return Trans.getUserSupportedLocale()
     }
   }
 ]

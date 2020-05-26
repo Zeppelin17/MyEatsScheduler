@@ -49,5 +49,13 @@
     "langSwitcher": "Language",
     "buttonSignIn": "Sign In",
     "buttonSignUp": "Sign Up"
+  },
+  "error": {
+    "404": {
+      "title": "Page not found",
+      "message": "The page you are looking for does not exist",
+      "help": "You can go to the home page and start again"
+    }
   }
+  
 }
