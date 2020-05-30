@@ -5,14 +5,14 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:24:45 
- * Last modified  : 2020-05-28 06:48:07
+ * Last modified  : 2020-05-30 06:51:52
  */
 
 import Vue from 'vue'
 import Vuex from 'vuex'
 
 import {TOGGLE_GENERAL_VIEW} from './actionTypes'
-import {CHANGE_GENERAL_VIEW} from './mutationTypes'
+import {SET_GENERAL_VIEW} from './mutationTypes'
 
 Vue.use(Vuex)
 
@@ -21,21 +21,19 @@ export default new Vuex.Store({
 
   },
   state: {
-    webView: true,
-    appView: false
+    userInAppView: false
   },
   mutations: {
 
-    [CHANGE_GENERAL_VIEW](currentState) {
-      currentState.appView = !currentState.appView
-      currentState.webView = !currentState.webView
+    [SET_GENERAL_VIEW](currentState, payload) {
+      currentState.userInAppView = payload
     }
 
   },
   actions: {
 
-    [TOGGLE_GENERAL_VIEW]({ commit }){
-      commit(CHANGE_GENERAL_VIEW)
+    [TOGGLE_GENERAL_VIEW]({ commit }, payload) {
+      commit(SET_GENERAL_VIEW, payload)
     }
 
   }
