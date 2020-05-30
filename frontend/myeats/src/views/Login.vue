@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:47 
- * Last modified  : 2020-05-30 07:03:40
+ * Last modified  : 2020-05-30 09:09:03
  */
 </script>
 
@@ -32,16 +32,13 @@
 </template>
 
 <script>
-import {TOGGLE_GENERAL_VIEW} from '@/store/actionTypes'
 
 export default {
   name: 'login',
-  mounted() {  // SE EJECUTA 2 VECES!!!!!!!!
-      this.$store.dispatch(TOGGLE_GENERAL_VIEW, true)
-      console.log("CREATED 2",this.$store.state.userInAppView)
-  },
-  beforeDestroy() {
-      this.$store.dispatch(TOGGLE_GENERAL_VIEW, false)
+  data() {
+      return {
+          
+      }
   }
 }
 </script>

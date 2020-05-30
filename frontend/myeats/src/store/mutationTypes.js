@@ -5,10 +5,10 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-28 06:33:27 
- * Last modified  : 2020-05-30 06:50:36
+ * Last modified  : 2020-05-30 09:10:05
  */
 
 /* General constants */
-export const SET_GENERAL_VIEW = 'changeGeneralView'
+
 
 /* Modules constants */
