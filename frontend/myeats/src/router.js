@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:41:03 
- * Last modified  : 2020-05-26 06:32:35
+ * Last modified  : 2020-05-30 08:54:12
  */
 
 import Vue from 'vue'
@@ -30,16 +30,24 @@ const routes = [
       {
         path: '',
         name: 'Home',
+        meta: {layout: 'website'},
         component: load('Home')
       },
       {
         path: 'about',
         name: 'About',
+        meta: {layout: 'website'},
         component: load('About')
+      },
+      {
+        path: 'login',
+        name: 'Login',
+        component: load('Login')
       },
       {
         path: '*',
         name: '404NotFound',
+        meta: {layout: 'website'},
         component: load('404NotFound')
       }
     ]
