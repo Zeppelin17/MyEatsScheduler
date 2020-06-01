@@ -42,6 +42,16 @@
   "about": {
     "welcome": "Welcome to the About page."
   },
+  "loginPage": {
+    "signIn": "Sign in",
+    "passwordRecover": "Forgot your password?",
+    "createAccount": "Create an account",
+    "goBackHome": "Return to Home",
+    "inputEmail": "Email address",
+    "inputPass": "Password",
+    "inputKeepLogin": "Keep me logged in",
+    "inputSubmit": "Go"
+  },
   "footer": {
     "linksMenu": "Links",
     "contact": "Contact",

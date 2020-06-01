@@ -30,7 +30,7 @@
       "text": "Hacerlo conlleva muchos beneficios. Por ejemplo, vas a... <br/><br/><b>1)</b> <b>parar de perder tiempo</b> pensando qué vas a cocinar <br/><b>2)</b> comer de forma más <b>saludable</b> <br/><b>3)</b> mejorar tus habilidades de cocinillas mientras <b>cocinas platos más elaborados</b> <br/><b>4)</b> tener la posibilidad de organizarte un <b>menú más diverso y equilibrado</b> <br/><b>5)</b> <b>ahorrar dinero</b> optimizando tus compras"
     },
     "whatCanIDo": {
-      "title": "Functionalities",
+      "title": "Funcionalidades",
       "text": "El funcionamiento es muy sencillo. El primer paso es <b>crear algunas <i>Recetas</i></b>. Entonces, puedes <b>crear <i>Semanas</i></b>. Una <i>Semana</i> es una cuadrícula donde puedes ver siete días. Puedes <b><i>Dividir</i> cada día en varias partes</b>, tantas como quieras. Las <i>Divisiones</i> son simplemente una forma de dividir el día en varias franjas, como 'Desayuno', 'Comida' or 'Cena'. Finalmente, puedes <b>añadir tus <i>Recetas</i></b> a cada <i>Día</i> y <i>División</i> correspondientes."
     },
     "ctaSignUp": {
@@ -41,6 +41,16 @@
   },
   "about": {
     "welcome": "Bienvenid@ a la página Acerca de."
+  },
+  "loginPage": {
+    "signIn": "Iniciar sesión",
+    "passwordRecover": "¿Has olvidado tu contraseña?",
+    "createAccount": "Crear una cuenta",
+    "goBackHome": "Volver a Inicio",
+    "inputEmail": "Correo electrónico",
+    "inputPass": "Contraseña",
+    "inputKeepLogin": "Mantenerme conectado",
+    "inputSubmit": "Continuar"
   },
   "footer": {
     "linksMenu": "Enlaces",
