@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-13 17:35:07 
- * Last modified  : 2020-04-22 06:50:02
+ * Last modified  : 2020-06-05 16:30:22
  */
 
 
@@ -32,7 +32,7 @@ SECRET_KEY = 'pisrb6d_hr5-lbej_3234vsonq4z&zn^3kr^$!@&qds#=pdmi#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
