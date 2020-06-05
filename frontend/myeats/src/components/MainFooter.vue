@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-20 18:29:27
- * Last modified  : 2020-05-20 19:00:01
+ * Last modified  : 2020-06-05 06:50:45
  */
 </script>
 
@@ -18,8 +18,13 @@
             <FooterMenu />
         </div>
         <div class="footer-column sign">
-            <button class="sing-in">{{ $t('footer.buttonSignIn') }}</button>
-            <button class="sing-up">{{ $t('footer.buttonSignUp') }}</button>
+            <router-link class="button sing-in" :to="$i18nRoute({ name: 'Login' })" >
+                {{ $t('footer.buttonSignIn') }}
+            </router-link>
+
+            <router-link class="button sing-up" :to="$i18nRoute({ name: 'Login' })" >
+                {{ $t('footer.buttonSignUp') }}
+            </router-link>
         </div>
         <div class="footer-column">
             <img 
@@ -82,11 +87,11 @@ footer .footer-column.sign {
 }
 
 
-footer .footer-column.sign button {
+footer .footer-column.sign a.button {
     @apply w-32 mb-3 py-3 px-5 bg-blue-900 text-blue-200 font-medium border-blue-900 border-2 rounded-lg
 }
 
-footer .footer-column.sign button:hover {
+footer .footer-column.sign a.button:hover {
     @apply shadow-lg bg-blue-200 text-blue-900 font-semibold
 }
 
@@ -102,7 +107,7 @@ footer .footer-column .logo {
     footer .footer-column {
         @apply mb-0 
     }
-    footer .footer-column.sign button {
+    footer .footer-column.sign a.button {
         @apply w-48
     }
 }
