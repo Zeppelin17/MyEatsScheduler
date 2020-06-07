@@ -1,16 +1,18 @@
 /**
- * long description for the file
+ * Store module that handles authentication logic
+ * help post: https://blog.sqreen.com/authentication-best-practices-vue/
  *
- * @summary short description for the file
+ * @summary Store module that handles authentication logic
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-03 06:58:43 
- * Last modified  : 2020-06-07 18:06:34
+ * Last modified  : 2020-06-07 18:12:54
  */
 
 import { AUTH_REQUEST, AUTH_LOGOUT } from '../actionTypes'
 import { AUTH_SUCCESS, AUTH_ERROR } from '../mutationTypes'
 import authService from '../../services/authenticationService'
+import axios from 'axios'
 
 export const state = {
     token: localStorage.getItem('user-token') || '',
@@ -24,7 +26,7 @@ const getters = {
 
 export const actions = {
     // router redirect in login
-    [AUTH_REQUEST]: ({commit, dispatch}, user) => {
+    [AUTH_REQUEST]: ({commit}, user) => {
         return new Promise((resolve, reject) => {
             commit(AUTH_REQUEST)
             authService.authRequest(user)
@@ -34,9 +36,6 @@ export const actions = {
                 axios.defaults.headers.common['Authorization'] = 'Token ' + token //REVISAR QUE SEA CORRECTO
 
                 commit(AUTH_SUCCESS, token)
-
-                
-                // dispatch(USER_REQUEST) // PONER EN.. ??
                 resolve(resp)
             })
             .catch(err => {
