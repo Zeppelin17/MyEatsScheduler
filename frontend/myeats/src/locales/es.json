@@ -50,7 +50,11 @@
     "inputEmail": "Correo electrónico",
     "inputPass": "Contraseña",
     "inputKeepLogin": "Mantenerme conectado",
-    "inputSubmit": "Continuar"
+    "inputSubmit": "Continuar",
+    "loadingMsg": "Espera un momento...",
+    "errors": {
+      "wrongData": "Credenciales incorrectas"
+    }
   },
   "footer": {
     "linksMenu": "Enlaces",

@@ -50,7 +50,11 @@
     "inputEmail": "Email address",
     "inputPass": "Password",
     "inputKeepLogin": "Keep me logged in",
-    "inputSubmit": "Go"
+    "inputSubmit": "Go",
+    "loadingMsg": "Wait a moment...",
+    "errors": {
+      "wrongData": "Incorrect credentials"
+    }
   },
   "footer": {
     "linksMenu": "Links",

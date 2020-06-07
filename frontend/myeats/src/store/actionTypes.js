@@ -5,10 +5,9 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-28 06:30:05 
- * Last modified  : 2020-05-30 09:09:55
+ * Last modified  : 2020-06-07 15:50:28
  */
 
-/* General constants */
-
-
-/* Modules constants */
+// authentication
+export const AUTH_REQUEST = "authRequest"
+export const AUTH_LOGOUT = "authLogout"

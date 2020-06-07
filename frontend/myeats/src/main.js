@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:38:01 
- * Last modified  : 2020-06-05 06:44:15
+ * Last modified  : 2020-06-07 18:03:03
  */
 
 import Vue from 'vue'
@@ -29,6 +29,11 @@ Vue.component('application-layout', Application)
 Vue.component('website-layout', Website)
 
 Vue.config.productionTip = false
+
+const token = localStorage.getItem('user-token')
+if (token) {
+  axios.defaults.headers.common['Authorization'] = 'Token ' + token
+}
 
 new Vue({
   router,

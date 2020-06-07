@@ -3,18 +3,24 @@
         <div class="form-wrapper">
             <img src="../../assets/img/logo.png" alt="My Eats Scheduler">
             <h1>{{ $t('loginPage.signIn') }}</h1>
-            <form>
+            
+            <div v-if="validationMsg !== ''" id="validation-msg">
+                <span class="close" @click="resetValidationMsg()">x</span>
+                <span>{{ validationMsg }}</span>
+            </div>
+
+            <form @submit.prevent="login()">
                 <div class="form-group">
                     <label for="user-input">
                         <span>{{ $t('loginPage.inputEmail') }}</span>
-                        <input name="user-input" type="text" autocomplete="off" />
+                        <input required v-model="username" name="user-input" type="text" autocomplete="off" />
                     </label>
                 </div>
 
                 <div class="form-group">
                     <label for="psw-input">
                         <span>{{ $t('loginPage.inputPass') }}</span>
-                        <input name="psw-input" type="password" />
+                        <input required v-model="password" name="psw-input" type="password" />
                     </label>
                 </div>
 
@@ -27,7 +33,7 @@
 
                 <div class="form-group">
                     <div class="submit">
-                        <input name="submit-input" type="submit" :value="$t('loginPage.inputSubmit')" />
+                        <button type="submit">{{ $t('loginPage.inputSubmit') }}</button>
                     </div>
                 </div>
             </form>
@@ -49,7 +55,34 @@
 </template>
 
 <script>
+import { AUTH_REQUEST } from '@/store/actionTypes'
+
 export default {
-  name: 'LoginForm'
+  name: 'LoginForm',
+  data() {
+      return {
+          username: "",
+          password: "",
+          validationMsg: ""
+      }
+  },
+  methods: {
+      login: function() {
+          this.validationMsg = ""
+          const { username, password } = this
+          this.$store.dispatch(AUTH_REQUEST, { username, password })
+            .then(() => {
+                // redirección a url de aplicación
+                this.$router.push({name: 'Dashboard'})
+            })
+            .catch(() => {
+                this.validationMsg = this.$t("loginPage.errors.wrongData")
+            })
+      },
+
+      resetValidationMsg: function() {
+          this.validationMsg = ""
+      }
+  }
 }
 </script>
