@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:41:03 
- * Last modified  : 2020-06-07 17:56:03
+ * Last modified  : 2020-06-07 18:22:03
  */
 
 import Vue from 'vue'
@@ -26,6 +26,17 @@ function loadApp(component) {
 
 
 Vue.use(VueRouter)
+
+
+const ifAuthenticated = (to, from, next) => {
+  if (store.getters.isAuthenticated) {
+    next({name: 'Dashboard', params: {locale: to.params.locale}})
+    return
+  }
+  next()
+}
+
+
 
 const appRoutes = [
   {
@@ -59,7 +70,8 @@ const routes = [
       {
         path: 'login',
         name: 'Login',
-        component: load('Login')
+        component: load('Login'),
+        beforeEnter: ifAuthenticated
       },
       {
         path: 'app',

@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:13 
- * Last modified  : 2020-05-30 09:01:35
+ * Last modified  : 2020-06-07 18:17:49
  */
 </script>
 
@@ -29,7 +29,20 @@ export default {
     layout() {
       return (this.$route.meta.layout || default_layout) + '-layout'
     }
-  }
+  },
+  /*created() {   check Handling the unauthorized case scenario https://blog.sqreen.com/authentication-best-practices-vue/
+    
+    axios.interceptors.response.use(undefined, function (err) {
+      return new Promise(function (resolve, reject) {
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+        // if you ever get an unauthorized, logout the user
+          this.$store.dispatch(AUTH_LOGOUT)
+          this.$router.push({name: 'Login'})
+        }
+        throw err
+      })
+    })
+  }*/
 }
 </script>
 
