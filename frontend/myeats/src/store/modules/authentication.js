@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-03 06:58:43 
- * Last modified  : 2020-06-07 18:12:54
+ * Last modified  : 2020-06-08 07:04:48
  */
 
 import { AUTH_REQUEST, AUTH_LOGOUT } from '../actionTypes'
@@ -46,8 +46,8 @@ export const actions = {
         })
     },
 
-    [AUTH_LOGOUT]: () => {
-        return new Promise((resolve) => {
+    [AUTH_LOGOUT]: ({commit, dispatch}) => {
+        return new Promise((resolve, reject) => {
             localStorage.removeItem('user-token')
             delete axios.defaults.headers.common['Authorization']
             resolve()
