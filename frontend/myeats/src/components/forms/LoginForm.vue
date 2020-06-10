@@ -25,13 +25,6 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="remember">
-                        <input name="keep-login-input" type="checkbox" />
-                        <span>{{ $t('loginPage.inputKeepLogin') }}</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <div class="submit">
                         <button type="submit">{{ $t('loginPage.inputSubmit') }}</button>
                     </div>
@@ -55,7 +48,7 @@
 </template>
 
 <script>
-import { AUTH_REQUEST } from '@/store/actionTypes'
+import { AUTH_REQUEST, KEEP_LOGIN } from '@/store/actionTypes'
 
 export default {
   name: 'LoginForm',
@@ -63,15 +56,17 @@ export default {
       return {
           username: "",
           password: "",
+          keepLogin: "",
           validationMsg: ""
       }
   },
   methods: {
       login: function() {
           this.validationMsg = ""
-          const { username, password } = this
+          const { username, password, keepLogin } = this
           this.$store.dispatch(AUTH_REQUEST, { username, password })
             .then(() => {
+                if (keepLogin) this.$store.dispatch(KEEP_LOGIN)
                 // redirección a url de aplicación
                 this.$router.push({name: 'Dashboard'})
             })

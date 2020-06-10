@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:13 
- * Last modified  : 2020-06-07 18:17:49
+ * Last modified  : 2020-06-10 06:42:33
  */
 </script>
 
@@ -21,6 +21,9 @@
 
 
 <script>
+import axios from 'axios'
+import {AUTH_LOGOUT} from './store/actionTypes'
+
 const default_layout = 'application'
 
 export default {
@@ -30,8 +33,8 @@ export default {
       return (this.$route.meta.layout || default_layout) + '-layout'
     }
   },
-  /*created() {   check Handling the unauthorized case scenario https://blog.sqreen.com/authentication-best-practices-vue/
-    
+  created() {   
+    //logout if get unauthorized error
     axios.interceptors.response.use(undefined, function (err) {
       return new Promise(function (resolve, reject) {
         if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
@@ -42,7 +45,7 @@ export default {
         throw err
       })
     })
-  }*/
+  }
 }
 </script>
 

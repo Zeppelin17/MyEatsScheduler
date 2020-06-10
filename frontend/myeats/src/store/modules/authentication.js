@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-03 06:58:43 
- * Last modified  : 2020-06-08 07:04:48
+ * Last modified  : 2020-06-10 06:44:54
  */
 
 import { AUTH_REQUEST, AUTH_LOGOUT } from '../actionTypes'
@@ -46,10 +46,11 @@ export const actions = {
         })
     },
 
-    [AUTH_LOGOUT]: ({commit, dispatch}) => {
-        return new Promise((resolve, reject) => {
+    [AUTH_LOGOUT]: ({commit}) => {
+        return new Promise((resolve) => {
             localStorage.removeItem('user-token')
             delete axios.defaults.headers.common['Authorization']
+            commit(AUTH_LOGOUT)
             resolve()
         })
     }
@@ -67,6 +68,10 @@ export const mutations = {
 
     [AUTH_ERROR]: (state) => {
         state.status = 'error'
+    },
+
+    [AUTH_LOGOUT]: (state) => {
+        state.token = ''
     }
 }
 
