@@ -6,26 +6,35 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-03 06:58:43 
- * Last modified  : 2020-06-10 06:44:54
+ * Last modified  : 2020-06-15 06:41:18
  */
 
-import { AUTH_REQUEST, AUTH_LOGOUT } from '../actionTypes'
-import { AUTH_SUCCESS, AUTH_ERROR } from '../mutationTypes'
+import { AUTH_REQUEST, AUTH_LOGOUT, AUTH_CREATE } from '../actionTypes'
+import { AUTH_SUCCESS, AUTH_ERROR, AUTH_SET_ERROR } from '../mutationTypes'
 import authService from '../../services/authenticationService'
 import axios from 'axios'
+
+
+const errorKeys = {
+    serverError: "serverError",
+    passLength: "passLength",
+    emailExist: "emailExist"
+}
+
 
 export const state = {
     token: localStorage.getItem('user-token') || '',
     status: '', // status of the API call (loading, success, error)
+    errorKey: ''
 }
 
 const getters = {
     isAuthenticated: state => !!state.token,
     authStatus: state => state.status,
+    authErrorKey: state => state.errorKey,
 }
 
 export const actions = {
-    // router redirect in login
     [AUTH_REQUEST]: ({commit}, user) => {
         return new Promise((resolve, reject) => {
             commit(AUTH_REQUEST)
@@ -33,12 +42,14 @@ export const actions = {
             .then(resp => {
                 const token = resp.data.token
                 localStorage.setItem('user-token', token)
-                axios.defaults.headers.common['Authorization'] = 'Token ' + token //REVISAR QUE SEA CORRECTO
+                axios.defaults.headers.common['Authorization'] = 'Token ' + token 
 
                 commit(AUTH_SUCCESS, token)
                 resolve(resp)
             })
             .catch(err => {
+                console.log(err.response)
+                
                 commit(AUTH_ERROR, err)
                 localStorage.removeItem('user-token')
                 reject(err)
@@ -53,8 +64,50 @@ export const actions = {
             commit(AUTH_LOGOUT)
             resolve()
         })
+    },
+
+    [AUTH_CREATE]: ({commit, dispatch}, user) => {
+        return new Promise((resolve, reject) => {
+            commit(AUTH_REQUEST)
+            authService.createAccount(user)
+            .then(resp => {
+                localStorage.removeItem('user-token')
+                
+                // dispatch user login
+                const credentials = {
+                    username: user.email, 
+                    password: user.password
+                }
+
+                dispatch(AUTH_REQUEST, credentials)
+                .then(() => {
+                    resolve(resp)
+                }) 
+                
+            })
+            .catch(err => {
+                console.log(err.response)
+                
+                commit(AUTH_ERROR, err)
+                if (err.response.data.hasOwnProperty("password")) {
+                    commit(AUTH_SET_ERROR, errorKeys.passLength)
+                }
+
+                if (err.response.data.hasOwnProperty("email")) {
+                    commit(AUTH_SET_ERROR, errorKeys.emailExist)
+                }
+
+                if (err.response.status >= 500) {
+                    commit(AUTH_SET_ERROR, errorKeys.serverError)
+                }
+                reject(err)
+            })
+        })
     }
 }
+
+
+
 
 export const mutations = {
     [AUTH_REQUEST]: (state) => {
@@ -72,6 +125,10 @@ export const mutations = {
 
     [AUTH_LOGOUT]: (state) => {
         state.token = ''
+    },
+
+    [AUTH_SET_ERROR]: (state, error) => {
+        state.errorKey = error
     }
 }
 

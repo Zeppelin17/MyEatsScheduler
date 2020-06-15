@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-20 18:29:27
- * Last modified  : 2020-06-05 06:50:45
+ * Last modified  : 2020-06-10 06:52:10
  */
 </script>
 
@@ -22,7 +22,7 @@
                 {{ $t('footer.buttonSignIn') }}
             </router-link>
 
-            <router-link class="button sing-up" :to="$i18nRoute({ name: 'Login' })" >
+            <router-link class="button sing-up" :to="$i18nRoute({ name: 'SignUp' })" >
                 {{ $t('footer.buttonSignUp') }}
             </router-link>
         </div>

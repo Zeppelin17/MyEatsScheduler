@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-07 15:58:57  
- * Last modified  : 2020-06-08 07:05:30
+ * Last modified  : 2020-06-15 06:29:05
  */
 </script>
 
@@ -32,7 +32,6 @@ export default {
       logout: function() {
           this.$store.dispatch(AUTH_LOGOUT)
           .then(() => {
-              console.log("THIS OBJ",this)
               this.$router.push("/")
           })
       }

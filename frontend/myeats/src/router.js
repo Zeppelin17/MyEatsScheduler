@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:41:03 
- * Last modified  : 2020-06-08 07:03:08
+ * Last modified  : 2020-06-10 06:49:47
  */
 
 import Vue from 'vue'
@@ -72,6 +72,11 @@ const routes = [
         name: 'Login',
         component: load('Login'),
         beforeEnter: ifAuthenticated
+      },
+      {
+        path: 'sign-up',
+        name: 'SignUp',
+        component: load('SignUp')
       },
       {
         path: 'app',

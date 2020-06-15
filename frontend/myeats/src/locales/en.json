@@ -36,7 +36,7 @@
     "ctaSignUp": {
       "title": "Start planning your meals, create an account in seconds",
       "btnText": "Sign up Now",
-      "btnLink": "/en/signup"
+      "btnLink": "/en/sign-up"
     }
   },
   "about": {
@@ -53,6 +53,22 @@
     "loadingMsg": "Wait a moment...",
     "errors": {
       "wrongData": "Incorrect credentials"
+    }
+  },
+  "signUpPage": {
+    "signUp": "Create new account",
+    "signIn": "Sign in",
+    "goBackHome": "Return to Home",
+    "inputEmail": "Email address",
+    "inputName": "Name",
+    "inputSurname": "Surname",
+    "inputPass": "Password",
+    "inputRepeatPass": "Repeat password",
+    "errors": {
+      "passRepeat": "Different passwords introduced",
+      "passLength": "Ensure password has at least 6 characters",
+      "emailExist": "This email already exists on the system, try with another one",
+      "serverError": "There's some trouble creating your account, try it later"
     }
   },
   "footer": {

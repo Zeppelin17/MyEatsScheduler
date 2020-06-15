@@ -1,3 +1,14 @@
+<script>
+/**
+ * Login form component
+ *
+ * @summary Login form component
+ * @author Zeppelin17 <elzeppelin17@gmail.com>
+ *
+ * Created at     : 2020-04-29 17:30:47 
+ * Last modified  : 2020-06-11 06:56:06
+ */
+</script>
 <template>
     <div class="login-form">
         <div class="form-wrapper">
@@ -35,7 +46,7 @@
                 <router-link :to="$i18nRoute({ name: 'Home' })">
                     {{ $t('loginPage.passwordRecover') }}
                 </router-link>
-                <router-link :to="$i18nRoute({ name: 'Home' })">
+                <router-link :to="$i18nRoute({ name: 'SignUp' })">
                     {{ $t('loginPage.createAccount') }}
                 </router-link>
                 <router-link :to="$i18nRoute({ name: 'Home' })">
@@ -48,7 +59,7 @@
 </template>
 
 <script>
-import { AUTH_REQUEST, KEEP_LOGIN } from '@/store/actionTypes'
+import { AUTH_REQUEST } from '@/store/actionTypes'
 
 export default {
   name: 'LoginForm',
@@ -56,17 +67,15 @@ export default {
       return {
           username: "",
           password: "",
-          keepLogin: "",
           validationMsg: ""
       }
   },
   methods: {
       login: function() {
           this.validationMsg = ""
-          const { username, password, keepLogin } = this
+          const { username, password } = this
           this.$store.dispatch(AUTH_REQUEST, { username, password })
             .then(() => {
-                if (keepLogin) this.$store.dispatch(KEEP_LOGIN)
                 // redirección a url de aplicación
                 this.$router.push({name: 'Dashboard'})
             })

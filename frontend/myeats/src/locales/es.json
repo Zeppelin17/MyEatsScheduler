@@ -36,7 +36,7 @@
     "ctaSignUp": {
       "title": "Empieza a planear tus comidas, crea una cuenta en menos de un minuto",
       "btnText": "Crear Cuenta",
-      "btnLink": "/es/signup"
+      "btnLink": "/es/sign-up"
     }
   },
   "about": {
@@ -53,6 +53,22 @@
     "loadingMsg": "Espera un momento...",
     "errors": {
       "wrongData": "Credenciales incorrectas"
+    }
+  },
+  "signUpPage": {
+    "signUp": "Crear cuenta",
+    "signIn": "Iniciar sesión",
+    "goBackHome": "Volver a Inicio",
+    "inputEmail": "Correo electrónico",
+    "inputName": "Nombre",
+    "inputSurname": "Apellidos",
+    "inputPass": "Contraseña",
+    "inputRepeatPass": "Repetir contraseña",
+    "errors": {
+      "passRepeat": "Has introducido contraseñas diferentes",
+      "passLength": "Asegúrate de que la contraseña tenga al menos 6 caracteres",
+      "emailExist": "Este email ya existe en el sistema, prueba con uno diferente",
+      "serverError": "Hay algún problema para crear la cuenta, inténtalo más tarde"
     }
   },
   "footer": {
