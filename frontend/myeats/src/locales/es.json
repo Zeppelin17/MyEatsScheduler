@@ -85,5 +85,13 @@
       "message": "La página que buscas no existe",
       "help": "Puedes ir a la página principal y empezar de nuevo"
     }
+  },
+  "appMenu": {
+    "dashboard": "Tablero",
+    "myeats": "MyEats",
+    "recipes": "Recetas",
+    "profile": "Perfil",
+    "help": "Ayuda",
+    "logout": "Salir"
   }
 }

@@ -85,6 +85,14 @@
       "message": "The page you are looking for does not exist",
       "help": "You can go to the home page and start again"
     }
+  },
+  "appMenu": {
+    "dashboard": "Dashboard",
+    "myeats": "MyEats",
+    "recipes": "Recipes",
+    "profile": "Profile",
+    "help": "Help",
+    "logout": "Logout"
   }
   
 }

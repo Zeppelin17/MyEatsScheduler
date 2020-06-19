@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-07 15:58:57  
- * Last modified  : 2020-06-15 06:29:05
+ * Last modified  : 2020-06-15 16:26:28
  */
 </script>
 
@@ -14,12 +14,11 @@
 <template>
     <div class="dashboard">
         <h1>dashboard</h1>
-        <button @click="logout()">Logout</button>
     </div>
 </template>
 
 <script>
-import { AUTH_LOGOUT } from '@/store/actionTypes'
+
 
 export default {
   name: 'dashboard',
@@ -28,13 +27,8 @@ export default {
           
       }
   },
-  methods: {
-      logout: function() {
-          this.$store.dispatch(AUTH_LOGOUT)
-          .then(() => {
-              this.$router.push("/")
-          })
-      }
+  components: {
+      
   }
 }
 </script>

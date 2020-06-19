@@ -6,5 +6,9 @@
     <h4>{{ $t("about.welcome") }}</h4>
     <h5>{{ $t("about.welcome") }}</h5>
     <h6>{{ $t("about.welcome") }}</h6>
+
+    <p>Ilustraciones https://undraw.co/illustrations</p>
+    <p>Imágenes https://pixabay.com</p>
+    <p>Iconos https://ikonate.com/</p>
   </div>
 </template>

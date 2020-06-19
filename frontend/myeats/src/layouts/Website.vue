@@ -1,3 +1,15 @@
+ <script>
+/**
+ * Layout for the website
+ *
+ * @summary Layout for the website
+ * @author Zeppelin17 <elzeppelin17@gmail.com>
+ *
+ * Created at     : 2020-06-18 06:36:48 
+ * Last modified  : 2020-06-18 06:38:02
+ */
+ </script>
+
 <template>
     <!-- Public website -->
     <div>
