@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:49:31 
- * Last modified  : 2020-05-23 17:51:10
+ * Last modified  : 2020-06-19 17:41:31
  */
 </script>
 
@@ -15,7 +15,7 @@
 
     <div>
         <!-- Template if the language switcher is not in the footer -->
-        <div v-if="!isInFooter">
+        <div v-if="!isInFooter && !isInAppMenu">
             <div class="relative py-3">
                 <div 
                     v-if="showLangSelector"
@@ -85,6 +85,30 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Template for the app menu language switcher -->
+        <div v-if="isInAppMenu">
+            <div class="locale-wrap app-menu">
+                <div 
+                    class="locale"
+                    v-for="locale in locales" 
+                    :key="locale"
+                >
+                    <a 
+                        class=""
+                        @click="switchLocale(locale, $event)"
+                        href="#"
+                    >
+                        <img 
+                            class="mr-1 w-6 inline"
+                            :src="requireImage($t('langMenu.' + locale + '.flag'))" 
+                            :alt="$t('langMenu.' + locale + '.name')"
+                        >
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -94,6 +118,10 @@ export default {
     name: "LocaleSwitcher",
     props: {
         isInFooter: {
+            type: Boolean,
+            default: false
+        },
+        isInAppMenu: {
             type: Boolean,
             default: false
         }
@@ -164,6 +192,25 @@ export default {
 .locale-wrap.footer .locale:hover a img{
     @apply border-blue-900 border-2 rounded-full
 }
+
+
+
+.locale-wrap.app-menu {
+    @apply flex items-start items-center
+}
+.locale-wrap.app-menu .locale {
+    @apply p-0 mr-2;
+    transition: all .5s ease;
+}
+.locale-wrap.app-menu .locale:hover {
+    transform: translateY(-3px)
+}
+.locale-wrap.app-menu .locale img {
+    @apply p-0 m-0
+}
+-
+
+
 
 @media (min-width: 768px) {
     
