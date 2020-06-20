@@ -136,7 +136,7 @@ export default {
 #app-menu-wrapper .back-cover {
   width: 100vw;
   height: 100vh;
-  @apply absolute inset-0 z-auto bg-gray-900 bg-opacity-25;
+  @apply fixed inset-0 z-auto bg-gray-900 bg-opacity-25;
 }
 
 #app-menu {
