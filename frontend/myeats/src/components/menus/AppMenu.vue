@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-15 16:06:48
- * Last modified  : 2020-06-19 17:48:23
+ * Last modified  : 2020-06-20 07:05:30
  */
 </script>
 
@@ -126,7 +126,7 @@ export default {
 
 
 #app-menu-wrapper {
-  @apply relative
+  @apply relative p-4 
 }
 
 #app-menu-wrapper button {
@@ -142,7 +142,7 @@ export default {
 #app-menu {
   font-family: 'Righteous', cursive;
   height: 100vh;
-  @apply p-4 w-4/5 max-w-sm bg-blue-400 absolute inset-0 z-10 shadow-lg overflow-hidden overflow-y-auto;
+  @apply p-4 w-4/5 max-w-sm bg-blue-400 fixed inset-0 z-10 shadow-lg overflow-hidden overflow-y-auto;
 }
 
 #app-menu .top-options{
