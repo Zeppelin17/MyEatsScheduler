@@ -11,7 +11,7 @@
  </script>
 <template>
     <!-- User private area -->
-    <div>
+    <div class="app-view">
       <AppMenu />
       <slot/>
     </div>
@@ -32,3 +32,10 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+.app-view {
+  @apply min-h-screen bg-blue-100
+}
+</style>
