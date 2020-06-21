@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-15 16:06:48
- * Last modified  : 2020-06-20 07:05:30
+ * Last modified  : 2020-06-21 08:23:24
  */
 </script>
 
@@ -35,25 +35,48 @@
 
         <div class="separator"></div> 
         
-        <router-link :to="$i18nRoute({ name: 'Dashboard' })" class="app-menu-item">
+        <router-link 
+          @click.native="toggleMenu()" 
+          :to="$i18nRoute({ name: 'Dashboard' })" 
+          class="app-menu-item"
+        >
           <img src="../../assets/img/ikonate/apps.svg"> {{ $t('appMenu.dashboard') }}
         </router-link>
-        <router-link :to="$i18nRoute({ name: 'Dashboard' })" class="app-menu-item">
+        <router-link 
+          @click.native="toggleMenu()" 
+          :to="$i18nRoute({ name: 'Dashboard' })" 
+          class="app-menu-item"
+        >
           <img src="../../assets/img/ikonate/calendar-event.svg"> {{ $t('appMenu.myeats') }}
         </router-link>
-        <router-link :to="$i18nRoute({ name: 'Dashboard' })" class="app-menu-item">
+        <router-link 
+          @click.native="toggleMenu()" 
+          :to="$i18nRoute({ name: 'Dashboard' })" 
+          class="app-menu-item"
+        >
           <img src="../../assets/img/ikonate/pizza.svg"> {{ $t('appMenu.recipes') }}
         </router-link>
-        <router-link :to="$i18nRoute({ name: 'Dashboard' })" class="app-menu-item">
+        <router-link 
+          @click.native="toggleMenu()" 
+          :to="$i18nRoute({ name: 'Dashboard' })" 
+          class="app-menu-item"
+        >
           <img src="../../assets/img/ikonate/user.svg"> {{ $t('appMenu.profile') }}
         </router-link>
-        <router-link :to="$i18nRoute({ name: 'Dashboard' })" class="app-menu-item">
+        <router-link 
+          @click.native="toggleMenu()" 
+          :to="$i18nRoute({ name: 'Dashboard' })" 
+          class="app-menu-item"
+        >
           <img src="../../assets/img/ikonate/help.svg"> {{ $t('appMenu.help') }}
         </router-link>
 
         <div class="separator"></div>
 
-        <button @click="logout()" class="app-menu-item logout">
+        <button 
+          @click="logout()" 
+          class="app-menu-item logout"
+        >
           <img src="../../assets/img/ikonate/exit.svg">  {{ $t('appMenu.logout') }}
         </button>
       </div>
