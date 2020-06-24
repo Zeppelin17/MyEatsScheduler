@@ -93,5 +93,29 @@
     "profile": "Perfil",
     "help": "Ayuda",
     "logout": "Salir"
+  },
+  "appPages": {
+    "footerCopyRight": "Hecho por <a href='https://github.com/Zeppelin17' title='GitHub de Zeppelin17'>@Zeppelin17</a>",
+    "dashboard": {
+      "cardMyEatsTitle": "MyEats",
+      "cardMyEatsText": "Organiza tus comidas. Crea semanas, divide cada día en varias franjas y asigna tu recetas a cada una.",
+      "cardMyEatsButtonText": "Planificar comidas",
+      "cardMyEatsButtonRoute": "MyEats",
+
+      "cardRecipesTitle": "Mis Recetas",
+      "cardRecipesText": "Gestiona tus recetas. Crea todas tus recetas favoritas para que luego puedas usarlas para planificar tus comidas.",
+      "cardRecipesButtonText": "Gestionar recetas",
+      "cardRecipesButtonRoute": "Recipes",
+
+      "cardProfileTitle": "Mi Perfil",
+      "cardProfileText": "Revisa los datos de tu perfil. Actualiza tu información personal.",
+      "cardProfileButtonText": "Ver mis datos",
+      "cardProfileButtonRoute": "Profile",
+
+      "cardHelpTitle": "Obtener ayuda",
+      "cardHelpText": "Revisa toda la documentación. Aquí está explicado cómo funciona esta aplicación y puedes encontrar detalles sobre qué puedes hacer con ella.",
+      "cardHelpButtonText": "Ir a documentación",
+      "cardHelpButtonRoute": "Help"
+    }
   }
 }

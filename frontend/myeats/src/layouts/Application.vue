@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-18 06:36:48 
- * Last modified  : 2020-06-19 17:09:41
+ * Last modified  : 2020-06-24 08:27:01
  */
  </script>
 <template>
@@ -14,16 +14,19 @@
     <div class="app-view">
       <AppMenu />
       <slot/>
+      <AppFooter />
     </div>
 </template>
 
 
 <script>
 import AppMenu from '@/components/menus/AppMenu.vue'
+import AppFooter from '@/components/AppFooter'
 
 export default {
   components: {
-    AppMenu
+    AppMenu,
+    AppFooter
   },
   data() {
     return {
@@ -34,8 +37,14 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .app-view {
   @apply min-h-screen bg-blue-100
 }
+
+.app-view #app-menu-wrapper {
+  @apply inline-block
+}
+
+
 </style>
