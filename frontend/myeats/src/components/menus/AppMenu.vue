@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-15 16:06:48
- * Last modified  : 2020-06-23 06:52:24
+ * Last modified  : 2020-06-24 09:23:12
  */
 </script>
 
@@ -44,28 +44,28 @@
         </router-link>
         <router-link 
           @click.native="toggleMenu()" 
-          :to="$i18nRoute({ name: 'Dashboard' })" 
+          :to="$i18nRoute({ name: 'MyEats' })" 
           class="app-menu-item"
         >
           <img src="../../assets/img/ikonate/calendar-event.svg"> {{ $t('appMenu.myeats') }}
         </router-link>
         <router-link 
           @click.native="toggleMenu()" 
-          :to="$i18nRoute({ name: 'Dashboard' })" 
+          :to="$i18nRoute({ name: 'Recipes' })" 
           class="app-menu-item"
         >
           <img src="../../assets/img/ikonate/pizza.svg"> {{ $t('appMenu.recipes') }}
         </router-link>
         <router-link 
           @click.native="toggleMenu()" 
-          :to="$i18nRoute({ name: 'Dashboard' })" 
+          :to="$i18nRoute({ name: 'Profile' })" 
           class="app-menu-item"
         >
           <img src="../../assets/img/ikonate/user.svg"> {{ $t('appMenu.profile') }}
         </router-link>
         <router-link 
           @click.native="toggleMenu()" 
-          :to="$i18nRoute({ name: 'Dashboard' })" 
+          :to="$i18nRoute({ name: 'Help' })" 
           class="app-menu-item"
         >
           <img src="../../assets/img/ikonate/help.svg"> {{ $t('appMenu.help') }}
@@ -174,6 +174,10 @@ export default {
 
 #app-menu .app-menu-item {
   @apply flex items-start items-center mb-4 text-blue-900
+}
+
+#app-menu .app-menu-item.router-link-exact-active.router-link-active {
+  @apply text-blue-100
 }
 
 #app-menu .app-menu-item.logout {

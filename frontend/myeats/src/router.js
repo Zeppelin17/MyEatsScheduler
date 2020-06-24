@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:41:03 
- * Last modified  : 2020-06-10 06:49:47
+ * Last modified  : 2020-06-24 09:17:16
  */
 
 import Vue from 'vue'
@@ -19,7 +19,7 @@ function load(component) {
   return () => import(`@/views/${component}.vue`)
 }
 
-function loadApp(component) {
+function loadAppComponent(component) {
   // '@' is aliased to src/components
   return () => import(`@/views/app/${component}.vue`)
 }
@@ -43,7 +43,31 @@ const appRoutes = [
     path: '',
     name: 'Dashboard',
     meta: {requiresAuth: true},
-    component: loadApp('Dashboard')
+    component: loadAppComponent('Dashboard')
+  },
+  {
+    path: 'myeats',
+    name: 'MyEats',
+    meta: {requiresAuth: true},
+    component: loadAppComponent('MyEats')
+  },
+  {
+    path: 'recipes',
+    name: 'Recipes',
+    meta: {requiresAuth: true},
+    component: loadAppComponent('Recipes')
+  },
+  {
+    path: 'profile',
+    name: 'Profile',
+    meta: {requiresAuth: true},
+    component: loadAppComponent('Profile')
+  },
+  {
+    path: 'help',
+    name: 'Help',
+    meta: {requiresAuth: true},
+    component: loadAppComponent('Help')
   },
 ]
 

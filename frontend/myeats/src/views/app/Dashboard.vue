@@ -1,12 +1,12 @@
 <script>
 /**
- * Home View
+ * App Dashboard View
  *
- * @summary Home View
+ * @summary App Dashboard View
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-07 15:58:57  
- * Last modified  : 2020-06-23 06:59:42
+ * Last modified  : 2020-06-24 09:14:52
  */
 </script>
 

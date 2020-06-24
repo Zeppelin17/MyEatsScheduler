@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-20 06:45:41 
- * Last modified  : 2020-06-23 06:52:32
+ * Last modified  : 2020-06-24 09:04:44
  */
 </script>
 <template>
@@ -101,7 +101,7 @@ export default {
 }
 
 .card .action .button {
-  @apply block w-full p-1 text-center rounded-md bg-blue-900 text-blue-200 border-2 border-blue-900 outline-none
+  @apply block w-full p-1 text-center rounded-md bg-blue-900 text-blue-200 border-2 border-blue-900 outline-none align-bottom
 }
 
 .card .action .button:hover {

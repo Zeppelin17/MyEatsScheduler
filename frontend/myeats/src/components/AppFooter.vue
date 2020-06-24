@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 08:24:40 
- * Last modified  : 2020-06-24 08:54:53
+ * Last modified  : 2020-06-24 09:02:28
  */
 </script>
 
@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 footer {
-    @apply flex items-center justify-center px-3 py-6 bg-blue-400 border-t-2 border-blue-900 text-blue-800
+    @apply flex items-center justify-center px-3 py-6 mt-6 bg-blue-400 border-t-2 border-blue-900 text-blue-800
 }
 
 footer >>> a {
