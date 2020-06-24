@@ -6,24 +6,58 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-07 15:58:57  
- * Last modified  : 2020-06-21 08:12:22
+ * Last modified  : 2020-06-23 06:59:42
  */
 </script>
 
 
 <template>
     <div class="dashboard">
-        <h1>dashboard</h1>
 
-        <CardBlock 
-            hoverIconName="calendar-event.svg"
-            imageName="dashboard-weeks.jpg"
-            title="MyEats"
-            text="Lorem ipsum dolor sit amet"
-            buttonText="Gestionar calendario"
-            buttonRouteLink="MyEats"
-        />
+        <div class="cards-wrapper">
+            <CardBlock
+                class="card-block" 
+                hoverIconName="calendar-event.svg"
+                imageName="dashboard-weeks.jpg"
+                :title="$t('appPages.dashboard.cardMyEatsTitle')"
+                :text="$t('appPages.dashboard.cardMyEatsText')"
+                :buttonText="$t('appPages.dashboard.cardMyEatsButtonText')"
+                :buttonRouteLink="$t('appPages.dashboard.cardMyEatsButtonRoute')"
+            />
+            
+            <CardBlock
+                class="card-block" 
+                hoverIconName="pizza.svg"
+                imageName="dashboard-recipes.jpg"
+                :title="$t('appPages.dashboard.cardRecipesTitle')"
+                :text="$t('appPages.dashboard.cardRecipesText')"
+                :buttonText="$t('appPages.dashboard.cardRecipesButtonText')"
+                :buttonRouteLink="$t('appPages.dashboard.cardRecipesButtonRoute')"
+            />
 
+            <CardBlock
+                class="card-block" 
+                hoverIconName="user.svg"
+                imageName="dashboard-profile.jpg"
+                :title="$t('appPages.dashboard.cardProfileTitle')"
+                :text="$t('appPages.dashboard.cardProfileText')"
+                :buttonText="$t('appPages.dashboard.cardProfileButtonText')"
+                :buttonRouteLink="$t('appPages.dashboard.cardProfileButtonRoute')"
+            />
+
+            <CardBlock
+                class="card-block" 
+                hoverIconName="help.svg"
+                imageName="dashboard-help.jpg"
+                :title="$t('appPages.dashboard.cardHelpTitle')"
+                :text="$t('appPages.dashboard.cardHelpText')"
+                :buttonText="$t('appPages.dashboard.cardHelpButtonText')"
+                :buttonRouteLink="$t('appPages.dashboard.cardHelpButtonRoute')"
+            />
+
+            
+        </div>
+        
 
     </div>
 </template>
@@ -47,5 +81,20 @@ export default {
 <style scoped>
 .dashboard {
     @apply p-5
+}
+
+.dashboard .cards-wrapper {
+    @apply flex justify-center flex-wrap
+}
+
+.dashboard .cards-wrapper .card-block {
+    @apply m-3
+}
+
+
+@media (min-width: 1024px){
+    .dashboard .cards-wrapper {
+        @apply flex justify-center
+    }
 }
 </style>

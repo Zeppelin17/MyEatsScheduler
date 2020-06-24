@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-20 06:45:41 
- * Last modified  : 2020-06-21 08:18:47
+ * Last modified  : 2020-06-23 06:52:32
  */
 </script>
 <template>
@@ -77,7 +77,7 @@ export default {
 }
 
 .card .image .hover-icon {
-  @apply opacity-0 absolute inset-0 bg-blue-400 bg-opacity-75 flex items-center justify-center
+  @apply opacity-0 absolute inset-0 z-0 bg-blue-400 bg-opacity-75 flex items-center justify-center
 }
 
 .card:hover .image .hover-icon {
@@ -85,7 +85,7 @@ export default {
 }
 
 .card .image img.main {
-  @apply h-32 w-full object-cover
+  @apply h-40 w-full object-cover
 }
 
 .card .content-wrapper {
@@ -113,13 +113,7 @@ export default {
 
 @media (min-width: 640px) {
   .card {
-    @apply w-1/2
-  }
-}
-
-@media (min-width: 768px) {
-  .card {
-    @apply w-1/3
+    @apply w-1/3 max-w-xs
   }
 }
 </style>
