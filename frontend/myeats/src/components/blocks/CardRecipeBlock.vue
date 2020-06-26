@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-25 06:28:12
- * Last modified  : 2020-06-26 06:45:08
+ * Last modified  : 2020-06-26 06:52:54
  */
 </script>
 <template>
@@ -17,11 +17,17 @@
     <div class="content-wrapper">
       <div class="content">
         <span>{{ $t('appPages.recipes.categories') }}: </span>
-        <span class="tag t-all-ease" v-for="(category, index) in categories" :key="index">{{ category }}</span>
+
+        <div class="tags-wrapper">
+          <span class="tag t-all-ease" v-for="(category, index) in categories" :key="index">{{ category }}</span>
+        </div>
       </div>
       <div class="content">
         <span>{{ $t('appPages.recipes.ingredients') }}: </span>
-        <span class="tag t-all-ease">{{ ingredients }}</span>
+
+        <div class="tags-wrapper">
+          <span class="tag t-all-ease">{{ ingredients }}</span>
+        </div>
       </div>
       
       <div class="action">
@@ -79,8 +85,12 @@ export default {
   @apply mb-6
 }
 
+.card .content-wrapper .content .tags-wrapper {
+  @apply flex items-center justify-center flex-wrap
+}
+
 .card .content-wrapper .tag {
-  @apply py-1 px-2 bg-blue-700 rounded-md mx-1 text-xs text-blue-300
+  @apply py-1 px-2 m-1 bg-blue-700 rounded-md text-xs text-blue-300
 }
 
 .card:hover .content-wrapper .tag {
