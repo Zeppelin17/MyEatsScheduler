@@ -116,6 +116,22 @@
       "cardHelpText": "Check all the documentation. Here it's explained how this app works and you can find details about what you can do with it.",
       "cardHelpButtonText": "Go to documentation",
       "cardHelpButtonRoute": "Help"
+    },
+    "myeats": {
+
+    },
+    "recipes": {
+      "mainTitle": "My Recipes",
+      "categories": "Categories",
+      "ingredients": "Ingredients",
+      "openRecipe": "Open",
+      "deleteRecipe": "Delete"
+    },
+    "profile": {
+
+    },
+    "help": {
+
     }
   }
   

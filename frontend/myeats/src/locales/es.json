@@ -116,6 +116,22 @@
       "cardHelpText": "Revisa toda la documentación. Aquí está explicado cómo funciona esta aplicación y puedes encontrar detalles sobre qué puedes hacer con ella.",
       "cardHelpButtonText": "Ir a documentación",
       "cardHelpButtonRoute": "Help"
+    },
+    "myeats": {
+
+    },
+    "recipes": {
+      "mainTitle": "Mis Recetas",
+      "categories": "Categorías",
+      "ingredients": "Ingredientes",
+      "openRecipe": "Abrir",
+      "deleteRecipe": "Eliminar"
+    },
+    "profile": {
+
+    },
+    "help": {
+
     }
   }
 }
