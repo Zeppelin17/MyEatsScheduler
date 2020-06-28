@@ -6,13 +6,19 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-06-26 07:03:29
+ * Last modified  : 2020-06-28 09:17:58
  */
 </script>
 
 
 <template>
     <div class="recipes">
+
+      <AppPageActionButtons
+        :actions="pageActionButtons"
+      />
+
+
       <h1>{{ $t('appPages.recipes.mainTitle') }}</h1>
 
       <div class="cards-wrapper">
@@ -56,16 +62,34 @@
 
 <script>
 import CardRecipeBlock from '@/components/blocks/CardRecipeBlock.vue'
+import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
 
 export default {
   name: 'recipes',
   data() {
       return {
-          
+          pageActionButtons: [
+            {
+              type: "create",
+              entity: "Recipe",
+              text: "Create"
+            },
+            /* {
+              type: "edit",
+              entity: "Recipe",
+              text: "Edit"
+            },
+            {
+              type: "delete",
+              entity: "Recipe",
+              text: "Delete"
+            } */
+          ]
       }
   },
   components: {
-      CardRecipeBlock
+      CardRecipeBlock,
+      AppPageActionButtons
   }
 }
 </script>
