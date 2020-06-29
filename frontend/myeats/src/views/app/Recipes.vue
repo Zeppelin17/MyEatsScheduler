@@ -16,6 +16,7 @@
 
       <AppPageActionButtons
         :actions="pageActionButtons"
+        v-on:execute-action="childEventEmit($event)"
       />
 
 
@@ -72,7 +73,8 @@ export default {
             {
               type: "create",
               entity: "Recipe",
-              text: "Create"
+              text: "Create",
+              onClick: "createNewRecipe" 
             },
             /* {
               type: "edit",
@@ -90,6 +92,18 @@ export default {
   components: {
       CardRecipeBlock,
       AppPageActionButtons
+  },
+  methods: {
+    /**
+     * This function receives a method name and it executes dynamicly
+     */
+    childEventEmit: function(action) {
+      this[action]()
+    },
+
+    createNewRecipe: function() {
+      console.log("METHOD CREATE NEW RECIPE")
+    }
   }
 }
 </script>

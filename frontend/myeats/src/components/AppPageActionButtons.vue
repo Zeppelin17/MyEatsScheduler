@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-28 08:28:57 
- * Last modified  : 2020-06-28 09:20:55
+ * Last modified  : 2020-06-28 09:23:34
  */
  </script>
 
@@ -15,6 +15,7 @@
         <button 
             v-for="(action, index) in actions" :key="index"
             :class="'action-btn t-all-ease ' + action.type"
+            @click="executeButtonAction(action.onClick)"
         >
             {{ action.text }}
         </button>
@@ -31,11 +32,20 @@ export default {
          *      type: "create" or "edit" or "delete"
          *      entity: "Recipe"
          *      text: "create new"
+         *      onClick: "method_name"  // parent method to call on click
          * }
          */
         actions: {
             type: Array,
             required: true
+        }
+    },
+    methods: {
+        /**
+         * this method returns to parent the method name to execute
+         */
+        executeButtonAction: function(parentMethod) {
+            this.$emit('execute-action', parentMethod)
         }
     }
 }
@@ -56,7 +66,7 @@ export default {
 }
 
 .page-action-buttons .action-btn:hover {
-    @apply bg-blue-500 text-blue-100
+    @apply bg-blue-200 text-blue-900 font-bold
 }
 
 
