@@ -57,7 +57,7 @@ export default {
             }, duration)
         },
 
-        infoNotification(event, msg, duration = 5000, dismissible = true) {
+        info(event, msg, duration = 5000, dismissible = true) {
             if (!msg) return
 
             const notification = {
@@ -72,7 +72,7 @@ export default {
             if (duration > 0) this.notificationTimeOut(notification.id, notification.duration)
         },
         
-        warningNotification(event, msg, duration = 10000, dismissible = true) {
+        warning(event, msg, duration = 10000, dismissible = true) {
             if (!msg) return
 
             const notification = {
@@ -87,7 +87,7 @@ export default {
             if (duration > 0) this.notificationTimeOut(notification.id, notification.duration)
         },
 
-        errorNotification(event, msg, duration = 0, dismissible = true) {
+        error(event, msg, duration = 0, dismissible = true) {
             if (!msg) return
 
             const notification = {
@@ -102,7 +102,7 @@ export default {
             if (duration > 0) this.notificationTimeOut(notification.id, notification.duration)
         },
 
-        successNotification(event, msg, duration = 3000, dismissible = true) {
+        success(event, msg, duration = 3000, dismissible = true) {
             if (!msg) return
 
             const notification = {
