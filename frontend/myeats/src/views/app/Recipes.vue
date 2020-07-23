@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-06-28 09:17:58
+ * Last modified  : 2020-07-02 06:40:56
  */
 </script>
 
@@ -58,12 +58,16 @@
           ingredients="4"
         />
       </div>
+
+
+      <UserNotification ref="notify"/>
     </div>
 </template>
 
 <script>
 import CardRecipeBlock from '@/components/blocks/CardRecipeBlock.vue'
 import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
+import UserNotification from '@/components/UserNotification.vue'
 
 export default {
   name: 'recipes',
@@ -91,18 +95,22 @@ export default {
   },
   components: {
       CardRecipeBlock,
-      AppPageActionButtons
+      AppPageActionButtons,
+      UserNotification
   },
   methods: {
     /**
      * This function receives a method name and it executes dynamicly
      */
-    childEventEmit: function(action) {
+    childEventEmit(action) {
       this[action]()
     },
 
-    createNewRecipe: function() {
-      console.log("METHOD CREATE NEW RECIPE")
+    createNewRecipe() {
+      //this.$refs.notify.infoNotification(event, "test notification", 5000, true)
+      //this.$refs.notify.warningNotification(event, "test notification", 10000, true)
+      //this.$refs.notify.errorNotification(event, "test notification", 10000, true)
+      this.$refs.notify.successNotification(event, "test notification", 10000, true)
     }
   }
 }

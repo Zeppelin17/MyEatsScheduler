@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 export default {
     name: "AppPageActionButtons",
     props: {
@@ -61,12 +62,12 @@ export default {
 }
 
 .page-action-buttons .action-btn {
-    @apply w-1/3 my-1 mx-2 p-2 rounded-md text-sm text-blue-200 bg-blue-900 border-blue-900 border-2
+    @apply w-1/3 my-1 mx-2 p-2 rounded-md text-sm text-blue-200 bg-blue-900 border-blue-900 border-2 outline-none
 
 }
 
 .page-action-buttons .action-btn:hover {
-    @apply bg-blue-200 text-blue-900 font-bold
+    @apply bg-blue-200 text-blue-900 font-bold outline-none
 }
 
 
