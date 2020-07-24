@@ -27,7 +27,7 @@
 
                     <div class="message">{{ notification.message }}</div>
 
-                    <div v-if="notification.dismissible" class="close"><button @click="deleteNotification(notification.id)"><img :src="require('../assets/img/ikonate/close.svg')" class="t-all-ease" :alt="notification.type"></button></div>
+                    <div v-if="notification.dismissible" class="close"><button @click="deleteNotification(notification.id)"><img :src="require('../assets/img/ikonate/close.svg')" class="t-all-ease"></button></div>
                 </div>
             </transition-group>
         </div>
