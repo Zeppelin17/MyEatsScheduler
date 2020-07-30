@@ -125,7 +125,17 @@
       "categories": "Categories",
       "ingredients": "Ingredients",
       "openRecipe": "Open",
-      "deleteRecipe": "Delete"
+      "deleteRecipe": "Delete",
+      "createRecipeFormTitle": "Create new Recipe",
+      "inputRecipeName": "Recipe's name",
+      "inputRecipeCategories": "Categories",
+      "inputRecipeDescription": "Description",
+      "inputRecipeSteps": "Steps",
+      "inputRecipeIngredientName": "Name",
+      "inputRecipeIngredientQty": "Quantity",
+      "inputRecipeIngredientUOM": "Measure",
+      "newIngredient": "Add",
+      "ingredientsListTitle": "Ingredients"
     },
     "profile": {
 

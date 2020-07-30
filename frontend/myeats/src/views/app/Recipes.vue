@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-07-23 06:52:53
+ * Last modified  : 2020-07-29 07:00:48
  */
 </script>
 
@@ -67,11 +67,11 @@
         v-on:close='closeCreateRecipeModal'
       >
         <template v-slot:header>
-          <p>header test</p>
+          <h2>{{ $t('appPages.recipes.createRecipeFormTitle') }}</h2>
         </template>
 
         <template v-slot:body>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel euismod nunc, in ullamcorper ante. Maecenas id sem risus. Pellentesque tincidunt, purus a egestas semper, tortor felis malesuada sem, et feugiat neque orci nec enim. Etiam lobortis ut nibh at fringilla. Etiam id risus sed est consectetur lobortis molestie non elit. Integer vitae mi sed quam imperdiet ultricies. Mauris tellus diam, dignissim id turpis ut, mattis dictum libero. Sed molestie tristique odio, nec ornare purus egestas eu. Maecenas laoreet lorem enim, vitae gravida tortor iaculis at. Maecenas facilisis dignissim fringilla. Donec imperdiet sagittis vehicula. Praesent porttitor elementum sem vitae aliquam. Nulla elementum et elit a varius. Aliquam sit amet dui nisi. Duis malesuada blandit ultricies. Nulla vehicula lorem eget sapien eleifend molestie.</p>
+          <CreateRecipeForm />
         </template>
 
         <template v-slot:footer>
@@ -86,6 +86,7 @@ import CardRecipeBlock from '@/components/blocks/CardRecipeBlock.vue'
 import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
 import UserNotification from '@/components/UserNotification.vue'
 import ModalBox from '@/components/blocks/ModalBox.vue'
+import CreateRecipeForm from '@/components/forms/CreateRecipeForm.vue'
 
 export default {
   name: 'recipes',
@@ -109,7 +110,7 @@ export default {
               entity: "Recipe",
               text: "Delete"
             } */
-          ]
+          ],
       }
   },
   components: {
@@ -117,6 +118,7 @@ export default {
       AppPageActionButtons,
       UserNotification,
       ModalBox,
+      CreateRecipeForm
   },
   methods: {
     /**
@@ -126,6 +128,9 @@ export default {
       this[action]()
     },
 
+    /**
+     * Show form to create new recipe
+     */
     createNewRecipe() {
       this.showCreateRecipeModal()
       //this.$refs.notify.info(event, "info notification", 5000, true)
@@ -140,6 +145,13 @@ export default {
 
     showCreateRecipeModal() {
       this.isCreateRecipeModalVisible = true
+    },
+
+    /**
+     * Create new recipe with API Service
+     */
+    createRecipeRequest() {
+
     }
   }
 }
@@ -160,5 +172,75 @@ export default {
 
 .recipes .cards-wrapper .card-recipe-block{
   @apply m-3
+}
+
+.recipes >>> .create-recipe-form h3 {
+  @apply mb-3
+}
+
+.recipes >>> .create-recipe-form .form-wrapper form .form-group {
+    @apply mb-2
+}
+
+.recipes >>> .create-recipe-form .form-wrapper form .form-group label {
+    @apply flex flex-col max-w-lg mx-auto bg-blue-300 rounded-t-md rounded-b-md border-2 border-blue-300
+}
+.recipes >>> .create-recipe-form .form-wrapper form .form-group label span {
+    @apply py-0 px-2 pb-0 text-left text-xs text-gray-600
+}
+
+.recipes >>> .create-recipe-form .form-wrapper form .form-group label input,
+.recipes >>> .create-recipe-form .form-wrapper form .form-group label textarea {
+    @apply py-0 px-2 bg-blue-300 rounded-b-md text-sm
+}
+
+.recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredient-group label {
+  @apply mb-2
+}
+
+.recipes >>> .create-recipe-form .form-wrapper form input:focus,
+.recipes >>> .create-recipe-form .form-wrapper form textarea:focus {
+    @apply outline-none shadow-md
+}
+
+.recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredients-list button {
+  @apply mt-1 mb-3 text-xs text-blue-100 bg-blue-700 border-2 border-blue-700 px-1 rounded-sm outline-none
+}
+
+.recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredients-list button:hover {
+  @apply bg-blue-100 text-blue-700 shadow-md
+}
+
+
+@media (min-width: 768px) {
+  .recipes >>> .create-recipe-form .form-wrapper form {
+    @apply flex justify-around items-center items-stretch
+  }
+
+  .recipes >>> .create-recipe-form .form-wrapper form .form-col {
+    width: 47%;
+  }
+
+  .recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredients-list {
+    @apply max-w-full
+  }
+
+  .recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredient-group {
+    @apply flex justify-start flex-wrap
+  }
+
+  .recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredient-group label {
+    @apply w-5/12 mb-1 mx-1
+  }
+
+  .recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredient-group label.name {
+    @apply w-1/2
+  }
+
+  .recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredient-group label.qty,
+  .recipes >>> .create-recipe-form .form-wrapper form .form-group .ingredient-group label.uom {
+    width: 21%
+  }
+
 }
 </style>

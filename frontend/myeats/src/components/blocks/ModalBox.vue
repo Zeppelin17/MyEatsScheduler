@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-07-24 06:45:20 
- * Last modified  : 2020-07-24 06:46:54
+ * Last modified  : 2020-07-29 07:00:39
  */
 </script>
 
@@ -44,11 +44,8 @@ export default {
             this.$emit('close')
         }
     }
-
-    /** mirar esto: https://www.digitalocean.com/community/tutorials/vuejs-vue-modal-component
-        con esto: https://vuejs.org/v2/guide/components-slots.html
-    */
 }
+
 </script>
 
 <style scoped>
@@ -74,11 +71,22 @@ export default {
 }
 
 .modal {
-    @apply flex flex-col p-4 bg-blue-100 shadow-lg overflow-x-auto rounded-lg w-10/12 max-h-screen
+    @apply flex flex-col p-4 my-2 bg-blue-100 shadow-lg overflow-x-auto rounded-lg w-11/12;
+    max-height: 95vh;
+}
+
+.modal .modal-header,
+.modal .modal-body,
+.modal .modal-footer {
+    @apply mb-6
 }
 
 .modal .modal-header .close {
     @apply flex justify-end items-center mb-1
+}
+
+.modal .modal-header .close img {
+    @apply w-8
 }
 
 .close button {
