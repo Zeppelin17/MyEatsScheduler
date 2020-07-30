@@ -11,7 +11,7 @@
 </script>
 
 <template>
-  <div v-if="isAuthenticated" id="app-menu-wrapper">
+  <div id="app-menu-wrapper">
     
     <button @click="toggleMenu()" class="menu-icon rotate"><img src="../../assets/img/ikonate/hamburger.svg"></button>
     
@@ -89,7 +89,6 @@
 
 <script>
 import { AUTH_LOGOUT } from '@/store/actionTypes'
-import { mapGetters } from 'vuex'
 import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
 
 export default {
@@ -98,11 +97,6 @@ export default {
       return {
           showMenu: false
       }
-  },
-  computed: {
-      ...mapGetters({
-          isAuthenticated: 'isAuthenticated'
-      })
   },
   components: {
     LocaleSwitcher
