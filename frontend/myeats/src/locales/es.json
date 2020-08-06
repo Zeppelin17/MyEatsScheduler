@@ -135,7 +135,8 @@
       "inputRecipeIngredientQty": "Cantidad",
       "inputRecipeIngredientUOM": "Medida",
       "newIngredient": "Añadir",
-      "ingredientsListTitle": "Ingredientes"
+      "ingredientsListTitle": "Ingredientes",
+      "createSubmitButton": "Crear Receta"
     },
     "profile": {
 
