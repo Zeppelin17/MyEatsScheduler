@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-08-05 06:16:04
+ * Last modified  : 2020-08-08 19:08:15
  */
 </script>
 
@@ -146,8 +146,8 @@ export default {
 
     
     recipeCreatedNotification() {
-      
-      this.$refs.notify.success(event, "success notification", 10000, true)
+      this.closeCreateRecipeModal()
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 10000, true)
     }
   }
 }

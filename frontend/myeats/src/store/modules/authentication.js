@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-03 06:58:43 
- * Last modified  : 2020-06-15 06:41:18
+ * Last modified  : 2020-08-08 18:21:58
  */
 
 import { AUTH_REQUEST, AUTH_LOGOUT, AUTH_CREATE } from '../actionTypes'
@@ -24,12 +24,14 @@ const errorKeys = {
 
 export const state = {
     token: localStorage.getItem('user-token') || '',
+    userId: localStorage.getItem('user-id') || '',
     status: '', // status of the API call (loading, success, error)
     errorKey: ''
 }
 
 const getters = {
     isAuthenticated: state => !!state.token,
+    userId: state => state.userId,
     authStatus: state => state.status,
     authErrorKey: state => state.errorKey,
 }
@@ -41,10 +43,12 @@ export const actions = {
             authService.authRequest(user)
             .then(resp => {
                 const token = resp.data.token
+                const userId = resp.data.user_id
                 localStorage.setItem('user-token', token)
+                localStorage.setItem('user-id', userId)
                 axios.defaults.headers.common['Authorization'] = 'Token ' + token 
 
-                commit(AUTH_SUCCESS, token)
+                commit(AUTH_SUCCESS, token, userId)
                 resolve(resp)
             })
             .catch(err => {
@@ -52,6 +56,7 @@ export const actions = {
                 
                 commit(AUTH_ERROR, err)
                 localStorage.removeItem('user-token')
+                localStorage.removeItem('user-id')
                 reject(err)
             })
         })
@@ -60,6 +65,7 @@ export const actions = {
     [AUTH_LOGOUT]: ({commit}) => {
         return new Promise((resolve) => {
             localStorage.removeItem('user-token')
+            localStorage.removeItem('user-id')
             delete axios.defaults.headers.common['Authorization']
             commit(AUTH_LOGOUT)
             resolve()
@@ -72,6 +78,7 @@ export const actions = {
             authService.createAccount(user)
             .then(resp => {
                 localStorage.removeItem('user-token')
+                localStorage.removeItem('user-id')
                 
                 // dispatch user login
                 const credentials = {
@@ -114,9 +121,10 @@ export const mutations = {
         state.status = 'loading'
     },
 
-    [AUTH_SUCCESS]: (state, token) => {
+    [AUTH_SUCCESS]: (state, token, userId) => {
         state.status = 'success'
         state.token = token
+        state.userId = userId
     },
 
     [AUTH_ERROR]: (state) => {

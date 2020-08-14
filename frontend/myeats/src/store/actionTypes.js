@@ -5,10 +5,17 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-28 06:30:05 
- * Last modified  : 2020-06-12 06:46:41
+ * Last modified  : 2020-08-10 15:37:47
  */
 
 // authentication
 export const AUTH_REQUEST = "authRequest"
 export const AUTH_LOGOUT = "authLogout"
 export const AUTH_CREATE = "authCreate"
+
+// recipes
+export const RECIPE_CREATE = "recipeCreate"
+export const GET_CATEGORIES = "getCategories"
+export const UPDATE_CATEGORIES = "updateCategories"
+
+// ingredient

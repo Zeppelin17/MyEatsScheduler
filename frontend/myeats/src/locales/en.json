@@ -136,7 +136,9 @@
       "inputRecipeIngredientUOM": "Measure",
       "newIngredient": "Add",
       "ingredientsListTitle": "Ingredients",
-      "createSubmitButton": "Create Recipe"
+      "createSubmitButton": "Create Recipe",
+      "RecipeCreateError": "Error trying to create the recipe. Try it later.",
+      "RecipeCreatedSuccess": "Recipe created successfully"
     },
     "profile": {
 

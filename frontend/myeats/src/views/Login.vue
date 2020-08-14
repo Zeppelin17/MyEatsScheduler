@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:23:47 
- * Last modified  : 2020-06-06 12:06:56
+ * Last modified  : 2020-08-08 15:39:18
  */
 </script>
 
@@ -39,11 +39,6 @@ export default {
       ...mapGetters({
           authStatus: 'authStatus'
       })
-  },
-  data() {
-      return {
-          
-      }
   }
 }
 </script>

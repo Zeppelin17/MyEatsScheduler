@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-07-27 06:32:15
- * Last modified  : 2020-08-06 07:01:34
+ * Last modified  : 2020-08-14 16:40:58
  */
 </script>
 
@@ -37,7 +37,7 @@
               <span>{{ $t("appPages.recipes.inputRecipeCategories") }}</span>
               
               <div class="input-tags">
-                <div v-for="(cat, index) in recipeCategories" :key="cat" class="tag">
+                <div v-for="(cat, index) in recipeCategories" :key="index" class="tag">
                   <span @click="deleteCategory(index)">x</span>
                   {{ cat }}
                 </div>
@@ -90,6 +90,7 @@
                     name="recipe-ingredient-name"
                     type="text"
                     ref="ingredientNameInput"
+                    @keydown.enter.prevent="addIngredient"
                   />
                 </label>
 
@@ -101,6 +102,7 @@
                     v-model="ingredient.qty"
                     name="recipe-ingredient-qty"
                     type="text"
+                    @keydown.enter.prevent="addIngredient"
                   />
                 </label>
 
@@ -112,6 +114,7 @@
                     v-model="ingredient.uom"
                     name="recipe-ingredient-uom"
                     type="text"
+                    @keydown.enter.prevent="addIngredient"
                   />
                 </label>
               </div>
@@ -131,10 +134,10 @@
                 >
                   <div class="recipe-ingredient">
                     {{ ingredient.name
-                    }}<span v-if="ingredient.qty.length > 0"
+                    }}<span v-if="ingredient.qty !== 0"
                       >: {{ ingredient.qty }}</span
                     >
-                    <span v-if="ingredient.uom.length > 0">{{
+                    <span v-if="ingredient.uom !== '0'">{{
                       ingredient.uom
                     }}</span>
                   </div>
@@ -154,7 +157,10 @@
         </div>
 
         <div class="submit">
-          <button type="submit">
+          <button disabled v-if="recipeStatus === 'loading'" class="loading-button">
+            <img src="../../assets/img/loading.svg" alt="Loading">
+          </button>
+          <button v-else type="submit" >
             {{ $t("appPages.recipes.createSubmitButton") }}
           </button>
         </div>
@@ -164,6 +170,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES } from '@/store/actionTypes'
+
 export default {
   name: "CreateRecipeForm",
   data() {
@@ -181,6 +190,13 @@ export default {
       recipeSteps: "",
     };
   },
+  computed: {
+      ...mapGetters({
+          userId: 'userId',
+          categoriesList: 'categoriesList',
+          recipeStatus: 'recipeStatus'
+      })
+  },
   methods: {
     resetValidationMsg() {
       this.validationMsg = ""
@@ -190,6 +206,8 @@ export default {
       if (this.ingredient.name === "") return
 
       let ing = { ...this.ingredient }
+      if (ing.qty.length === 0) ing.qty = 0
+      if (ing.uom.length === 0) ing.uom = "0"
       this.recipeIngredients.push(ing)
 
       this.ingredient.name = ""
@@ -226,9 +244,57 @@ export default {
      * Create new recipe with API Service
      */
     createRecipe() {
+      this.resetValidationMsg()
       
-      this.$emit("recipe-created");
+      const newRecipe = {
+        name: this.recipeName,
+        description: this.recipeDescription,
+        steps: this.recipeSteps,
+        myeats_user: this.userId
+      }
+
+      // Creating categories and getting their ID's
+      this.$store.dispatch(UPDATE_CATEGORIES, this.recipeCategories)
+      .then((allCategories) => {
+        const categoriesIds = []
+        this.categoriesList.forEach((cat) => {
+          this.recipeCategories.forEach((recipeCat) => {
+            if (cat.name === recipeCat) {
+              categoriesIds.push(cat.id)
+            }
+          })
+        })
+        newRecipe["categories"] = categoriesIds
+
+        // Creating recipe
+        const ingredients = []
+        this.recipeIngredients.forEach((ingredient) => ingredients.push(ingredient))
+        this.$store.dispatch(RECIPE_CREATE, {newRecipe, ingredients})
+      }) 
+      .then(() => {
+        this.cleanForm()
+        this.$emit("recipe-created")
+      })
+      .catch((err) => {
+        console.log("[FORM] ERROR", err)
+        this.validationMsg = this.$t("appPages.recipes.RecipeCreateError")
+      })
+      
     },
+
+    cleanForm() {
+      this.resetValidationMsg()
+      this.recipeName = ""
+      this.recipeCategories = []
+      this.recipeDescription = ""
+      this.recipeIngredients = []
+      this.ingredient = {
+        name: "",
+        qty: "",
+        uom: "",
+      }
+      this.recipeSteps = ""
+    }
   },
 };
 </script>
@@ -321,6 +387,10 @@ export default {
     @apply bg-blue-100 text-blue-900 shadow-md
 }
 
+.create-recipe-form .form-wrapper form .submit .loading-button img {
+    @apply w-8
+}
+
 
 .create-recipe-form .form-wrapper form .form-group .input-tags {
   @apply flex items-center justify-start pl-1 overflow-hidden overflow-x-auto
@@ -342,6 +412,17 @@ export default {
   @apply flex-grow
 }
 
+.create-recipe-form .form-wrapper #validation-msg {
+    @apply py-3 px-1 mb-4  relative bg-red-500 bg-opacity-50 rounded-md text-gray-100 text-sm max-w-sm mx-auto
+}
+
+.create-recipe-form .form-wrapper #validation-msg .close {
+    @apply absolute right-0 top-0 py-1 px-2 cursor-pointer text-gray-300
+}
+
+.create-recipe-form .form-wrapper #validation-msg .close:hover {
+    @apply text-gray-100
+}
 
 
 
