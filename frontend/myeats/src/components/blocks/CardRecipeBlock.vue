@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-25 06:28:12
- * Last modified  : 2020-06-26 07:00:33
+ * Last modified  : 2020-08-17 06:40:05
  */
 </script>
 <template>
@@ -19,7 +19,7 @@
         <span>{{ $t('appPages.recipes.categories') }}: </span>
 
         <div class="tags-wrapper">
-          <span class="tag t-all-ease" v-for="(category, index) in categories" :key="index">{{ category }}</span>
+          <span class="tag t-all-ease" v-for="(category) in categories" :key="category.id">{{ category.name }}</span>
         </div>
       </div>
       <div class="content">
@@ -48,7 +48,7 @@ export default {
   name: 'CardRecipeBlock',
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true,
     }, 
     name: {
@@ -60,7 +60,7 @@ export default {
       required: true,
     },
     ingredients: {
-      type: String,
+      type: Number,
       required: true,
     }
   }

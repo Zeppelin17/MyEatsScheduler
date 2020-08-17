@@ -5,10 +5,10 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:33:21 
- * Last modified  : 2020-08-14 16:36:04
+ * Last modified  : 2020-08-17 06:41:44
  */
 
-import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES } from '../actionTypes'
+import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, GET_RECIPES } from '../actionTypes'
 import { RECIPE_SET_LIST, SET_STATUS_LOADING, RECIPE_STATUS_SET_ERROR, RECIPE_STATUS_SET_SUCCESS, SET_CATEGORIES } from '../mutationTypes'
 import recipeService from '../../services/recipeService'
 
@@ -86,7 +86,7 @@ export const actions = {
   },
 
   [UPDATE_CATEGORIES]: ({ commit }, categories) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       recipeService.updateCategories(categories)
       .then((resp) => {
         const categoryList = resp.data
@@ -100,9 +100,45 @@ export const actions = {
         
     })
   },
+
+  [GET_RECIPES]: ({ commit }) => {
+    let recipes = []
+
+    return new Promise((resolve) => {
+      commit(SET_STATUS_LOADING)
+      recipeService.getRecipes()
+      .then((resp) => {
+        // now we get ingredients
+        recipes = resp.data
+        return recipeService.getIngredients(recipes)
+      })
+      .then((ingredients) => { 
+        recipes.map((recipe) => {
+          recipe["ingredients"] = ingredients.filter((ing) => ing.recipe === recipe.id)
+        })
+
+        return recipeService.getCategories()
+      })
+      .then((resp) => {
+        const categories = resp.data
+        console.log("categories", categories)
+        console.log("recipes", recipes)
+        recipes.map((recipe) => {
+          recipe.categories.forEach((recipeCat, index) => {
+            recipe.categories[index] = categories.find((category) => category.id === recipeCat)
+          })
+        })
+
+        commit(RECIPE_STATUS_SET_SUCCESS)
+        commit(RECIPE_SET_LIST, recipes)
+        resolve(recipes)
+      })
+      .catch((err) => {
+        console.log("ERROR", err)
+      })
+    })
+  }
 }
-
-
 
 
 export const mutations = {
@@ -120,6 +156,10 @@ export const mutations = {
 
   [SET_CATEGORIES]: (state, categoriesList) => {
     state.categories = categoriesList
+  },
+
+  [RECIPE_SET_LIST]: (state, recipes) => {
+    state.recipes = recipes
   }
 }
 

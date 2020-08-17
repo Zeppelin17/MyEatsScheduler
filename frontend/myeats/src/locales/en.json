@@ -138,7 +138,8 @@
       "ingredientsListTitle": "Ingredients",
       "createSubmitButton": "Create Recipe",
       "RecipeCreateError": "Error trying to create the recipe. Try it later.",
-      "RecipeCreatedSuccess": "Recipe created successfully"
+      "RecipeCreatedSuccess": "Recipe created successfully",
+      "loadingMsg": "Loading recipes, wait..."
     },
     "profile": {
 

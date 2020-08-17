@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-08-08 19:08:15
+ * Last modified  : 2020-08-17 06:45:29
  */
 </script>
 
@@ -24,38 +24,12 @@
 
       <div class="cards-wrapper">
         <CardRecipeBlock
-          id="1" 
-          name="My first recipe"
-          :categories="['categ_1', 'categ_2', 'categ_3', 'categ_4']"
-          ingredients="7"
-        />
-
-        <CardRecipeBlock
-          id="1" 
-          name="Another recipe"
-          :categories="['categ_1']"
-          ingredients="3"
-        />
-
-        <CardRecipeBlock
-          id="1" 
-          name="This recipe has a longer title and it has to fit well"
-          :categories="['categ_1', 'categ_2', 'categ_3']"
-          ingredients="8"
-        />
-
-        <CardRecipeBlock
-          id="1" 
-          name="The recipe I love the most"
-          :categories="['categ_1', 'categ_2', 'categ_3', 'categ_4', 'categ_5']"
-          ingredients="12"
-        />
-
-        <CardRecipeBlock
-          id="1" 
-          name="Yet another recipe"
-          :categories="['categ_1', 'categ_2']"
-          ingredients="4"
+          v-for="recipe in recipeList"
+          :key="recipe.id"
+          :id="recipe.id" 
+          :name="recipe.name"
+          :categories="recipe.categories"
+          :ingredients="recipe.ingredients.length"
         />
       </div>
 
@@ -75,6 +49,11 @@
         </template>
 
       </ModalBox>
+
+      <div v-if="recipeStatus === 'loading'" id="recipe-loading">
+            <img src="../../assets/img/loading.svg" alt="Loading">
+            <p>{{ $t('appPages.recipes.loadingMsg') }}</p>
+        </div>
     </div>
 </template>
 
@@ -84,6 +63,9 @@ import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
 import UserNotification from '@/components/UserNotification.vue'
 import ModalBox from '@/components/blocks/ModalBox.vue'
 import CreateRecipeForm from '@/components/forms/CreateRecipeForm.vue'
+import { mapGetters } from 'vuex'
+import { GET_RECIPES } from '@/store/actionTypes'
+import { GET_CATEGORIES } from '../../store/actionTypes'
 
 export default {
   name: 'recipes',
@@ -110,6 +92,12 @@ export default {
           ],
       }
   },
+  computed: {
+      ...mapGetters({
+          recipeList: 'recipeList',
+          recipeStatus: 'recipeStatus'
+      })
+  },
   components: {
       CardRecipeBlock,
       AppPageActionButtons,
@@ -130,10 +118,6 @@ export default {
      */
     createNewRecipe() {
       this.showCreateRecipeModal()
-      //this.$refs.notify.info(event, "info notification", 5000, true)
-      //this.$refs.notify.warning(event, "warning notification", 10000, true)
-      //this.$refs.notify.error(event, "error notification", 10000, true)
-      //this.$refs.notify.success(event, "success notification", 10000, true)
     },
 
     closeCreateRecipeModal() {
@@ -148,7 +132,24 @@ export default {
     recipeCreatedNotification() {
       this.closeCreateRecipeModal()
       this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 10000, true)
+      //this.$refs.notify.info(event, "info notification", 5000, true)
+      //this.$refs.notify.warning(event, "warning notification", 10000, true)
+      //this.$refs.notify.error(event, "error notification", 10000, true)
+      //this.$refs.notify.success(event, "success notification", 10000, true)
+    },
+
+
+    getRecipes() {
+      this.$store.dispatch(GET_RECIPES)
+    },
+
+    getCategories() {
+      this.$store.dispatch(GET_CATEGORIES)
     }
+  },
+  created() {
+    this.getCategories()
+    this.getRecipes()   
   }
 }
 </script>
@@ -168,5 +169,13 @@ export default {
 
 .recipes .cards-wrapper .card-recipe-block{
   @apply m-3
+}
+
+.recipes #recipe-loading {
+    @apply absolute flex flex-col items-center justify-center inset-0 bg-blue-700 bg-opacity-75 m-auto
+}
+
+.recipes #recipe-loading p {
+    @apply font-bold text-xl px-2 py-1 bg-blue-900 text-gray-200 rounded-lg
 }
 </style>

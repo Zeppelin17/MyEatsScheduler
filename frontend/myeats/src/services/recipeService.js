@@ -5,11 +5,11 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:20:45 
- * Last modified  : 2020-08-14 15:42:16
+ * Last modified  : 2020-08-16 08:32:35
  */
 
 import Vue from 'vue'
-import { API_ENDPOINT, API_CREATE_RECIPE, API_GET_CATEGORIES, API_CREATE_CATEGORY, API_CREATE_INGREDIENT } from '@/appConfig'
+import { API_ENDPOINT, API_CREATE_RECIPE, API_GET_CATEGORIES, API_CREATE_CATEGORY, API_CREATE_INGREDIENT, API_GET_RECIPES, API_GET_INGREDIENTS } from '@/appConfig'
 
 
 export default {
@@ -87,6 +87,35 @@ export default {
         Vue.axios({method: 'post', url: url, data: ingredient})
       })
     )
+  },
+
+
+  // get recipes
+  getRecipes() {
+    const url = API_ENDPOINT + API_GET_RECIPES
+
+    return Vue.axios({method: 'get', url: url})
+  },
+
+  // get ingredients
+  getIngredients(recipes) {
+    let url = ""
+    let ingredients = []
+
+    return Promise.all(
+      recipes.map((recipe) => {
+        url = API_ENDPOINT + API_GET_INGREDIENTS + '?recipeid=' + recipe.id
+        return Vue.axios({method: 'get', url: url})
+        .then((resp) => {
+          resp.data.forEach((ing) => {
+            ingredients.push(ing)
+          })
+        })
+      })
+    )
+    .then(() => {
+      return ingredients
+    })
   }
 
 }
