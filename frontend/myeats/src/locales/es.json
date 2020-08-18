@@ -146,6 +146,12 @@
     },
     "help": {
 
+    },
+    "pagination": {
+      "first": "Primera",
+      "prev": "Anterior",
+      "next": "Siguiente",
+      "last": "Última"
     }
   }
 }
