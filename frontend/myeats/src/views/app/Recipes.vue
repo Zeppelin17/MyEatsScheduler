@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-08-18 06:57:25
+ * Last modified  : 2020-08-19 06:26:44
  */
 </script>
 
@@ -103,7 +103,7 @@ export default {
           PagTotalPages: 0,
           PagTotal: 0,
           PagCurrentPage: 1,
-          PagNumItems: 5,
+          PagNumItems: 6,
       }
   },
   computed: {
