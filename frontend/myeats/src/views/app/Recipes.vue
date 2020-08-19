@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-08-17 06:45:29
+ * Last modified  : 2020-08-18 06:57:25
  */
 </script>
 
@@ -24,7 +24,7 @@
 
       <div class="cards-wrapper">
         <CardRecipeBlock
-          v-for="recipe in recipeList"
+          v-for="recipe in recipesListPaginated"
           :key="recipe.id"
           :id="recipe.id" 
           :name="recipe.name"
@@ -32,6 +32,14 @@
           :ingredients="recipe.ingredients.length"
         />
       </div>
+
+      <Pagination v-if="PagTotalPages >= 1"
+          :maxVisibleButtons=PagMaxVisibleButtons
+          :totalPages=PagTotalPages
+          :total=PagTotal
+          :currentPage=PagCurrentPage
+          v-on:pagechanged="updatePagination($event)"
+        />
 
 
       <UserNotification ref="notify"/>
@@ -62,13 +70,14 @@ import CardRecipeBlock from '@/components/blocks/CardRecipeBlock.vue'
 import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
 import UserNotification from '@/components/UserNotification.vue'
 import ModalBox from '@/components/blocks/ModalBox.vue'
+import Pagination from '@/components/blocks/Pagination.vue'
 import CreateRecipeForm from '@/components/forms/CreateRecipeForm.vue'
 import { mapGetters } from 'vuex'
 import { GET_RECIPES } from '@/store/actionTypes'
 import { GET_CATEGORIES } from '../../store/actionTypes'
 
 export default {
-  name: 'recipes',
+  name: 'recipes', 
   data() {
       return {
           isCreateRecipeModalVisible: false,
@@ -90,20 +99,34 @@ export default {
               text: "Delete"
             } */
           ],
+          PagMaxVisibleButtons: 3,
+          PagTotalPages: 0,
+          PagTotal: 0,
+          PagCurrentPage: 1,
+          PagNumItems: 5,
       }
   },
   computed: {
       ...mapGetters({
           recipeList: 'recipeList',
           recipeStatus: 'recipeStatus'
-      })
+      }),
+
+      recipesListPaginated() {
+        if (this.recipeList.length <= this.PagNumItems) {
+          return this.recipeList
+        }
+
+        return this.recipeList.slice((this.PagCurrentPage-1)*this.PagNumItems, (this.PagCurrentPage*this.PagNumItems))
+      }
   },
   components: {
       CardRecipeBlock,
       AppPageActionButtons,
       UserNotification,
       ModalBox,
-      CreateRecipeForm
+      CreateRecipeForm,
+      Pagination
   },
   methods: {
     /**
@@ -131,6 +154,7 @@ export default {
     
     recipeCreatedNotification() {
       this.closeCreateRecipeModal()
+      this.$store.dispatch(GET_RECIPES)
       this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 10000, true)
       //this.$refs.notify.info(event, "info notification", 5000, true)
       //this.$refs.notify.warning(event, "warning notification", 10000, true)
@@ -145,11 +169,23 @@ export default {
 
     getCategories() {
       this.$store.dispatch(GET_CATEGORIES)
+    },
+
+    updatePagination(pag) {
+      this.PagCurrentPage = pag
     }
   },
+
   created() {
     this.getCategories()
     this.getRecipes()   
+  },
+
+  watch: {
+    recipeList() {
+      this.PagTotal = this.recipeList.length
+      this.PagTotalPages = Math.ceil(this.PagTotal / this.PagNumItems)
+    }
   }
 }
 </script>
@@ -167,7 +203,7 @@ export default {
   @apply flex flex-wrap justify-center
 }
 
-.recipes .cards-wrapper .card-recipe-block{
+.recipes .cards-wrapper .card-recipe-block {
   @apply m-3
 }
 

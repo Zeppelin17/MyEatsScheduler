@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:33:21 
- * Last modified  : 2020-08-17 06:41:44
+ * Last modified  : 2020-08-17 15:45:56
  */
 
 import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, GET_RECIPES } from '../actionTypes'
@@ -121,8 +121,6 @@ export const actions = {
       })
       .then((resp) => {
         const categories = resp.data
-        console.log("categories", categories)
-        console.log("recipes", recipes)
         recipes.map((recipe) => {
           recipe.categories.forEach((recipeCat, index) => {
             recipe.categories[index] = categories.find((category) => category.id === recipeCat)
