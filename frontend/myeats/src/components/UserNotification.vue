@@ -21,7 +21,7 @@
                 <div 
                     :class="'t-all-ease notification ' + notification.type"
                     v-for="notification in notifications"
-                    :key="notification.id"
+                    :key="notification.id+notification.type"
                 >
                     <div class="symbol"><img :src="require('../assets/img/ikonate/' + notification.symbol)" :alt="notification.type"></div>
 
