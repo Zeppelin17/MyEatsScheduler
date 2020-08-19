@@ -5,7 +5,7 @@
  * @summary Pagination component
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
- * Created at     : 2020-08-17 15:39:02 
+ * Created at     : 2020-08-17 15:39:02
  * Last modified  : 2020-08-18 06:31:56
  */
 </script>
@@ -24,6 +24,7 @@
       <li class="pagination-item" 
         v-for="page in pages"
         :key="page.name"
+        v-if="page.name > 0"
       >
         <button 
           type="button" 
@@ -46,7 +47,7 @@
 </template>
 
 <script>
-export default {
+export default {    
   name: "pagination",
   props: {
     maxVisibleButtons: {
@@ -76,19 +77,21 @@ export default {
       }
       // when on the last page
       if (this.currentPage === this.totalPages) {
-        return this.totalPages - this.maxVisibleButtons
+        return this.totalPages - this.maxVisibleButtons + 1
       }
 
       // when in between
       return this.currentPage - 1
     },
 
+    endPage() {
+      return Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages)
+    },
+
     pages() {
       const range = [];
 
-      for (let i = this.startPage;
-        i <= Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages);
-        i += 1) {
+      for (let i = this.startPage; i <= this.endPage; i += 1) {
           range.push({
             name: i,
             isDisabled: i === this.currentPage
