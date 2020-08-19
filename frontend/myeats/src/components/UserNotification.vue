@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-29 06:48:55
- * Last modified  : 2020-07-02 06:59:56
+ * Last modified  : 2020-08-19 06:41:22
  */
  </script>
 
@@ -21,7 +21,7 @@
                 <div 
                     :class="'t-all-ease notification ' + notification.type"
                     v-for="notification in notifications"
-                    :key="notification.id+notification.type"
+                    :key="Math.ceil(Date.now() / 1000) + Math.random() * (100 - 1) + 1"
                 >
                     <div class="symbol"><img :src="require('../assets/img/ikonate/' + notification.symbol)" :alt="notification.type"></div>
 
