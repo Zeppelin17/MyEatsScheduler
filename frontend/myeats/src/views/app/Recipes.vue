@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-08-19 06:26:44
+ * Last modified  : 2020-08-19 06:50:32
  */
 </script>
 
@@ -66,6 +66,14 @@
 </template>
 
 <script>
+
+
+/**
+ * ADD FILTER TO RECIPES PAGE. SEARCH BY NAME AND CATEGORY
+ */
+
+
+
 import CardRecipeBlock from '@/components/blocks/CardRecipeBlock.vue'
 import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
 import UserNotification from '@/components/UserNotification.vue'
@@ -85,7 +93,7 @@ export default {
             {
               type: "create",
               entity: "Recipe",
-              text: "Create",
+              text: this.$t('appPages.recipes.createButton'),
               onClick: "createNewRecipe" 
             },
             /* {

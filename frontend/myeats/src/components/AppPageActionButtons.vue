@@ -62,7 +62,7 @@ export default {
 }
 
 .page-action-buttons .action-btn {
-    @apply w-1/3 my-1 mx-2 p-2 rounded-md text-sm text-blue-200 bg-blue-900 border-blue-900 border-2 outline-none
+    @apply w-auto my-1 mx-2 p-2 rounded-md text-sm text-blue-200 bg-blue-900 border-blue-900 border-2 outline-none whitespace-no-wrap
 
 }
 
@@ -77,7 +77,7 @@ export default {
     }
 
     .page-action-buttons .action-btn {
-        @apply w-20
+        @apply w-auto
     }
 }
 </style>
