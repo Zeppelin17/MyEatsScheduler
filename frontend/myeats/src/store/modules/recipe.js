@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:33:21 
- * Last modified  : 2020-08-17 15:45:56
+ * Last modified  : 2020-08-19 06:48:04
  */
 
 import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, GET_RECIPES } from '../actionTypes'
@@ -127,6 +127,9 @@ export const actions = {
           })
         })
 
+        // sort recipes from newer to older
+        recipes = recipes.sort((a, b) => (a.id < b.id) ? 1 : -1)
+        
         commit(RECIPE_STATUS_SET_SUCCESS)
         commit(RECIPE_SET_LIST, recipes)
         resolve(recipes)
