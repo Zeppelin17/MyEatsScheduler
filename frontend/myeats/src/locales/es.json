@@ -140,7 +140,9 @@
       "RecipeCreateError": "Error intentando crear la receta. Prueba más tarde.",
       "RecipeCreatedSuccess": "Receta creada correctamente",
       "loadingMsg": "Cargando recetas, espera...",
-      "createButton": "Nueva receta"
+      "createButton": "Nueva receta",
+      "filterName": "Filtrar por nombre",
+      "filterCategory": "Filtrar por categoría"
     },
     "profile": {
 

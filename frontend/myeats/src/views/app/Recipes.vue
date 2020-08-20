@@ -22,6 +22,23 @@
 
       <h1>{{ $t('appPages.recipes.mainTitle') }}</h1>
 
+      <div class="filter" v-if="this.recipeList.length > 0">
+        <form>
+          <div class="form-group">
+              <label for="filter-name">
+                  <span>{{ $t('appPages.recipes.filterName') }}</span>
+                  <input v-model="filterName" name="filter-name" type="text" autocomplete="off" />
+              </label>
+          </div>
+
+          <div class="form-group">
+              <label for="filter-category">
+                  <span>{{ $t('appPages.recipes.filterCategory') }}</span>
+                  <input v-model="filterCategory" name="filter-category" type="text" autocomplete="off" />
+              </label>
+          </div>
+        </form>
+      </div>
       <div class="cards-wrapper">
         <CardRecipeBlock
           v-for="recipe in recipesListPaginated"
@@ -66,14 +83,6 @@
 </template>
 
 <script>
-
-
-/**
- * ADD FILTER TO RECIPES PAGE. SEARCH BY NAME AND CATEGORY
- */
-
-
-
 import CardRecipeBlock from '@/components/blocks/CardRecipeBlock.vue'
 import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
 import UserNotification from '@/components/UserNotification.vue'
@@ -112,6 +121,8 @@ export default {
           PagTotal: 0,
           PagCurrentPage: 1,
           PagNumItems: 6,
+          filterName: "",
+          filterCategory: "",
       }
   },
   computed: {
@@ -121,11 +132,16 @@ export default {
       }),
 
       recipesListPaginated() {
-        if (this.recipeList.length <= this.PagNumItems) {
-          return this.recipeList
+        this.filterName 
+        this.filterCategory
+
+        let recipesToPaginate = this.filterRecipes(this.recipeList)
+
+        if (recipesToPaginate.length <= this.PagNumItems) {
+          return recipesToPaginate
         }
 
-        return this.recipeList.slice((this.PagCurrentPage-1)*this.PagNumItems, (this.PagCurrentPage*this.PagNumItems))
+        return recipesToPaginate.slice((this.PagCurrentPage-1)*this.PagNumItems, (this.PagCurrentPage*this.PagNumItems))
       }
   },
   components: {
@@ -181,6 +197,29 @@ export default {
 
     updatePagination(pag) {
       this.PagCurrentPage = pag
+    },
+
+    filterRecipes(recipes) {
+
+      let filteredByName = recipes.filter((recipe) => this.filterName.trim().length > 0 && recipe.name.includes(this.filterName.trim()))
+
+      let filteredByCat = [] 
+      recipes.forEach((recipe) => {
+        recipe.categories.forEach((cat) => {
+          if ( this.filterCategory.trim().length > 0 && cat.name.includes(this.filterCategory.trim()) ) {
+            filteredByCat.push(recipe)
+          }
+        })
+      })
+
+      // delete duplicates
+      const uniqueSet = new Set([...filteredByName, ...filteredByCat])
+      const recipesUnique = [...uniqueSet]
+
+
+      if (recipesUnique.length > 0) return recipesUnique
+      return recipes
+
     }
   },
 
@@ -221,5 +260,29 @@ export default {
 
 .recipes #recipe-loading p {
     @apply font-bold text-xl px-2 py-1 bg-blue-900 text-gray-200 rounded-lg
+}
+
+
+.recipes .filter form {
+    @apply flex flex-grow items-center justify-center flex-wrap
+}
+
+.recipes .filter form .form-group {
+    @apply m-2
+}
+
+.recipes .filter form .form-group label {
+    @apply flex flex-col mx-auto bg-blue-300 rounded-t-md rounded-b-md border-2 border-blue-300
+}
+.recipes .filter form .form-group label span {
+    @apply py-1 px-2 pb-0 text-left text-xs text-gray-600
+}
+
+.recipes .filter form .form-group label input {
+    @apply py-1 px-2 bg-blue-300 rounded-b-md
+}
+
+.recipes .filter form input:focus {
+    @apply outline-none shadow-md
 }
 </style>
