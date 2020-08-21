@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-25 06:28:12
- * Last modified  : 2020-08-17 06:40:05
+ * Last modified  : 2020-08-21 06:34:10
  */
 </script>
 <template>
@@ -31,7 +31,7 @@
       </div>
       
       <div class="action">
-        <router-link :to="$i18nRoute({ name: 'Dashboard' })" class="button t-all-ease">
+        <router-link :to="$i18nRoute({ name: 'RecipeDetail', params: {id: id} })" class="button t-all-ease">
           {{ $t('appPages.recipes.openRecipe') }}
         </router-link>
 

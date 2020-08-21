@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:41:03 
- * Last modified  : 2020-06-24 09:17:16
+ * Last modified  : 2020-08-21 06:28:14
  */
 
 import Vue from 'vue'
@@ -56,6 +56,12 @@ const appRoutes = [
     name: 'Recipes',
     meta: {requiresAuth: true},
     component: loadAppComponent('Recipes')
+  },
+  {
+    path: 'recipe/:id',
+    name: 'RecipeDetail',
+    meta: {requiresAuth: true},
+    component: loadAppComponent('RecipeDetail')
   },
   {
     path: 'profile',
