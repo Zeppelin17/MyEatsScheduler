@@ -200,7 +200,10 @@ export default {
     },
 
     filterRecipes(recipes) {
-
+      if (this.filterName.trim() === "" && this.filterCategory.trim() === "") {
+        return recipes
+      }
+      
       let filteredByName = recipes.filter((recipe) => this.filterName.trim().length > 0 && recipe.name.includes(this.filterName.trim()))
 
       let filteredByCat = [] 
@@ -216,10 +219,8 @@ export default {
       const uniqueSet = new Set([...filteredByName, ...filteredByCat])
       const recipesUnique = [...uniqueSet]
 
-
-      if (recipesUnique.length > 0) return recipesUnique
-      return recipes
-
+      
+      return recipesUnique
     }
   },
 
