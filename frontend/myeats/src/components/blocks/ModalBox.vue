@@ -75,6 +75,10 @@ export default {
     max-height: 95vh;
 }
 
+.modal .modal-header {
+    @apply text-center
+}
+
 .modal .modal-header,
 .modal .modal-body,
 .modal .modal-footer {
