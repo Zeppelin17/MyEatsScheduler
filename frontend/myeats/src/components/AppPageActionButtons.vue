@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-28 08:28:57 
- * Last modified  : 2020-07-23 06:24:31
+ * Last modified  : 2020-08-23 08:07:21
  */
  </script>
 
@@ -57,11 +57,11 @@ export default {
 }
 
 .page-action-buttons {
-    @apply p-4 flex items-center justify-center
+    @apply p-4 flex flex-wrap items-center justify-center
 }
 
 .page-action-buttons .action-btn {
-    @apply w-auto my-1 mx-1 p-2 rounded-md text-sm outline-none text-blue-200 bg-blue-900 border-blue-900 border-2 outline-none whitespace-no-wrap
+    @apply w-full my-1 mx-1 p-2 rounded-md text-sm outline-none text-blue-200 bg-blue-900 border-blue-900 border-2 outline-none whitespace-no-wrap
 
 }
 
