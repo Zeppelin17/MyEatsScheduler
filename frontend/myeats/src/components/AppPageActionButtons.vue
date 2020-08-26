@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-28 08:28:57 
- * Last modified  : 2020-08-23 08:07:21
+ * Last modified  : 2020-08-26 15:38:42
  */
  </script>
 
@@ -16,6 +16,7 @@
             v-for="(action, index) in actions" :key="index"
             :class="'action-btn t-all-ease ' + action.type"
             @click="executeButtonAction(action.onClick)"
+            v-if="action.visible !== false"
         >
             {{ action.text }}
         </button>
@@ -33,6 +34,7 @@ export default {
          *      type: "create" or "edit" or "delete"
          *      entity: "Recipe/Week/etc"
          *      onClick: "method_name"  // parent method to call on click
+         *      visible: true/false 
          * }
          */
         actions: {
