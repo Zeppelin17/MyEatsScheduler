@@ -96,6 +96,10 @@
   },
   "appPages": {
     "footerCopyRight": "Made by <a href='https://github.com/Zeppelin17' title='Zeppelin17 GitHub Page'>@Zeppelin17</a>",
+    "generic": {
+      "yes": "yes",
+      "no": "no"
+    },
     "dashboard": {
       "cardMyEatsTitle": "MyEats",
       "cardMyEatsText": "Organize all yout meals. Create weeks, divide each day in splits and assign your recipes to each one.",
@@ -139,10 +143,26 @@
       "createSubmitButton": "Create Recipe",
       "RecipeCreateError": "Error trying to create the recipe. Try it later.",
       "RecipeCreatedSuccess": "Recipe created successfully",
+      "RecipeDeleteSuccess": "Recipe has been deleted",
+      "RecipeBatchDeleteSuccess": "All recipes have been deleted",
       "loadingMsg": "Loading recipes, wait...",
       "createButton": "New recipe",
+      "batchDeleteButton": "Delete selected",
       "filterName": "Filter by name",
-      "filterCategory": "Filter by category"
+      "filterCategory": "Filter by category",
+      "deleteConfirmation": "Recipe is going to be deleted. Are you sure you want to continue?",
+      "batchDeleteConfirmation": "All selected recipes are going to be deleted. Are you sure you want to continue?",
+      "selectedRecipes": "You have {num} recipes selected"
+    },
+    "recipeDetail": {
+      "loadingMsg": "Loading recipe data...",
+      "createButton": "New recipe",
+      "editButton": "Edit",
+      "deleteButton": "Delete",
+      "categoriesTitle": "Categories",
+      "descriptionTitle": "Description",
+      "ingredientsTitle": "Ingredients",
+      "stepsTitle": "Steps"
     },
     "profile": {
 

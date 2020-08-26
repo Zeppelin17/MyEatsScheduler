@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-07-27 06:32:15
- * Last modified  : 2020-08-19 06:37:15
+ * Last modified  : 2020-08-23 08:25:24
  */
 </script>
 
@@ -137,7 +137,7 @@
                     }}<span v-if="ingredient.qty !== 0"
                       >: {{ ingredient.qty }}</span
                     >
-                    <span v-if="ingredient.uom !== '0'">{{
+                    <span v-if="ingredient.uom !== '0'"> {{
                       ingredient.uom
                     }}</span>
                   </div>

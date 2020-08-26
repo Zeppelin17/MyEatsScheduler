@@ -5,11 +5,11 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:33:21 
- * Last modified  : 2020-08-19 06:48:04
+ * Last modified  : 2020-08-23 18:17:47
  */
 
-import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, GET_RECIPES } from '../actionTypes'
-import { RECIPE_SET_LIST, SET_STATUS_LOADING, RECIPE_STATUS_SET_ERROR, RECIPE_STATUS_SET_SUCCESS, SET_CATEGORIES } from '../mutationTypes'
+import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, GET_RECIPES, GET_RECIPE, DELETE_RECIPE } from '../actionTypes'
+import { RECIPE_SET_LIST, SET_STATUS_LOADING, RECIPE_STATUS_SET_ERROR, RECIPE_STATUS_SET_SUCCESS, SET_CATEGORIES, RECIPE_DELETE_FROM_LIST } from '../mutationTypes'
 import recipeService from '../../services/recipeService'
 
 
@@ -120,6 +120,7 @@ export const actions = {
         return recipeService.getCategories()
       })
       .then((resp) => {
+        // get categories
         const categories = resp.data
         recipes.map((recipe) => {
           recipe.categories.forEach((recipeCat, index) => {
@@ -138,7 +139,40 @@ export const actions = {
         console.log("ERROR", err)
       })
     })
+  },
+
+  [GET_RECIPE]: ({ commit }, id) => {
+    let recipe = {}
+
+    return new Promise((resolve) => {
+      commit(SET_STATUS_LOADING)
+      recipeService.getRecipe(id)
+      .then((resp) => {
+        recipe = resp
+        return recipeService.getIngredients([recipe])
+      })
+      .then((ingredients) => {
+        recipe.ingredients = ingredients
+        commit(RECIPE_STATUS_SET_SUCCESS)
+        resolve(recipe)
+      })
+      .catch(err => {
+        commit(RECIPE_STATUS_SET_ERROR)
+      })
+    })
+
+  },
+
+  [DELETE_RECIPE]: ({commit}, id) => {
+    return new Promise((resolve) => {
+      recipeService.deleteRecipe(id)
+      .then((resp) => {
+        commit(RECIPE_DELETE_FROM_LIST, id)
+        resolve(resp)
+      })
+    })
   }
+  
 }
 
 
@@ -161,6 +195,10 @@ export const mutations = {
 
   [RECIPE_SET_LIST]: (state, recipes) => {
     state.recipes = recipes
+  },
+
+  [RECIPE_DELETE_FROM_LIST]: (state, recipeId) => {
+    state.recipes = state.recipes.filter((recipe) => recipe.id != recipeId)
   }
 }
 

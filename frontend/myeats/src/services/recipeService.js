@@ -5,11 +5,11 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:20:45 
- * Last modified  : 2020-08-16 08:32:35
+ * Last modified  : 2020-08-23 18:11:49
  */
 
 import Vue from 'vue'
-import { API_ENDPOINT, API_CREATE_RECIPE, API_GET_CATEGORIES, API_CREATE_CATEGORY, API_CREATE_INGREDIENT, API_GET_RECIPES, API_GET_INGREDIENTS } from '@/appConfig'
+import { API_ENDPOINT, API_CREATE_RECIPE, API_GET_CATEGORIES, API_CREATE_CATEGORY, API_CREATE_INGREDIENT, API_GET_RECIPES, API_GET_INGREDIENTS, API_GET_RECIPE, API_GET_CATEGORY, API_DELETE_RECIPE } from '@/appConfig'
 
 
 export default {
@@ -97,7 +97,7 @@ export default {
     return Vue.axios({method: 'get', url: url})
   },
 
-  // get ingredients
+  // get all ingredients
   getIngredients(recipes) {
     let url = ""
     let ingredients = []
@@ -116,6 +116,53 @@ export default {
     .then(() => {
       return ingredients
     })
+  },
+
+  // get recipe
+  getRecipe(id) {
+    const url = API_ENDPOINT + API_GET_RECIPE + id + '/'
+    let recipe = {}
+    let categories = []
+
+    return new Promise((resolve, reject) => {
+      Vue.axios({method: 'get', url: url})
+      .then((resp) => {
+        recipe = resp.data
+        return Promise.all(
+          recipe.categories.map((catId) => {
+            return this.getCategory(catId)
+          })
+        )
+        
+      })
+      .then((resps) => {
+        resps.forEach((resp) => {
+          categories.push(resp.data)
+        })
+
+        recipe.categories = categories
+
+        resolve(recipe)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+      
+    })
+  },
+
+  // get category
+  getCategory(id) {
+    const url = API_ENDPOINT + API_GET_CATEGORY + id + '/'
+
+    return Vue.axios({method: 'get', url: url})
+  },
+
+  // delete recipe
+  deleteRecipe(id) {
+    const url = API_ENDPOINT + API_DELETE_RECIPE + id + '/'
+
+    return Vue.axios({method: 'delete', url: url})
   }
 
 }

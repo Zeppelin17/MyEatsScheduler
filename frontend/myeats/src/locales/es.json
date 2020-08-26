@@ -96,6 +96,10 @@
   },
   "appPages": {
     "footerCopyRight": "Hecho por <a href='https://github.com/Zeppelin17' title='GitHub de Zeppelin17'>@Zeppelin17</a>",
+    "generic": {
+      "yes": "Sí",
+      "no": "no"
+    },
     "dashboard": {
       "cardMyEatsTitle": "MyEats",
       "cardMyEatsText": "Organiza tus comidas. Crea semanas, divide cada día en varias franjas y asigna tu recetas a cada una.",
@@ -137,12 +141,28 @@
       "newIngredient": "Añadir",
       "ingredientsListTitle": "Ingredientes",
       "createSubmitButton": "Crear Receta",
+      "batchDeleteButton": "Eliminar seleccionadas",
       "RecipeCreateError": "Error intentando crear la receta. Prueba más tarde.",
       "RecipeCreatedSuccess": "Receta creada correctamente",
+      "RecipeDeleteSuccess": "La receta ha sido eliminada",
+      "RecipeBatchDeleteSuccess": "Las recetas han sido eliminadas",
       "loadingMsg": "Cargando recetas, espera...",
       "createButton": "Nueva receta",
       "filterName": "Filtrar por nombre",
-      "filterCategory": "Filtrar por categoría"
+      "filterCategory": "Filtrar por categoría",
+      "deleteConfirmation": "La receta se va a eliminar. ¿Seguro que quieres continuar?",
+      "batchDeleteConfirmation": "Todas las recetas seleccionadas se van a eliminar. ¿Seguro que quieres continuar?",
+      "selectedRecipes": "Tienes {num} recetas seleccionadas"
+    },
+    "recipeDetail": {
+      "loadingMsg": "Cargando información de la receta...",
+      "createButton": "Nueva receta",
+      "editButton": "Editar",
+      "deleteButton": "Eliminar",
+      "categoriesTitle": "Categorías",
+      "descriptionTitle": "Descripción",
+      "ingredientsTitle": "Ingredientes",
+      "stepsTitle": "Pasos"
     },
     "profile": {
 

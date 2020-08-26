@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-08-19 06:50:32
+ * Last modified  : 2020-08-26 15:46:51
  */
 </script>
 
@@ -21,7 +21,7 @@
 
 
       <h1>{{ $t('appPages.recipes.mainTitle') }}</h1>
-
+      <h4 v-if="selectedRecipes.length > 0">{{ $t('appPages.recipes.selectedRecipes', {num: selectedRecipes.length}) }}</h4>
       <div class="filter" v-if="this.recipeList.length > 0">
         <form>
           <div class="form-group">
@@ -47,6 +47,8 @@
           :name="recipe.name"
           :categories="recipe.categories"
           :ingredients="recipe.ingredients.length"
+          v-on:recipe-deleted="recipeDeletedNotification()"
+          v-on:recipe-selected="updateSelectedRecipes($event)"
         />
       </div>
 
@@ -75,10 +77,27 @@
 
       </ModalBox>
 
+
+      <ModalBox 
+        v-show="isConfirmDeleteModalVisible"
+        v-on:close='closeConfirmDeleteModal'
+      >
+        <template v-slot:header>
+          <h2>{{ $t('appPages.recipes.batchDeleteConfirmation') }}</h2>
+        </template>
+
+        <template v-slot:body>
+          <div class="confirm-delete-buttons">
+            <button class="confirm" @click="deleteRecipesConfirmed">{{ $t('appPages.generic.yes') }}</button>
+            <button class="cancel" @click="closeConfirmDeleteModal">{{ $t('appPages.generic.no') }}</button>
+          </div>
+        </template>
+      </ModalBox>
+
       <div v-if="recipeStatus === 'loading'" id="recipe-loading">
-            <img src="../../assets/img/loading.svg" alt="Loading">
-            <p>{{ $t('appPages.recipes.loadingMsg') }}</p>
-        </div>
+          <img src="../../assets/img/loading.svg" alt="Loading">
+          <p>{{ $t('appPages.recipes.loadingMsg') }}</p>
+      </div>
     </div>
 </template>
 
@@ -90,21 +109,30 @@ import ModalBox from '@/components/blocks/ModalBox.vue'
 import Pagination from '@/components/blocks/Pagination.vue'
 import CreateRecipeForm from '@/components/forms/CreateRecipeForm.vue'
 import { mapGetters } from 'vuex'
-import { GET_RECIPES } from '@/store/actionTypes'
-import { GET_CATEGORIES } from '../../store/actionTypes'
+import { GET_RECIPES, GET_CATEGORIES, DELETE_RECIPE } from '@/store/actionTypes'
 
 export default {
   name: 'recipes', 
   data() {
       return {
+        
+          selectedRecipes: [],
           isCreateRecipeModalVisible: false,
+          isConfirmDeleteModalVisible: false,
           pageActionButtons: [
             {
               type: "create",
               entity: "Recipe",
               text: this.$t('appPages.recipes.createButton'),
-              onClick: "createNewRecipe" 
+              onClick: "createNewRecipe"
             },
+            {
+              type: "delete",
+              entity: "Recipe",
+              text: this.$t('appPages.recipes.batchDeleteButton'),
+              onClick: "showBatchDeleteConfirmationModal",
+              visible: false
+            }
             /* {
               type: "edit",
               entity: "Recipe",
@@ -122,7 +150,7 @@ export default {
           PagCurrentPage: 1,
           PagNumItems: 6,
           filterName: "",
-          filterCategory: "",
+          filterCategory: ""
       }
   },
   computed: {
@@ -175,10 +203,26 @@ export default {
       this.isCreateRecipeModalVisible = true
     },
 
+    closeConfirmDeleteModal() {
+      this.isConfirmDeleteModalVisible = false
+    },
+
+    showBatchDeleteConfirmationModal() {
+      this.isConfirmDeleteModalVisible = true
+    },
+
+    deleteRecipesConfirmed() {
+      this.closeConfirmDeleteModal()
+      this.selectedRecipes.forEach((id) => {
+        this.$store.dispatch(DELETE_RECIPE, id)
+      })
+      this.selectedRecipes = []
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeBatchDeleteSuccess"), 2000, true)
+    },
     
     recipeCreatedNotification() {
       this.closeCreateRecipeModal()
-      this.$store.dispatch(GET_RECIPES)
+      this.getRecipes()
       this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 10000, true)
       //this.$refs.notify.info(event, "info notification", 5000, true)
       //this.$refs.notify.warning(event, "warning notification", 10000, true)
@@ -186,6 +230,9 @@ export default {
       //this.$refs.notify.success(event, "success notification", 10000, true)
     },
 
+    recipeDeletedNotification() {
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeDeleteSuccess"), 2000, true)
+    },
 
     getRecipes() {
       this.$store.dispatch(GET_RECIPES)
@@ -196,6 +243,7 @@ export default {
     },
 
     updatePagination(pag) {
+      this.selectedRecipes = []
       this.PagCurrentPage = pag
     },
 
@@ -221,6 +269,14 @@ export default {
 
       
       return recipesUnique
+    },
+
+    updateSelectedRecipes(recipeInfo) {
+      if (recipeInfo.selected) {
+        this.selectedRecipes.push(recipeInfo.id)
+      }else {
+        this.selectedRecipes = this.selectedRecipes.filter((id) => id != recipeInfo.id)
+      }
     }
   },
 
@@ -233,6 +289,18 @@ export default {
     recipeList() {
       this.PagTotal = this.recipeList.length
       this.PagTotalPages = Math.ceil(this.PagTotal / this.PagNumItems)
+    },
+
+    /**
+     * To control if the "delete selected" button should be displayed or not
+     * looking at the length of selected recipes
+     */
+    selectedRecipes() {
+      if (this.selectedRecipes.length > 0) {
+        this.pageActionButtons[1].visible = true
+      }else{
+        this.pageActionButtons[1].visible = false
+      }
     }
   }
 }
@@ -285,5 +353,29 @@ export default {
 
 .recipes .filter form input:focus {
     @apply outline-none shadow-md
+}
+
+.recipes .confirm-delete-buttons {
+  @apply flex items-center justify-center
+}
+
+.recipes .confirm-delete-buttons button{
+  @apply mx-1 py-2 px-6 rounded-md text-sm text-blue-200 outline-none border-2 outline-none whitespace-no-wrap
+}
+
+.recipes .confirm-delete-buttons button.confirm {
+  @apply bg-red-500 border-red-500
+}
+
+.recipes .confirm-delete-buttons button.confirm:hover {
+  @apply bg-red-200 text-red-600
+}
+
+.recipes .confirm-delete-buttons button.cancel {
+  @apply bg-blue-500 border-blue-500
+}
+
+.recipes .confirm-delete-buttons button.cancel:hover {
+  @apply bg-blue-200 text-blue-600
 }
 </style>
