@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-07-27 06:32:15
- * Last modified  : 2020-08-23 08:25:24
+ * Last modified  : 2020-09-01 21:30:33
  */
 </script>
 
@@ -18,7 +18,7 @@
         <span>{{ validationMsg }}</span>
       </div>
 
-      <form @submit.prevent="createRecipe">
+      <form>
         <div class="form-col">
           <div class="form-group">
             <label for="recipe-name-input">
@@ -119,13 +119,16 @@
                 </label>
               </div>
 
-              <button
-                @click="addIngredient"
-                type="button"
-                class="new-ingredient"
-              >
-                {{ $t("appPages.recipes.newIngredient") }}
-              </button>
+              <div>
+                <button
+                  @click="addIngredient"
+                  type="button"
+                  class="new-ingredient"
+                >
+                  {{ $t("appPages.recipes.newIngredient") }}
+                </button>
+              </div>
+              
 
               <ul v-show="recipeIngredients.length > 0">
                 <li
@@ -160,8 +163,11 @@
           <button disabled v-if="recipeStatus === 'loading'" class="loading-button">
             <img src="../../assets/img/loading.svg" alt="Loading">
           </button>
-          <button v-else type="submit" >
+          <button v-else-if="editableData.name.length === 0" @click.prevent="createRecipe">
             {{ $t("appPages.recipes.createSubmitButton") }}
+          </button>
+          <button v-else @click.prevent="updateRecipe">
+            {{ $t("appPages.recipes.editSubmitButton") }}
           </button>
         </div>
       </form>
@@ -171,10 +177,23 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES } from '@/store/actionTypes'
+import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, PUT_RECIPE } from '@/store/actionTypes'
 
 export default {
   name: "CreateRecipeForm",
+  props: {
+    editableData: {
+      type: Object,
+      default: () => ({
+        id: 0,
+        name: "",
+        description: "",
+        categories: [],
+        ingredients: [],
+        steps: ""
+      }),
+    }, 
+  },
   data() {
     return {
       validationMsg: "",
@@ -244,6 +263,10 @@ export default {
      * Create new recipe with API Service
      */
     createRecipe() {
+      if (this.recipeName.trim().length === 0) {
+        this.validationMsg = this.$t("appPages.recipes.errorNameMandatory")
+        return false
+      }
       this.resetValidationMsg()
       
       const newRecipe = {
@@ -255,7 +278,7 @@ export default {
 
       // Creating categories and getting their ID's
       this.$store.dispatch(UPDATE_CATEGORIES, this.recipeCategories)
-      .then((allCategories) => {
+      .then(() => {
         const categoriesIds = []
         this.categoriesList.forEach((cat) => {
           this.recipeCategories.forEach((recipeCat) => {
@@ -282,6 +305,53 @@ export default {
       
     },
 
+
+    /**
+     * Update recipe with API Service
+     */
+    updateRecipe() {
+      let newIngredients = []
+      this.recipeIngredients.forEach((ingredient) => {
+        newIngredients.push(ingredient)
+      })
+
+      if (this.recipeName.trim().length === 0) {
+        this.validationMsg = this.$t("appPages.recipes.errorNameMandatory")
+        return false
+      }
+      this.resetValidationMsg()
+
+      return this.$store.dispatch(UPDATE_CATEGORIES, this.recipeCategories)
+      .then(() => {
+        let categoryIds = []
+        this.categoriesList.forEach((cat) => {
+          this.recipeCategories.forEach((recipeCat) => {
+            if (cat.name === recipeCat) {
+              categoryIds.push(cat.id)
+            }
+          })
+        })
+        const updatedRecipe = {
+          id: this.editableData.id,
+          name: this.recipeName,
+          description: this.recipeDescription,
+          steps: this.recipeSteps,
+          ingredients: newIngredients,
+          categories: categoryIds,
+          myeats_user: this.userId
+        }
+        
+        return this.$store.dispatch(PUT_RECIPE, updatedRecipe)
+      })
+      .then(() => {
+        this.$emit("recipe-updated")
+ 
+      })
+      
+    },
+
+    
+
     cleanForm() {
       this.resetValidationMsg()
       this.recipeName = ""
@@ -294,8 +364,34 @@ export default {
         uom: "",
       }
       this.recipeSteps = ""
+    },
+
+    updateRecipeWithEditableData() {
+      if (this.editableData.name.length > 0) {
+        this.recipeName = this.editableData.name
+
+        this.editableData.categories.forEach((cat) => {
+          this.recipeCategories.push(cat.name)
+        })
+
+        this.recipeDescription = this.editableData.description
+        this.recipeSteps = this.editableData.steps
+
+        this.editableData.ingredients.forEach((ingredient) => {
+          this.recipeIngredients.push({
+            name: ingredient.name,
+            qty: ingredient.quantity,
+            uom: ingredient.unit_of_measure
+          })
+        })
+      }
+      
     }
   },
+
+  mounted() {
+    this.updateRecipeWithEditableData()
+  }
 };
 </script>
 
@@ -334,7 +430,7 @@ export default {
 }
 
 .create-recipe-form .form-wrapper form .form-group .ingredients-list button.new-ingredient {
-  @apply mt-1 mb-3 text-xs text-blue-100 bg-blue-700 border-2 border-blue-700 px-1 rounded-sm outline-none
+  @apply mt-1 mb-3 mx-auto block text-xs text-blue-100 bg-blue-700 border-2 border-blue-700 px-1 rounded-sm outline-none
 }
 
 .create-recipe-form .form-wrapper form .form-group .ingredients-list button.new-ingredient:hover,
@@ -375,7 +471,7 @@ export default {
 }
 
 .create-recipe-form .form-wrapper form .submit{
-    @apply mt-6
+    @apply mt-6 w-full
 }
 
 .create-recipe-form .form-wrapper form .submit button {
@@ -385,6 +481,10 @@ export default {
 .create-recipe-form .form-wrapper form .submit button:hover,
 .create-recipe-form .form-wrapper form .submit button:focus {
     @apply bg-blue-100 text-blue-900 shadow-md
+}
+
+.create-recipe-form .form-wrapper form .submit button {
+  @apply m-auto block
 }
 
 .create-recipe-form .form-wrapper form .submit .loading-button img {
@@ -413,7 +513,7 @@ export default {
 }
 
 .create-recipe-form .form-wrapper #validation-msg {
-    @apply py-3 px-1 mb-4  relative bg-red-500 bg-opacity-50 rounded-md text-gray-100 text-sm max-w-sm mx-auto
+    @apply py-3 px-1 mb-4  relative bg-red-500 bg-opacity-50 rounded-md text-gray-100 text-sm text-center max-w-sm mx-auto
 }
 
 .create-recipe-form .form-wrapper #validation-msg .close {

@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-04 06:50:17 
- * Last modified  : 2020-08-23 18:11:29
+ * Last modified  : 2020-08-28 17:49:52
  */
 
 /**
@@ -26,3 +26,5 @@ export const API_GET_CATEGORY = '/category/'
 export const API_CREATE_CATEGORY = '/category/create/'
 export const API_CREATE_INGREDIENT = '/ingredient/create/'
 export const API_GET_INGREDIENTS = '/ingredient/list/'
+export const API_DELETE_INGREDIENT = '/ingredient/'
+export const API_PUT_RECIPE = '/recipe/'

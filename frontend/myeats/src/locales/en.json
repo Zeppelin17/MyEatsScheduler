@@ -131,6 +131,7 @@
       "openRecipe": "Open",
       "deleteRecipe": "Delete",
       "createRecipeFormTitle": "Create new Recipe",
+      "editRecipeFormTitle": "Edit Recipe data",
       "inputRecipeName": "Recipe's name",
       "inputRecipeCategories": "Categories",
       "inputRecipeDescription": "Description",
@@ -141,10 +142,12 @@
       "newIngredient": "Add",
       "ingredientsListTitle": "Ingredients",
       "createSubmitButton": "Create Recipe",
+      "editSubmitButton": "Save Recipe",
       "RecipeCreateError": "Error trying to create the recipe. Try it later.",
       "RecipeCreatedSuccess": "Recipe created successfully",
       "RecipeDeleteSuccess": "Recipe has been deleted",
       "RecipeBatchDeleteSuccess": "All recipes have been deleted",
+      "RecipeEditedSuccess": "Recipe data saved",
       "loadingMsg": "Loading recipes, wait...",
       "createButton": "New recipe",
       "batchDeleteButton": "Delete selected",
@@ -152,7 +155,8 @@
       "filterCategory": "Filter by category",
       "deleteConfirmation": "Recipe is going to be deleted. Are you sure you want to continue?",
       "batchDeleteConfirmation": "All selected recipes are going to be deleted. Are you sure you want to continue?",
-      "selectedRecipes": "You have {num} recipes selected"
+      "selectedRecipes": "You have {num} recipes selected",
+      "errorNameMandatory": "You need to specify at least a name for the recipe"
     },
     "recipeDetail": {
       "loadingMsg": "Loading recipe data...",

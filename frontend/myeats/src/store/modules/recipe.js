@@ -5,10 +5,10 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:33:21 
- * Last modified  : 2020-08-23 18:17:47
+ * Last modified  : 2020-09-01 19:53:28
  */
 
-import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, GET_RECIPES, GET_RECIPE, DELETE_RECIPE } from '../actionTypes'
+import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, GET_RECIPES, GET_RECIPE, DELETE_RECIPE, PUT_RECIPE } from '../actionTypes'
 import { RECIPE_SET_LIST, SET_STATUS_LOADING, RECIPE_STATUS_SET_ERROR, RECIPE_STATUS_SET_SUCCESS, SET_CATEGORIES, RECIPE_DELETE_FROM_LIST } from '../mutationTypes'
 import recipeService from '../../services/recipeService'
 
@@ -169,6 +169,38 @@ export const actions = {
       .then((resp) => {
         commit(RECIPE_DELETE_FROM_LIST, id)
         resolve(resp)
+      })
+    })
+  },
+
+  [PUT_RECIPE]: ({commit}, recipe) => {
+    commit(SET_STATUS_LOADING)
+    return new Promise((resolve) => {
+      // recreate ingredients
+      recipeService.deleteIngredients(recipe)
+      .then(() => {
+        const ingredientsToCreate = []
+        recipe.ingredients.forEach((data) => {
+          let ingredient = {
+            name: data.name,
+            quantity: data.qty,
+            unit_of_measure: data.uom,
+            recipe: recipe.id
+          }
+          
+          ingredientsToCreate.push(ingredient)
+        })
+        
+        // create ingredients
+        return recipeService.createIngredients(ingredientsToCreate)
+      })
+      .then(() => {
+        // update recipe
+        return recipeService.putRecipe(recipe)
+      })
+      .then(() => {
+        commit(RECIPE_STATUS_SET_SUCCESS)
+        resolve(recipe)
       })
     })
   }

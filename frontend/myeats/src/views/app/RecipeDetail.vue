@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-21 06:21:29 
- * Last modified  : 2020-08-24 06:35:01
+ * Last modified  : 2020-09-01 21:29:52
  */
 </script>
 
@@ -71,6 +71,7 @@
         <p>{{ $t('appPages.recipeDetail.loadingMsg') }}</p>
     </div>
 
+    <!-- Create new recipe modal -->
     <ModalBox 
       v-show="isCreateRecipeModalVisible"
       v-on:close='closeCreateRecipeModal'
@@ -85,6 +86,26 @@
     </ModalBox>
 
 
+
+    <!-- Edit recipe modal -->
+    <ModalBox 
+      v-show="isEditRecipeModalVisible"
+      v-on:close='closeEditRecipeModal'
+    >
+      <template v-slot:header>
+        <h2>{{ $t('appPages.recipes.editRecipeFormTitle') }}</h2>
+      </template>
+
+      <template v-slot:body>
+        <CreateRecipeForm v-if="recipeData.name && recipeData.name.length > 0"
+          v-on:recipe-updated='recipeUpdatedNotification'
+          :editableData='recipeData' />
+      </template>
+    </ModalBox>
+
+
+
+    <!-- Confirm deletion modal -->
     <ModalBox 
       v-show="isConfirmDeleteModalVisible"
       v-on:close='closeConfirmDeleteModal'
@@ -125,6 +146,7 @@ export default {
   data() {
     return {
       isCreateRecipeModalVisible: false,
+      isEditRecipeModalVisible: false,
       isConfirmDeleteModalVisible: false,
       recipeData: {},
 
@@ -169,6 +191,10 @@ export default {
       this.isCreateRecipeModalVisible = false
     },
 
+    closeEditRecipeModal() {
+      this.isEditRecipeModalVisible = false
+    },
+
     closeConfirmDeleteModal() {
       this.isConfirmDeleteModalVisible = false
     },
@@ -177,13 +203,24 @@ export default {
       this.isCreateRecipeModalVisible = true
     },
 
+    showEditRecipeModal() {
+      this.isEditRecipeModalVisible = true
+    },
+
     showConfirmDeleteModal() {
       this.isConfirmDeleteModalVisible = true
     },
 
     recipeCreatedNotification() {
       this.closeCreateRecipeModal()
-      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 10000, true)
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 2000, true)
+    },
+
+    recipeUpdatedNotification() {
+      this.closeEditRecipeModal()
+      this.getRecipe(true)
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeEditedSuccess"), 2000, true)
+      
     },
 
     createNewRecipe() {
@@ -191,7 +228,7 @@ export default {
     },
 
     editRecipe() {
-
+      this.showEditRecipeModal()
     },
 
     deleteRecipe() {
@@ -211,13 +248,13 @@ export default {
       this.recipeData = recipe
     },
 
-    getRecipe() {
+    getRecipe(force=false) {
       let recipeFound = false
       // get recipe from store
       let recipe = this.recipeList.filter((r) => r.id === this.$route.params.id)[0]
 
       // if the recipe is not in the store, then look for it through API
-      if (recipe === undefined) {
+      if (recipe === undefined || force === true) {
         this.$store.dispatch(GET_RECIPE, this.$route.params.id)
         .then((resp) => {
           this.setRecipe(resp)

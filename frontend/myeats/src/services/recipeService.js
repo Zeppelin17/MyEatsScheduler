@@ -5,11 +5,11 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:20:45 
- * Last modified  : 2020-08-23 18:11:49
+ * Last modified  : 2020-09-01 19:45:00
  */
 
 import Vue from 'vue'
-import { API_ENDPOINT, API_CREATE_RECIPE, API_GET_CATEGORIES, API_CREATE_CATEGORY, API_CREATE_INGREDIENT, API_GET_RECIPES, API_GET_INGREDIENTS, API_GET_RECIPE, API_GET_CATEGORY, API_DELETE_RECIPE } from '@/appConfig'
+import { API_ENDPOINT, API_CREATE_RECIPE, API_GET_CATEGORIES, API_CREATE_CATEGORY, API_CREATE_INGREDIENT, API_GET_RECIPES, API_GET_INGREDIENTS, API_GET_RECIPE, API_GET_CATEGORY, API_DELETE_RECIPE, API_DELETE_INGREDIENT, API_PUT_RECIPE } from '@/appConfig'
 
 
 export default {
@@ -163,6 +163,31 @@ export default {
     const url = API_ENDPOINT + API_DELETE_RECIPE + id + '/'
 
     return Vue.axios({method: 'delete', url: url})
+  },
+
+  // delete ingredient
+  deleteIngredients(recipe) {
+    return new Promise ((resolve) => {
+      this.getIngredients([recipe])
+      .then((ingredients) => {
+        return Promise.all(
+          ingredients.map((ingredient) => {
+            let url = API_ENDPOINT + API_DELETE_INGREDIENT + ingredient.id + '/'
+
+            return Vue.axios({method: 'delete', url: url})
+          })
+        )
+      })
+      .then((resps) => {
+        resolve(resps)
+      })
+    })
+  },
+
+  putRecipe(recipe) {
+    const url = API_ENDPOINT + API_PUT_RECIPE + recipe.id + '/'
+
+    return Vue.axios({method: 'put', url: url, data: recipe})
   }
 
 }
