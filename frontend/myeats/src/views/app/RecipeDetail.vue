@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-21 06:21:29 
- * Last modified  : 2020-09-01 21:29:52
+ * Last modified  : 2020-09-01 21:52:58
  */
 </script>
 
@@ -151,25 +151,31 @@ export default {
       recipeData: {},
 
       pageActionButtons: [
-            {
-              type: "create",
-              entity: "Recipe",
-              text: this.$t('appPages.recipeDetail.createButton'),
-              onClick: "createNewRecipe"
-            },
-            {
-              type: "edit",
-              entity: "Recipe",
-              text: this.$t('appPages.recipeDetail.editButton'),
-              onClick: "editRecipe"
-            },
-            {
-              type: "delete",
-              entity: "Recipe",
-              text: this.$t('appPages.recipeDetail.deleteButton'),
-              onClick: "deleteRecipe"
-            }
-          ],
+        {
+          type: "return",
+          entity: "Recipe",
+          text: this.$t('appPages.recipeDetail.backToRecipesButton'),
+          onClick: "backToRecipesList"
+        },
+        {
+          type: "create",
+          entity: "Recipe",
+          text: this.$t('appPages.recipeDetail.createButton'),
+          onClick: "createNewRecipe"
+        },
+        {
+          type: "edit",
+          entity: "Recipe",
+          text: this.$t('appPages.recipeDetail.editButton'),
+          onClick: "editRecipe"
+        },
+        {
+          type: "delete",
+          entity: "Recipe",
+          text: this.$t('appPages.recipeDetail.deleteButton'),
+          onClick: "deleteRecipe"
+        }
+      ],
     }
   },
   computed: {
@@ -209,6 +215,10 @@ export default {
 
     showConfirmDeleteModal() {
       this.isConfirmDeleteModalVisible = true
+    },
+
+    backToRecipesList() {
+      this.$router.push({name: 'Recipes'})
     },
 
     recipeCreatedNotification() {

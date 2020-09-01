@@ -163,6 +163,7 @@
       "createButton": "Nueva receta",
       "editButton": "Editar",
       "deleteButton": "Eliminar",
+      "backToRecipesButton": "< Volver",
       "categoriesTitle": "Categorías",
       "descriptionTitle": "Descripción",
       "ingredientsTitle": "Ingredientes",
