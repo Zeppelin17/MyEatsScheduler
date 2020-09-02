@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-03 06:58:43 
- * Last modified  : 2020-08-08 18:21:58
+ * Last modified  : 2020-09-02 06:36:27
  */
 
 import { AUTH_REQUEST, AUTH_LOGOUT, AUTH_CREATE } from '../actionTypes'
@@ -48,7 +48,7 @@ export const actions = {
                 localStorage.setItem('user-id', userId)
                 axios.defaults.headers.common['Authorization'] = 'Token ' + token 
 
-                commit(AUTH_SUCCESS, token, userId)
+                commit(AUTH_SUCCESS, {token, userId})
                 resolve(resp)
             })
             .catch(err => {
@@ -121,10 +121,10 @@ export const mutations = {
         state.status = 'loading'
     },
 
-    [AUTH_SUCCESS]: (state, token, userId) => {
+    [AUTH_SUCCESS]: (state, auth) => {
         state.status = 'success'
-        state.token = token
-        state.userId = userId
+        state.token = auth.token
+        state.userId = auth.userId
     },
 
     [AUTH_ERROR]: (state) => {
@@ -133,6 +133,7 @@ export const mutations = {
 
     [AUTH_LOGOUT]: (state) => {
         state.token = ''
+        state.userId = ''
     },
 
     [AUTH_SET_ERROR]: (state, error) => {
