@@ -21,6 +21,14 @@
 
 
       <h1>{{ $t('appPages.recipes.mainTitle') }}</h1>
+
+
+      <div v-if="recipeList.length === 0 && recipeStatus !== 'loading'" class="no-recipes-img">
+        <h2>{{ $t('appPages.recipes.noRecipes') }}</h2>
+        <img src="../../assets/img/refreshing_beverage.svg" :alt="$t('appPages.recipes.noRecipes')">
+      </div>
+
+
       <h4 v-if="selectedRecipes.length > 0">{{ $t('appPages.recipes.selectedRecipes', {num: selectedRecipes.length}) }}</h4>
       <div class="filter" v-if="this.recipeList.length > 0">
         <form>
@@ -223,6 +231,7 @@ export default {
     recipeCreatedNotification() {
       this.closeCreateRecipeModal()
       this.getRecipes()
+
       this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 10000, true)
       //this.$refs.notify.info(event, "info notification", 5000, true)
       //this.$refs.notify.warning(event, "warning notification", 10000, true)
@@ -234,8 +243,8 @@ export default {
       this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeDeleteSuccess"), 2000, true)
     },
 
-    getRecipes() {
-      this.$store.dispatch(GET_RECIPES)
+    async getRecipes() {
+      await this.$store.dispatch(GET_RECIPES)
     },
 
     getCategories() {
@@ -311,6 +320,18 @@ export default {
   @apply text-center
 }
 
+.recipes .no-recipes-img {
+  @apply flex flex-col justify-center
+}
+
+.recipes .no-recipes-img img {
+  @apply w-5/12 mx-auto mb-10
+}
+
+.recipes .no-recipes-img h2{
+  @apply  mt-6 mb-12
+}
+
 .recipes h1 {
   @apply mb-4
 }
@@ -377,5 +398,11 @@ export default {
 
 .recipes .confirm-delete-buttons button.cancel:hover {
   @apply bg-blue-200 text-blue-600
+}
+
+@media (min-width: 640px) {
+  .recipes .no-recipes-img img {
+    @apply w-1/5 mx-auto
+  }
 }
 </style>

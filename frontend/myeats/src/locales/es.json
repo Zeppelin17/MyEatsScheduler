@@ -122,7 +122,9 @@
       "cardHelpButtonRoute": "Help"
     },
     "myeats": {
-
+      "weeks": {
+        "createButton": "Crear semana"
+      }
     },
     "recipes": {
       "mainTitle": "Mis Recetas",
@@ -156,7 +158,8 @@
       "deleteConfirmation": "La receta se va a eliminar. ¿Seguro que quieres continuar?",
       "batchDeleteConfirmation": "Todas las recetas seleccionadas se van a eliminar. ¿Seguro que quieres continuar?",
       "selectedRecipes": "Tienes {num} recetas seleccionadas",
-      "errorNameMandatory": "Por lo menos es necesario indicar un nombre para la receta"
+      "errorNameMandatory": "Por lo menos es necesario indicar un nombre para la receta",
+      "noRecipes": "Todavía no tienes ninguna receta... ¡Crea una ahora!"
     },
     "recipeDetail": {
       "loadingMsg": "Cargando información de la receta...",
