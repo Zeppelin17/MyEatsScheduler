@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-28 06:33:27 
- * Last modified  : 2020-08-23 18:15:22
+ * Last modified  : 2020-09-04 12:17:59
  */
 
 export const SET_STATUS_LOADING = "setStatusLoading"
@@ -21,3 +21,9 @@ export const RECIPE_STATUS_SET_ERROR = "recipeStatusSetError"
 export const RECIPE_STATUS_SET_SUCCESS = "recipeStatusSetSuccess"
 export const SET_CATEGORIES = "setCategories"
 export const RECIPE_DELETE_FROM_LIST = "recipeDeleteFromList"
+
+// weeks
+export const WEEK_STATUS_SET_SUCCESS = "weekSetStatusSuccess"
+export const WEEK_STATUS_SET_ERROR = "weekSetStatusError"
+export const WEEK_SET_LIST = "weekSetList"
+export const WEEK_DELETE_FROM_LIST = "weekDeleteFromList"

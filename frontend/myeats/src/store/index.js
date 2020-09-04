@@ -5,13 +5,14 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 17:24:45 
- * Last modified  : 2020-08-08 18:55:05
+ * Last modified  : 2020-09-02 19:07:05
  */
 
 import Vue from 'vue'
 import Vuex from 'vuex'
 import authentication from './modules/authentication'
 import recipe from './modules/recipe'
+import week from './modules/week'
 
 Vue.use(Vuex)
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   modules: {
     authentication,
     recipe,
+    week,
   },
   state: {
     

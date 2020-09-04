@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-28 06:30:05 
- * Last modified  : 2020-08-28 15:35:15
+ * Last modified  : 2020-09-04 12:13:44
  */
 
 // authentication
@@ -22,4 +22,7 @@ export const GET_CATEGORIES = "getCategories"
 export const UPDATE_CATEGORIES = "updateCategories"
 export const PUT_RECIPE = "putRecipe"
 
-// ingredient
+// weeks
+export const CREATE_WEEK = "createWeek"
+export const GET_WEEKS = "getWeeks"
+export const DELETE_WEEK = "deleteWeek"

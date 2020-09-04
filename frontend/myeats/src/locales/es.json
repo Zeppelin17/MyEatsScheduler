@@ -123,7 +123,29 @@
     },
     "myeats": {
       "weeks": {
-        "createButton": "Crear semana"
+        "noWeeks": "Parece que no tienes nada planificado... Crea una nueva semana para empezar.",
+        "loadingMsg": "Cargando semanas, espera...",
+        "mainTitle": "Mis Semanas",
+        "createButton": "Crear semana",
+        "deleteConfirmation": "La semana va a ser eliminada. ¿Seguro que quieres continuar?",
+        "batchDeleteConfirmation": "Las semanas seleccionadas van a ser eliminadas. ¿Seguro que quieres continuar?",
+        "deleteWeek": "Eliminar",
+        "openWeek": "Abrir",
+        "selectedWeeks": "Tienes {num} semanas seleccionadas",
+        "filterName": "Filtrar por nombre",
+        "weekDeleteSuccess": "La semana se ha eliminado",
+        "weekBatchDeleteSuccess": "Todas las semanas se han eliminado",
+        "inputWeekName": "Nombre de la semana",
+        "inputWeekFirstDay": "Primer día",
+        "createSubmitButton": "Crear semana",
+        "batchDeleteButton": "Eliminar seleccionadas",
+        "createWeekFormTitle": "Crear nueva Semana",
+        "weekCreatedSuccess": "Semana creada correctamente",
+        "monday": "Lunes",
+        "sunday": "Domingo",
+        "errorNameMandatory": "Piensa un nombre para la semana",
+        "errorFirstDayMandatory": "¿Cuál será el primer día de la semana?",
+        "weekCreateError": "Ha ocurrido algún error al intentar crear la semana"
       }
     },
     "recipes": {

@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-04-29 16:41:03 
- * Last modified  : 2020-08-21 06:28:14
+ * Last modified  : 2020-09-04 13:01:48
  */
 
 import Vue from 'vue'
@@ -50,6 +50,12 @@ const appRoutes = [
     name: 'MyEats',
     meta: {requiresAuth: true},
     component: loadAppComponent('MyEats')
+  },
+  {
+    path: 'week/:id',
+    name: 'WeekDetail',
+    meta: {requiresAuth: true},
+    component: loadAppComponent('WeekDetail')
   },
   {
     path: 'recipes',

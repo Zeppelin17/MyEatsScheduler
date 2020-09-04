@@ -123,7 +123,29 @@
     },
     "myeats": {
       "weeks": {
-        "createButton": "Create week"
+        "noWeeks": "It seems that you have nothing planned... Create a new week to start out.",
+        "loadingMsg": "Loading weeks, wait...",
+        "mainTitle": "My Weeks",
+        "createButton": "Create week",
+        "deleteConfirmation": "Week is going to be deleted. Are you sure you want to continue?",
+        "batchDeleteConfirmation": "Selected weeks are going to be deleted. Are you sure you want to continue?",
+        "deleteWeek": "Delete",
+        "openWeek": "Open",
+        "selectedWeeks": "You have {num} weeks selected",
+        "filterName": "Filter by name",
+        "weekDeleteSuccess": "Week has been deleted",
+        "weekBatchDeleteSuccess": "All weeks have been deleted",
+        "inputWeekName": "Week's name",
+        "inputWeekFirstDay": "First day",
+        "createSubmitButton": "Create week",
+        "batchDeleteButton": "Delete selected",
+        "createWeekFormTitle": "Create new Week",
+        "weekCreatedSuccess": "Week created successfully",
+        "monday": "Monday",
+        "sunday": "Sunday",
+        "errorNameMandatory": "Think a name for the Week",
+        "errorFirstDayMandatory": "What will be the first day of the week?",
+        "weekCreateError": "Some error ocurred while trying to create the week"
       }
     },
     "recipes": {
