@@ -146,6 +146,12 @@
         "errorNameMandatory": "Piensa un nombre para la semana",
         "errorFirstDayMandatory": "¿Cuál será el primer día de la semana?",
         "weekCreateError": "Ha ocurrido algún error al intentar crear la semana"
+      },
+      "weekDetail" : {
+        "backToMyeatsButton": "< Volver",
+        "loadingMsg": "Cargando datos de la semana, espera...",
+        "editButton": "Editar",
+        "deleteButton": "Eliminar"
       }
     },
     "recipes": {

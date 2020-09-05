@@ -5,22 +5,24 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-02 19:04:30 
- * Last modified  : 2020-09-04 12:17:30
+ * Last modified  : 2020-09-05 09:13:40
  */
 
-import { CREATE_WEEK, GET_WEEKS, DELETE_WEEK } from '../actionTypes'
-import { SET_STATUS_LOADING, WEEK_STATUS_SET_SUCCESS, WEEK_STATUS_SET_ERROR, WEEK_SET_LIST, WEEK_DELETE_FROM_LIST } from '../mutationTypes'
+import { CREATE_WEEK, GET_WEEKS, DELETE_WEEK, GET_WEEK_DAYS } from '../actionTypes'
+import { SET_STATUS_LOADING, WEEK_STATUS_SET_SUCCESS, WEEK_STATUS_SET_ERROR, WEEK_SET_LIST, WEEK_DELETE_FROM_LIST, WEEK_SET_DAYS } from '../mutationTypes'
 import weekService from '../../services/weekService'
 
 export const state = {
   weekStatus: '', // API call status
-  weeks: []
+  weeks: [],
+  days: []
 }
 
 
 const getters = {
   weekStatus: state => state.weekStatus,
-  weekList: state => state.weeks
+  weekList: state => state.weeks,
+  dayList: state => state.days
 }
 
 
@@ -85,6 +87,30 @@ export const actions = {
         resolve(true)
       })
     })
+  },
+
+  [GET_WEEK_DAYS]: ({commit}, weekId) => {
+    return new Promise((resolve) => {
+      commit(SET_STATUS_LOADING)
+      weekService.getDays(weekId)
+      .then((resp) => {
+        let days = resp.data
+
+        // get splits of each day
+        async function updateDaysWithSplits() {
+          let updatedDays = []
+          for (const day of days) {
+            resp = await weekService.getSplits(day.id)
+            day["splits"] = resp.data
+          }
+        }
+
+        updateDaysWithSplits()
+        commit(WEEK_STATUS_SET_SUCCESS)
+        commit(WEEK_SET_DAYS, days)
+        resolve(days)
+      })
+    })
   }
 }
 
@@ -108,6 +134,10 @@ export const mutations = {
 
   [WEEK_DELETE_FROM_LIST]: (state, id) => {
     state.weeks = state.weeks.filter((week) => week.id != id)
+  },
+
+  [WEEK_SET_DAYS]: (state, days) => {
+    state.days = days
   }
 }
 
