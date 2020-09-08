@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:33:21 
- * Last modified  : 2020-09-01 19:53:28
+ * Last modified  : 2020-09-08 06:32:15
  */
 
 import { RECIPE_CREATE, GET_CATEGORIES, UPDATE_CATEGORIES, GET_RECIPES, GET_RECIPE, DELETE_RECIPE, PUT_RECIPE } from '../actionTypes'
@@ -85,13 +85,14 @@ export const actions = {
     })
   },
 
-  [UPDATE_CATEGORIES]: ({ commit }, categories) => {
+  [UPDATE_CATEGORIES]: ({ commit, dispatch }, categories) => {
     return new Promise((resolve) => {
       recipeService.updateCategories(categories)
       .then((resp) => {
-        const categoryList = resp.data
-        commit(SET_CATEGORIES, categoryList)
-        resolve(categoryList)
+        return dispatch(GET_CATEGORIES)
+      })
+      .then((resp) => {
+        resolve(resp)
       })
       .catch((err) => {
         console.log("[VUEX] ERROR", err)

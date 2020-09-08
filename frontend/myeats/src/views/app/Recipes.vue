@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-24 09:06:55
- * Last modified  : 2020-08-26 15:46:51
+ * Last modified  : 2020-09-07 18:52:44
  */
 </script>
 
@@ -225,14 +225,14 @@ export default {
         this.$store.dispatch(DELETE_RECIPE, id)
       })
       this.selectedRecipes = []
-      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeBatchDeleteSuccess"), 2000, true)
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeBatchDeleteSuccess"), 3000, true)
     },
     
     recipeCreatedNotification() {
       this.closeCreateRecipeModal()
       this.getRecipes()
 
-      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 10000, true)
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 3000, true)
       //this.$refs.notify.info(event, "info notification", 5000, true)
       //this.$refs.notify.warning(event, "warning notification", 10000, true)
       //this.$refs.notify.error(event, "error notification", 10000, true)
@@ -240,7 +240,7 @@ export default {
     },
 
     recipeDeletedNotification() {
-      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeDeleteSuccess"), 2000, true)
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeDeleteSuccess"), 3000, true)
     },
 
     async getRecipes() {

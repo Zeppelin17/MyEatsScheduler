@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-21 06:21:29 
- * Last modified  : 2020-09-01 21:52:58
+ * Last modified  : 2020-09-07 18:52:07
  */
 </script>
 
@@ -223,13 +223,13 @@ export default {
 
     recipeCreatedNotification() {
       this.closeCreateRecipeModal()
-      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 2000, true)
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeCreatedSuccess"), 3000, true)
     },
 
     recipeUpdatedNotification() {
       this.closeEditRecipeModal()
       this.getRecipe(true)
-      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeEditedSuccess"), 2000, true)
+      this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeEditedSuccess"), 3000, true)
       
     },
 
@@ -249,7 +249,7 @@ export default {
       this.$store.dispatch(DELETE_RECIPE, this.recipeData.id)
       .then(() => {
         this.$router.push({name: 'Recipes'})
-        this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeDeleteSuccess"), 10000, true)
+        this.$refs.notify.success(event, this.$t("appPages.recipes.RecipeDeleteSuccess"), 3000, true)
       })
       
     },

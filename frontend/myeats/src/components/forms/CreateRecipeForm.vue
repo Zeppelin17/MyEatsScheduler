@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-07-27 06:32:15
- * Last modified  : 2020-09-01 21:30:33
+ * Last modified  : 2020-09-08 06:35:22
  */
 </script>
 
@@ -276,8 +276,12 @@ export default {
         myeats_user: this.userId
       }
 
-      // Creating categories and getting their ID's
-      this.$store.dispatch(UPDATE_CATEGORIES, this.recipeCategories)
+      // Creating categories and getting their ID's  
+      const recipeCats = []
+      this.recipeCategories.forEach((cat) => {
+        recipeCats.push(cat)
+      })
+      this.$store.dispatch(UPDATE_CATEGORIES, recipeCats)
       .then(() => {
         const categoriesIds = []
         this.categoriesList.forEach((cat) => {

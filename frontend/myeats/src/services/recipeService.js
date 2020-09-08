@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-08-07 06:20:45 
- * Last modified  : 2020-09-01 19:45:00
+ * Last modified  : 2020-09-08 06:34:36
  */
 
 import Vue from 'vue'
@@ -32,7 +32,6 @@ export default {
   // update categories
   updateCategories(newCategories) {
     return new Promise((resolve) => {
-    
       this.getCategories()
       .then((resp) => {
         // get current categories
@@ -56,13 +55,12 @@ export default {
         // update categories
         return Promise.all(
           categoriesToCreate.map(cat => {
-            this.createCategory(cat)
+            async function createCat(category, createCatFunction) {
+              return await createCatFunction(category)
+            }
+            return createCat(cat, this.createCategory)
           })
         )
-      })
-      .then(() => {
-        // get categories again with updated results
-        return this.getCategories()
       })
       .then((resp) => {
         resolve(resp)
