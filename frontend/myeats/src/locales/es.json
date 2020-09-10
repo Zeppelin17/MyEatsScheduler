@@ -31,7 +31,7 @@
     },
     "whatCanIDo": {
       "title": "Funcionalidades",
-      "text": "El funcionamiento es muy sencillo. El primer paso es <b>crear algunas <i>Recetas</i></b>. Entonces, puedes <b>crear <i>Semanas</i></b>. Una <i>Semana</i> es una cuadrícula donde puedes ver siete días. Puedes <b><i>Dividir</i> cada día en varias partes</b>, tantas como quieras. Las <i>Divisiones</i> son simplemente una forma de dividir el día en varias franjas, como 'Desayuno', 'Comida' or 'Cena'. Finalmente, puedes <b>añadir tus <i>Recetas</i></b> a cada <i>Día</i> y <i>División</i> correspondientes."
+      "text": "El funcionamiento es muy sencillo. El primer paso es <b>crear algunas <i>Recetas</i></b>. Entonces, puedes <b>crear <i>Semanas</i></b>. Una <i>Semana</i> es una cuadrícula donde puedes ver siete días. Puedes <b><i>Dividir</i> cada día en varias partes</b>, tantas como quieras. Las <i>Divisiones</i> son simplemente una forma de dividir el día en varias franjas, como 'Desayuno', 'Comida' o 'Cena'. Finalmente, puedes <b>añadir tus <i>Recetas</i></b> a cada <i>Día</i> y <i>División</i> correspondientes."
     },
     "ctaSignUp": {
       "title": "Empieza a planear tus comidas, crea una cuenta en menos de un minuto",
@@ -151,7 +151,8 @@
         "backToMyeatsButton": "< Volver",
         "loadingMsg": "Cargando datos de la semana, espera...",
         "editButton": "Editar",
-        "deleteButton": "Eliminar"
+        "deleteButton": "Eliminar",
+        "configureButton": "Configurar"
       }
     },
     "recipes": {
@@ -163,7 +164,7 @@
       "createRecipeFormTitle": "Crear nueva Receta",
       "editRecipeFormTitle": "Editar información de receta",
       "inputRecipeName": "Nombre de la receta",
-      "inputRecipeCategories": "Categorías",
+      "inputRecipeCategories": "Categorías (escribir nombre + presionar intro)",
       "inputRecipeDescription": "Descripción",
       "inputRecipeSteps": "Pasos",
       "inputRecipeIngredientName": "Nombre",

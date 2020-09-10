@@ -151,7 +151,8 @@
         "backToMyeatsButton": "< Return",
         "loadingMsg": "Loading week data, wait...",
         "editButton": "Edit",
-        "deleteButton": "Delete"
+        "deleteButton": "Delete",
+        "configureButton": "Configure"
       }
     },
     "recipes": {
@@ -163,7 +164,7 @@
       "createRecipeFormTitle": "Create new Recipe",
       "editRecipeFormTitle": "Edit Recipe data",
       "inputRecipeName": "Recipe's name",
-      "inputRecipeCategories": "Categories",
+      "inputRecipeCategories": "Categories (write name + hit enter)",
       "inputRecipeDescription": "Description",
       "inputRecipeSteps": "Steps",
       "inputRecipeIngredientName": "Name",

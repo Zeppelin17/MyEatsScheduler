@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-02 19:04:30 
- * Last modified  : 2020-09-05 09:13:40
+ * Last modified  : 2020-09-09 06:29:20
  */
 
 import { CREATE_WEEK, GET_WEEKS, DELETE_WEEK, GET_WEEK_DAYS } from '../actionTypes'
@@ -38,12 +38,16 @@ export const actions = {
         const weekId = resp.data.id
         return Promise.all(
           week.days.map(day => {
-            let newDay = {
-              "name": day,
-              "week": weekId
+            async function asyncCreateDay(day) {
+              let newDay = {
+                "name": day,
+                "week": weekId
+              }
+              return await weekService.createDay(newDay)
             }
-            return weekService.createDay(newDay)
+            asyncCreateDay(day)
           })
+          
         )
       })
       .then(() => {

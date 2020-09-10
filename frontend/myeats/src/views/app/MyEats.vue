@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-07 15:58:57  
- * Last modified  : 2020-09-04 13:23:57
+ * Last modified  : 2020-09-07 18:51:46
  */
 </script>
 
@@ -210,14 +210,14 @@ export default {
         this.$store.dispatch(DELETE_WEEK, id)
       })
       this.selectedWeeks = []
-      this.$refs.notify.success(event, this.$t("appPages.myeats.weeks.weekBatchDeleteSuccess"), 2000, true)
+      this.$refs.notify.success(event, this.$t("appPages.myeats.weeks.weekBatchDeleteSuccess"), 3000, true)
     },
 
     weekCreatedNotification() {
       this.closeCreateWeekModal()
       this.getWeeks()
 
-      this.$refs.notify.success(event, this.$t("appPages.myeats.weeks.weekCreatedSuccess"), 10000, true)
+      this.$refs.notify.success(event, this.$t("appPages.myeats.weeks.weekCreatedSuccess"), 3000, true)
       //this.$refs.notify.info(event, "info notification", 5000, true)
       //this.$refs.notify.warning(event, "warning notification", 10000, true)
       //this.$refs.notify.error(event, "error notification", 10000, true)
@@ -235,7 +235,7 @@ export default {
     },
 
     weekDeletedNotification() {
-      this.$refs.notify.success(event, this.$t("appPages.myeats.weeks.weekDeleteSuccess"), 2000, true)
+      this.$refs.notify.success(event, this.$t("appPages.myeats.weeks.weekDeleteSuccess"), 3000, true)
     },
 
     updateSelectedWeeks(weekInfo) {

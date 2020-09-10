@@ -5,12 +5,13 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-04 10:18:35 
- * Last modified  : 2020-09-05 09:04:11
+ * Last modified  : 2020-09-05 17:07:14
  */
 
 import Vue from 'vue'
 import { API_ENDPOINT, API_CREATE_WEEK, API_CREATE_DAY, API_GET_WEEKS, API_DELETE_WEEK, API_GET_DAYS, API_GET_SPLITS } from '@/appConfig'
 import { WEEK_DELETE_FROM_LIST } from '../store/mutationTypes'
+import week from '../store/modules/week'
 
 export default {
   // create week
@@ -21,7 +22,7 @@ export default {
   },
 
   // create days for a week
-  createDay(day) {
+  async createDay(day) {
     const url = API_ENDPOINT + API_CREATE_DAY
 
     return Vue.axios({method: 'post', url: url, data: day})
