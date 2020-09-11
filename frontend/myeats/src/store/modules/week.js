@@ -5,10 +5,10 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-02 19:04:30 
- * Last modified  : 2020-09-09 06:29:20
+ * Last modified  : 2020-09-11 08:41:22
  */
 
-import { CREATE_WEEK, GET_WEEKS, DELETE_WEEK, GET_WEEK_DAYS } from '../actionTypes'
+import { CREATE_WEEK, GET_WEEKS, DELETE_WEEK, GET_WEEK_DAYS, PUT_WEEK } from '../actionTypes'
 import { SET_STATUS_LOADING, WEEK_STATUS_SET_SUCCESS, WEEK_STATUS_SET_ERROR, WEEK_SET_LIST, WEEK_DELETE_FROM_LIST, WEEK_SET_DAYS } from '../mutationTypes'
 import weekService from '../../services/weekService'
 
@@ -113,6 +113,24 @@ export const actions = {
         commit(WEEK_STATUS_SET_SUCCESS)
         commit(WEEK_SET_DAYS, days)
         resolve(days)
+      })
+    })
+  },
+
+  [PUT_WEEK]: ({commit}, week) => {
+    return new Promise((resolve, reject) => {
+      commit(SET_STATUS_LOADING)
+      weekService.putWeek(week)
+      .then((resp) => {
+        commit(WEEK_STATUS_SET_SUCCESS)
+        resolve(resp)
+      })
+      .catch((err) => {
+        console.log(err.response)
+        
+        commit(WEEK_STATUS_SET_ERROR)
+        
+        reject(err)
       })
     })
   }

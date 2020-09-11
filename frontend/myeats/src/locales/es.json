@@ -138,6 +138,7 @@
         "inputWeekName": "Nombre de la semana",
         "inputWeekFirstDay": "Primer día",
         "createSubmitButton": "Crear semana",
+        "editSubmitButton": "Guardar semana",
         "batchDeleteButton": "Eliminar seleccionadas",
         "createWeekFormTitle": "Crear nueva Semana",
         "weekCreatedSuccess": "Semana creada correctamente",
@@ -152,7 +153,9 @@
         "loadingMsg": "Cargando datos de la semana, espera...",
         "editButton": "Editar",
         "deleteButton": "Eliminar",
-        "configureButton": "Configurar"
+        "configureButton": "Configurar",
+        "editWeekFormTitle": "Editar Semana",
+        "weekEditedSuccess": "Información de semana guardada correctamente"
       }
     },
     "recipes": {

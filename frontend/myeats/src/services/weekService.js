@@ -5,13 +5,12 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-04 10:18:35 
- * Last modified  : 2020-09-05 17:07:14
+ * Last modified  : 2020-09-11 06:50:47
  */
 
 import Vue from 'vue'
-import { API_ENDPOINT, API_CREATE_WEEK, API_CREATE_DAY, API_GET_WEEKS, API_DELETE_WEEK, API_GET_DAYS, API_GET_SPLITS } from '@/appConfig'
-import { WEEK_DELETE_FROM_LIST } from '../store/mutationTypes'
-import week from '../store/modules/week'
+import { API_ENDPOINT, API_CREATE_WEEK, API_CREATE_DAY, API_GET_WEEKS, API_DELETE_WEEK, API_GET_DAYS, API_GET_SPLITS, API_PUT_WEEK } from '@/appConfig'
+
 
 export default {
   // create week
@@ -54,5 +53,11 @@ export default {
     const url = API_ENDPOINT + API_GET_SPLITS + '?dayid=' + dayId
 
     return Vue.axios({method: 'get', url: url})
+  },
+
+  putWeek(week) {
+    const url = API_ENDPOINT + API_PUT_WEEK + week.id + '/'
+
+    return Vue.axios({method: 'put', url: url, data: week})
   }
 }

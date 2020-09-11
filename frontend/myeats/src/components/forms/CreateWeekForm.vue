@@ -7,7 +7,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-04 06:44:30 
- * Last modified  : 2020-09-04 11:18:18
+ * Last modified  : 2020-09-11 08:41:40
  */
 </script>
 <template>
@@ -53,7 +53,7 @@
           <button v-else-if="editableData.name.length === 0" @click.prevent="createWeek">
             {{ $t("appPages.myeats.weeks.createSubmitButton") }}
           </button>
-          <button v-else @click.prevent="updateRecipe">
+          <button v-else @click.prevent="updateWeek">
             {{ $t("appPages.myeats.weeks.editSubmitButton") }}
           </button>
         </div>
@@ -65,7 +65,7 @@
 <script>
 import { Trans } from '@/plugins/Translation'
 import { mapGetters } from 'vuex'
-import { CREATE_WEEK } from '@/store/actionTypes'
+import { CREATE_WEEK, PUT_WEEK } from '@/store/actionTypes'
 
 export default {
   name: "CreateWeekForm",
@@ -149,46 +149,32 @@ export default {
     /**
      * Update recipe with API Service
      */
-    /* updateRecipe() {
-      let newIngredients = []
-      this.recipeIngredients.forEach((ingredient) => {
-        newIngredients.push(ingredient)
-      })
-
-      if (this.recipeName.trim().length === 0) {
-        this.validationMsg = this.$t("appPages.recipes.errorNameMandatory")
+    updateWeek() {
+      if (this.weekName.trim().length === 0) {
+        this.validationMsg = this.$t("appPages.myeats.weeks.errorNameMandatory")
         return false
       }
+
+      if (this.weekFirstDay.trim().length === 0) {
+        this.validationMsg = this.$t("appPages.myeats.weeks.errorFirstDayMandatory")
+        return false
+      }
+
       this.resetValidationMsg()
 
-      return this.$store.dispatch(UPDATE_CATEGORIES, this.recipeCategories)
-      .then(() => {
-        let categoryIds = []
-        this.categoriesList.forEach((cat) => {
-          this.recipeCategories.forEach((recipeCat) => {
-            if (cat.name === recipeCat) {
-              categoryIds.push(cat.id)
-            }
-          })
-        })
-        const updatedRecipe = {
-          id: this.editableData.id,
-          name: this.recipeName,
-          description: this.recipeDescription,
-          steps: this.recipeSteps,
-          ingredients: newIngredients,
-          categories: categoryIds,
-          myeats_user: this.userId
-        }
-        
-        return this.$store.dispatch(PUT_RECIPE, updatedRecipe)
-      })
-      .then(() => {
-        this.$emit("recipe-updated")
- 
+      const updatedWeek = {
+        id: this.editableData.id,
+        name: this.weekName,
+        first_day: this.weekFirstDay,
+        myeats_user: localStorage.getItem("user-id")
+      }
+      
+      return this.$store.dispatch(PUT_WEEK, updatedWeek)
+      .then((resp) => {
+        this.$emit("week-updated", resp.data)
       })
       
-    }, */
+    },
 
     
 
@@ -198,32 +184,18 @@ export default {
       this.weekFirstDay = ""
     },
 
-    /* updateRecipeWithEditableData() {
+    updateWeekWithEditableData() {
       if (this.editableData.name.length > 0) {
-        this.recipeName = this.editableData.name
-
-        this.editableData.categories.forEach((cat) => {
-          this.recipeCategories.push(cat.name)
-        })
-
-        this.recipeDescription = this.editableData.description
-        this.recipeSteps = this.editableData.steps
-
-        this.editableData.ingredients.forEach((ingredient) => {
-          this.recipeIngredients.push({
-            name: ingredient.name,
-            qty: ingredient.quantity,
-            uom: ingredient.unit_of_measure
-          })
-        })
+        this.weekName = this.editableData.name
+        this.weekFirstDay = this.editableData.first_day
       }
       
-    }*/
+    }
   }, 
 
-  /* mounted() {
-    this.updateRecipeWithEditableData()
-  } */
+  mounted() {
+    this.updateWeekWithEditableData()
+  }
 };
 </script>
 

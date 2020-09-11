@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-04 13:02:49 
- * Last modified  : 2020-09-09 06:54:55
+ * Last modified  : 2020-09-11 09:07:09
  */
 </script>
 
@@ -18,6 +18,8 @@
         :actions="pageActionButtons"
         v-on:execute-action="childEventEmit($event)"
       />
+
+      <h1>{{ weekData.name }}</h1>
 
       <div class="week">
         <div
@@ -72,6 +74,46 @@
     </div>
 
 
+
+    <UserNotification ref="notify"/>
+
+
+    <ModalBox 
+      v-show="isCreateWeekModalVisible"
+      v-on:close='closeEditWeekModal'
+    >
+      <template v-slot:header>
+        <h2>{{ $t('appPages.myeats.weekDetail.editWeekFormTitle') }}</h2>
+      </template>
+
+      <template v-slot:body>
+        <CreateWeekForm 
+          v-if="weekData.hasOwnProperty('name')"
+          v-on:week-updated='weekUpdatedNotification($event)' 
+          :editableData='weekData'
+        />
+      </template>
+
+    </ModalBox>
+
+
+    <ModalBox
+      v-if="isConfirmDeleteModalVisible"
+      v-on:close='closeDeleteConfirmationModal'
+    >
+      <template v-slot:header>
+        <h2>{{ $t('appPages.myeats.weeks.deleteConfirmation') }}</h2>
+      </template>
+
+      <template v-slot:body>
+        <div class="confirm-delete-buttons">
+          <button class="confirm" @click="deleteWeekConfirmed">{{ $t('appPages.generic.yes') }}</button>
+          <button class="cancel" @click="closeDeleteConfirmationModal">{{ $t('appPages.generic.no') }}</button>
+        </div>
+      </template>
+    </ModalBox>
+
+
     <div v-if="weekStatus === 'loading'" id="details-loading">
         <img src="../../assets/img/loading.svg" alt="Loading">
         <p>{{ $t('appPages.myeats.weekDetail.loadingMsg') }}</p>
@@ -85,21 +127,23 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { GET_WEEK_DAYS, GET_WEEKS } from '@/store/actionTypes'
+import { GET_WEEK_DAYS, GET_WEEKS, DELETE_WEEK } from '@/store/actionTypes'
 import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
 import ModalBox from '@/components/blocks/ModalBox.vue'
 import UserNotification from '@/components/UserNotification.vue'
+import CreateWeekForm from '@/components/forms/CreateWeekForm.vue'
 
 
-
-/**
- * 
- * CONTINUAR POR FUNCIONALIDAD DE EDICIÓN Y ELIMINACIÓN DE SEMANA
- * 
- * 
- */
 export default {
   name: "WeekDetail",
+  
+  components: {
+    AppPageActionButtons,
+    ModalBox,
+    UserNotification,
+    CreateWeekForm
+  },
+
   data() {
     return {
       pageActionButtons: [
@@ -122,14 +166,13 @@ export default {
           onClick: "deleteWeek"
         }
       ],
+      weekData: {},
+      isCreateWeekModalVisible: false,
+      isConfirmDeleteModalVisible: false,
       overDayId: 0
     }
   },
-  components: {
-    AppPageActionButtons,
-    ModalBox,
-    UserNotification
-  },
+  
   computed: {
     ...mapGetters({
       weekStatus: 'weekStatus',
@@ -144,7 +187,7 @@ export default {
       if (this.dayList.length > 0 && this.weekList.length > 0) {
         let week = this.weekList.filter((w) => w.id === Number.parseInt(this.$route.params.id))
       
-        if (week[0].first_day === "sun") {
+        if (week.length > 0 && week[0].first_day === "sun") {
           let newDays = this.dayList
           let sunday = newDays.pop()
           newDays.unshift(sunday)
@@ -154,7 +197,7 @@ export default {
         return this.dayList
       }
       return this.dayList
-    },
+    }
     
   },
   methods: {
@@ -171,15 +214,46 @@ export default {
     },
 
     editWeek() {
-      /**
-       * TODO: Show modal box to edit week name/first day
-       */
+      this.isCreateWeekModalVisible = true
     },
 
     deleteWeek() {
-      /**
-       * TODO: Show modal box to confirm deletion of week
-       */
+      this.isConfirmDeleteModalVisible = true
+    },
+
+    closeEditWeekModal() {
+      this.isCreateWeekModalVisible = false
+    },
+
+    closeDeleteConfirmationModal() {
+      this.isConfirmDeleteModalVisible = false
+    },
+
+    deleteWeekConfirmed() {
+      this.$store.dispatch(DELETE_WEEK, this.weekData.id)
+      .then(() => {
+        this.$router.push({name: 'MyEats'})
+        this.$refs.notify.success(event, this.$t("appPages.myeats.weeks.weekDeleteSuccess"), 3000, true)
+      })
+      
+    },
+
+    weekUpdatedNotification(newWeek) {
+      this.closeEditWeekModal()
+      this.getWeekData()
+
+      const week = {
+        first_day: newWeek.first_day,
+        name: newWeek.name
+      }
+
+      this.setWeek(week)
+      
+      this.$refs.notify.success(event, this.$t("appPages.myeats.weekDetail.weekEditedSuccess"), 3000, true)
+    },
+
+    setWeek(week) {
+      this.weekData = week
     },
 
     async getWeeks() {
@@ -195,6 +269,13 @@ export default {
     // get week related data
     this.getWeekData()
     this.getWeeks()
+  },
+
+  watch: {
+    weekList() {
+      const week = this.weekList.filter((w) => w.id === Number.parseInt(this.$route.params.id))
+      if (week.length > 0) this.setWeek(week[0])
+    }
   }
 }
 </script>
@@ -206,6 +287,10 @@ export default {
 
 .week-detail {
   @apply px-6
+}
+
+.week-detail h1 {
+  @apply text-center mb-5
 }
 
 .week-detail .week {
@@ -255,6 +340,30 @@ export default {
 
 .week-detail #details-loading p {
     @apply font-bold text-xl px-2 py-1 bg-blue-900 text-gray-200 rounded-lg
+}
+
+.week-detail .confirm-delete-buttons {
+  @apply flex items-center justify-center
+}
+
+.week-detail .confirm-delete-buttons button{
+  @apply mx-1 py-2 px-6 rounded-md text-sm text-blue-200 outline-none border-2 outline-none whitespace-no-wrap
+}
+
+.week-detail .confirm-delete-buttons button.confirm {
+  @apply bg-red-500 border-red-500
+}
+
+.week-detail .confirm-delete-buttons button.confirm:hover {
+  @apply bg-red-200 text-red-600
+}
+
+.week-detail .confirm-delete-buttons button.cancel {
+  @apply bg-blue-500 border-blue-500
+}
+
+.week-detail .confirm-delete-buttons button.cancel:hover {
+  @apply bg-blue-200 text-blue-600
 }
 
 /* MEDIUM SIZES */
