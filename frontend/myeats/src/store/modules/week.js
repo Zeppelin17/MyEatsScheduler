@@ -5,11 +5,11 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-02 19:04:30 
- * Last modified  : 2020-09-11 08:41:22
+ * Last modified  : 2020-09-22 06:42:00
  */
 
 import { CREATE_WEEK, GET_WEEKS, DELETE_WEEK, GET_WEEK_DAYS, PUT_WEEK } from '../actionTypes'
-import { SET_STATUS_LOADING, WEEK_STATUS_SET_SUCCESS, WEEK_STATUS_SET_ERROR, WEEK_SET_LIST, WEEK_DELETE_FROM_LIST, WEEK_SET_DAYS } from '../mutationTypes'
+import { WEEK_SET_STATUS_LOADING, WEEK_STATUS_SET_SUCCESS, WEEK_STATUS_SET_ERROR, WEEK_SET_LIST, WEEK_DELETE_FROM_LIST, WEEK_SET_DAYS } from '../mutationTypes'
 import weekService from '../../services/weekService'
 
 export const state = {
@@ -31,7 +31,7 @@ const getters = {
 export const actions = {
   [CREATE_WEEK]: ({commit}, week) => {
     return new Promise((resolve, reject) => {
-      commit(SET_STATUS_LOADING)
+      commit(WEEK_SET_STATUS_LOADING)
       weekService.createWeek(week)
       .then((resp) => {
         // create days of week
@@ -66,7 +66,7 @@ export const actions = {
 
   [GET_WEEKS]: ({commit}) => {
     return new Promise((resolve) => {
-      commit(SET_STATUS_LOADING)
+      commit(WEEK_SET_STATUS_LOADING)
       weekService.getWeeks()
       .then((resp) => {
         let weeks = resp.data
@@ -83,7 +83,7 @@ export const actions = {
 
   [DELETE_WEEK]: ({commit}, weekId) => {
     return new Promise((resolve) => {
-      commit(SET_STATUS_LOADING)
+      commit(WEEK_SET_STATUS_LOADING)
       weekService.deleteWeek(weekId)
       .then(() => {
         commit(WEEK_DELETE_FROM_LIST, weekId)
@@ -95,7 +95,7 @@ export const actions = {
 
   [GET_WEEK_DAYS]: ({commit}, weekId) => {
     return new Promise((resolve) => {
-      commit(SET_STATUS_LOADING)
+      commit(WEEK_SET_STATUS_LOADING)
       weekService.getDays(weekId)
       .then((resp) => {
         let days = resp.data
@@ -119,7 +119,7 @@ export const actions = {
 
   [PUT_WEEK]: ({commit}, week) => {
     return new Promise((resolve, reject) => {
-      commit(SET_STATUS_LOADING)
+      commit(WEEK_SET_STATUS_LOADING)
       weekService.putWeek(week)
       .then((resp) => {
         commit(WEEK_STATUS_SET_SUCCESS)
@@ -138,11 +138,13 @@ export const actions = {
 
 
 export const mutations = {
-  [SET_STATUS_LOADING]: (state) => {
+  [WEEK_SET_STATUS_LOADING]: (state) => {
+    console.log("setting week on loading")
     state.weekStatus = 'loading'
   },
 
   [WEEK_STATUS_SET_SUCCESS]: (state) => {
+    console.log("setting week on success")
     state.weekStatus = 'success'
   },
 
