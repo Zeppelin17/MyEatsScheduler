@@ -5,24 +5,28 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-09-02 19:04:30 
- * Last modified  : 2020-09-22 06:42:00
+ * Last modified  : 2020-10-13 19:51:43
  */
 
-import { CREATE_WEEK, GET_WEEKS, DELETE_WEEK, GET_WEEK_DAYS, PUT_WEEK } from '../actionTypes'
-import { WEEK_SET_STATUS_LOADING, WEEK_STATUS_SET_SUCCESS, WEEK_STATUS_SET_ERROR, WEEK_SET_LIST, WEEK_DELETE_FROM_LIST, WEEK_SET_DAYS } from '../mutationTypes'
+import { CREATE_WEEK, GET_WEEKS, DELETE_WEEK, GET_WEEK_DAYS, PUT_WEEK, UPDATE_WEEK_DAY_SPLITS } from '../actionTypes'
+import { WEEK_SET_STATUS_LOADING, WEEK_STATUS_SET_SUCCESS, WEEK_STATUS_SET_ERROR, WEEK_SET_LIST, WEEK_DELETE_FROM_LIST, WEEK_SET_DAYS, WEEK_SET_DAYS_LOADED } from '../mutationTypes'
 import weekService from '../../services/weekService'
+import recipeService from '../../services/recipeService'
+import Vue from 'vue'
 
 export const state = {
   weekStatus: '', // API call status
   weeks: [],
-  days: []
+  days: [],
+  daysLoaded: false
 }
 
 
 const getters = {
   weekStatus: state => state.weekStatus,
   weekList: state => state.weeks,
-  dayList: state => state.days
+  dayList: state => state.days,
+  daysLoaded: state => state.daysLoaded
 }
 
 
@@ -33,22 +37,27 @@ export const actions = {
     return new Promise((resolve, reject) => {
       commit(WEEK_SET_STATUS_LOADING)
       weekService.createWeek(week)
-      .then((resp) => {
+      .then(async (resp) => {
         // create days of week
         const weekId = resp.data.id
-        return Promise.all(
-          week.days.map(day => {
-            async function asyncCreateDay(day) {
-              let newDay = {
-                "name": day,
-                "week": weekId
-              }
-              return await weekService.createDay(newDay)
+        
+        async function asyncCreateDays() {
+          for (const day of week.days) {
+            
+            let newDay = {
+              "name": day,
+              "week": weekId
             }
-            asyncCreateDay(day)
-          })
-          
-        )
+            await weekService.createDay(newDay)
+          }
+        }
+        
+        
+        await asyncCreateDays()
+
+        return true
+        
+        
       })
       .then(() => {
         commit(WEEK_STATUS_SET_SUCCESS)
@@ -96,22 +105,34 @@ export const actions = {
   [GET_WEEK_DAYS]: ({commit}, weekId) => {
     return new Promise((resolve) => {
       commit(WEEK_SET_STATUS_LOADING)
-      weekService.getDays(weekId)
+      return weekService.getDays(weekId)
       .then((resp) => {
         let days = resp.data
-
+        
         // get splits of each day
         async function updateDaysWithSplits() {
-          let updatedDays = []
           for (const day of days) {
-            resp = await weekService.getSplits(day.id)
-            day["splits"] = resp.data
+            Vue.set(day, "splits", [])
+            let resp = await weekService.getSplits(day.id)
+            for (const split of resp.data) {
+              const recipes = []
+              for (const recipeId of split.recipes) {
+                let recipe = await recipeService.getRecipe(recipeId)
+                recipes.push(recipe)
+              }
+              Vue.set(split, "recipes", recipes)
+              day.splits.push(split)
+            }
+
+            Vue.set(day, "splits", day.splits.sort((a, b) => (a.order > b.order) ? 1 : -1))
+
           }
+          commit(WEEK_SET_DAYS_LOADED)
         }
 
         updateDaysWithSplits()
-        commit(WEEK_STATUS_SET_SUCCESS)
         commit(WEEK_SET_DAYS, days)
+        commit(WEEK_STATUS_SET_SUCCESS)
         resolve(days)
       })
     })
@@ -133,18 +154,63 @@ export const actions = {
         reject(err)
       })
     })
+  },
+
+  [UPDATE_WEEK_DAY_SPLITS]: ({commit}, {oldSplits, newSplits}) => {
+    return new Promise((resolve, reject) => {
+      // delete current day splits
+      commit(WEEK_SET_STATUS_LOADING)
+      return Promise.all(
+        oldSplits.map(split => {
+          async function asyncDeleteSplit(s) {
+            return await weekService.deleteSplit(s.id)
+          }
+          return asyncDeleteSplit(split)
+        })
+        
+      )
+      .then((resp) => {
+        // recreate day splits
+        return Promise.all(
+          newSplits.map(split => {
+            async function asyncCreateSplit(s) {
+              let newSplit = {
+                name: s.name,
+                order: s.order,
+                day: s.day,
+                recipes: s.recipes
+              }
+              return await weekService.createSplit(newSplit)
+            }
+            return asyncCreateSplit(split)
+          })
+          
+        )
+      })
+      .then((resp) => {
+        commit(WEEK_STATUS_SET_SUCCESS)
+        resolve(resp)
+      })
+      .catch((err) => {
+        console.log(err.response)
+        
+        commit(WEEK_STATUS_SET_ERROR)
+        
+        reject(err)
+      })
+
+      
+    })
   }
 }
 
 
 export const mutations = {
   [WEEK_SET_STATUS_LOADING]: (state) => {
-    console.log("setting week on loading")
     state.weekStatus = 'loading'
   },
 
   [WEEK_STATUS_SET_SUCCESS]: (state) => {
-    console.log("setting week on success")
     state.weekStatus = 'success'
   },
 
@@ -162,6 +228,10 @@ export const mutations = {
 
   [WEEK_SET_DAYS]: (state, days) => {
     state.days = days
+  },
+
+  [WEEK_SET_DAYS_LOADED]: (state) => {
+    state.daysLoaded = true
   }
 }
 

@@ -155,7 +155,27 @@
         "deleteButton": "Delete",
         "configureButton": "Configure",
         "editWeekFormTitle": "Edit Week",
-        "weekEditedSuccess": "Week info saved successfully"
+        "weekEditedSuccess": "Week info saved successfully",
+        "noSplitsFormTitle": "Create your first split",
+        "splitsFormTitle": "Splits",
+        "inputSplitName": "Split name (Breakfast, lunch, etc...)",
+        "inputEditSplitName": "Split name",
+        "inputLinkRecipeCatName": "Filter by category",
+        "inputLinkRecipeName": "Recipe",
+        "inputLinkSplitName": "Split",
+        "newSplit": "Add",
+        "newSplitShowForm": "Add splits",
+        "replicateButton": "Replicate",
+        "replicateDayConfirmation": "This will override splits created in other days in this week. ¿You want to continue?",
+        "errorSplitNameMandatory": "The split needs a name",
+        "editSplit": "Edit",
+        "deleteSplit": "Delete",
+        "saveSplit": "Save",
+        "recipeFormTitle": "Recipes",
+        "linkRecipeShowForm": "Add...",
+        "editSubmitButton": "Save",
+        "dayEditedSuccess": "Day saved successfully",
+        "daysReplicatedSuccess": "Day splits have been replicated"
       }
     },
     "recipes": {

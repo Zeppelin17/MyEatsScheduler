@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-28 06:30:05 
- * Last modified  : 2020-09-11 06:46:07
+ * Last modified  : 2020-10-13 19:36:19
  */
 
 // authentication
@@ -28,3 +28,4 @@ export const GET_WEEKS = "getWeeks"
 export const DELETE_WEEK = "deleteWeek"
 export const GET_WEEK_DAYS = "getWeekDays"
 export const PUT_WEEK = "putWeek"
+export const UPDATE_WEEK_DAY_SPLITS = "updateWeekDaySplits"

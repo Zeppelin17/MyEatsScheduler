@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-28 06:33:27 
- * Last modified  : 2020-09-22 06:41:35
+ * Last modified  : 2020-10-05 06:39:42
  */
 
 export const SET_STATUS_LOADING = "setStatusLoading"
@@ -29,3 +29,4 @@ export const WEEK_STATUS_SET_ERROR = "weekSetStatusError"
 export const WEEK_SET_LIST = "weekSetList"
 export const WEEK_DELETE_FROM_LIST = "weekDeleteFromList"
 export const WEEK_SET_DAYS = "weekSetDays"
+export const WEEK_SET_DAYS_LOADED = "weekSetDaysLoaded"

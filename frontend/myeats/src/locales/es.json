@@ -155,7 +155,27 @@
         "deleteButton": "Eliminar",
         "configureButton": "Configurar",
         "editWeekFormTitle": "Editar Semana",
-        "weekEditedSuccess": "Información de semana guardada correctamente"
+        "weekEditedSuccess": "Información de semana guardada correctamente",
+        "noSplitsFormTitle": "Crea la primera franja",
+        "splitsFormTitle": "Franjas",
+        "inputSplitName": "Nombre (desayuno, comida, etc...)",
+        "inputEditSplitName": "Franja",
+        "inputLinkRecipeCatName": "Filtrar por categoría",
+        "inputLinkRecipeName": "Receta",
+        "inputLinkSplitName": "Franja",
+        "newSplit": "Añadir",
+        "newSplitShowForm": "Añadir franjas",
+        "replicateButton": "Replicar",
+        "replicateDayConfirmation": "Esto va a sobreescribir las franjas creadas en los demás días de esta semana. ¿Seguro que quieres continuar?",
+        "errorSplitNameMandatory": "Dale un nombre a la franja",
+        "editSplit": "Editar",
+        "deleteSplit": "Eliminar",
+        "saveSplit": "Guardar",
+        "recipeFormTitle": "Recetas",
+        "linkRecipeShowForm": "Añadir...",
+        "editSubmitButton": "Guardar",
+        "dayEditedSuccess": "Día guardado correctamente",
+        "daysReplicatedSuccess": "Las franjas del día se han replicado"
       }
     },
     "recipes": {
