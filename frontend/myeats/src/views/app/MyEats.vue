@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-07 15:58:57  
- * Last modified  : 2020-09-07 18:51:46
+ * Last modified  : 2020-10-22 06:26:27
  */
 </script>
 
@@ -109,14 +109,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { GET_WEEKS } from '@/store/actionTypes'
+import { GET_WEEKS, DELETE_WEEK } from '@/store/actionTypes'
 import UserNotification from '@/components/UserNotification.vue'
 import AppPageActionButtons from '@/components/AppPageActionButtons.vue'
 import CardWeekBlock from '@/components/blocks/CardWeekBlock.vue'
 import Pagination from '@/components/blocks/Pagination.vue'
 import CreateWeekForm from '@/components/forms/CreateWeekForm.vue'
 import ModalBox from '@/components/blocks/ModalBox.vue'
-import { DELETE_WEEK } from '../../store/actionTypes'
 
 
 export default {

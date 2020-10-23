@@ -225,7 +225,21 @@
       "stepsTitle": "Steps"
     },
     "profile": {
-
+      "title": "Your personal data",
+      "loadingMsg": "Loading profile data...",
+      "inputName": "Edit your name",
+      "inputSurname": "Edit your surname",
+      "inputPassword": "Edit your password",
+      "inputRepeatPassword": "Repeat introduced password",
+      "formSubmitButton": "Save",
+      "infoEmail": "Email",
+      "infoFirstName": "Name",
+      "infoLastName": "Last name",
+      "infoEditButton": "Edit info",
+      "errorFirstNameMandatory": "First name field is empty...",
+      "errorLastNameMandatory": "Last name field is empty...",
+      "errorPasswordsNotMatch": "The introduced passwords doesn't match",
+      "profileUpdated": "Profile successfully updated"
     },
     "help": {
 

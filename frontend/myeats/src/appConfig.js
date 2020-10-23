@@ -6,7 +6,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-06-04 06:50:17 
- * Last modified  : 2020-09-24 12:04:00
+ * Last modified  : 2020-10-23 06:15:31
  */
 
 /**
@@ -16,6 +16,8 @@ export const API_ENDPOINT = 'https://zeppelin17-myeats.herokuapp.com/api'
 
 export const API_AUTH = '/auth/'
 export const API_CREATE_USER = '/user/create/'
+export const API_GET_USER = '/user/'
+export const API_PATCH_USER = '/user/'
 
 export const API_GET_RECIPES = '/recipe/list/'
 export const API_GET_RECIPE = '/recipe/'

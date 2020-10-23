@@ -225,7 +225,21 @@
       "stepsTitle": "Pasos"
     },
     "profile": {
-
+      "title": "Tus datos personales",
+      "loadingMsg": "Cargando información de perfil...",
+      "inputName": "Edita tu nombre",
+      "inputSurname": "Edita tu apellido",
+      "inputPassword": "Edita tu contraseña",
+      "inputRepeatPassword": "Repite la contraseña introducida",
+      "formSubmitButton": "Guardar",
+      "infoEmail": "Email",
+      "infoFirstName": "Nombre",
+      "infoLastName": "Apellido",
+      "infoEditButton": "Editar información",
+      "errorFirstNameMandatory": "El campo nombre está vacío...",
+      "errorLastNameMandatory": "El campo apellido está vacío...",
+      "errorPasswordsNotMatch": "Las contraseñas introducidas no coinciden",
+      "profileUpdated": "Perfil actualizado correctamente"
     },
     "help": {
 

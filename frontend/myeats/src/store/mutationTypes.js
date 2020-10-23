@@ -5,7 +5,7 @@
  * @author Zeppelin17 <elzeppelin17@gmail.com>
  *
  * Created at     : 2020-05-28 06:33:27 
- * Last modified  : 2020-10-05 06:39:42
+ * Last modified  : 2020-10-23 06:02:27
  */
 
 export const SET_STATUS_LOADING = "setStatusLoading"
@@ -30,3 +30,10 @@ export const WEEK_SET_LIST = "weekSetList"
 export const WEEK_DELETE_FROM_LIST = "weekDeleteFromList"
 export const WEEK_SET_DAYS = "weekSetDays"
 export const WEEK_SET_DAYS_LOADED = "weekSetDaysLoaded"
+
+// profile
+export const USER_SET_STATUS_LOADING = "userSetStatusLoading"
+export const USER_SET_STATUS_SUCCESS = "userSetStatusSuccess"
+export const USER_SET_STATUS_ERROR = "userSetStatusError"
+export const USER_SET_DATA = "userSetData"
+export const USER_UPDATE_NAME = "userUpdateName"
