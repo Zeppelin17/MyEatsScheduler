@@ -24,7 +24,7 @@
       <li class="pagination-item" 
         v-for="page in pages"
         :key="page.name"
-        v-if="page.name > 0"
+        v-show="page.name > 0"
       >
         <button 
           type="button" 

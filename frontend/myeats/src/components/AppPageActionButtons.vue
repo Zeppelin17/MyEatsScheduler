@@ -16,7 +16,7 @@
             v-for="(action, index) in actions" :key="index"
             :class="'action-btn t-all-ease ' + action.type"
             @click="executeButtonAction(action.onClick)"
-            v-if="action.visible !== false"
+            v-show="action.visible !== false"
         >
             {{ action.text }}
         </button>

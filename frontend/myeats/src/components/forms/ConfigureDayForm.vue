@@ -218,9 +218,9 @@
                 <ul class="recipe-name">
                   <li 
                     v-for="recipe in split.recipes"
-                    :key="recipe.id+'recipe'+split.id"
-                    @mouseover="showLinkActionsButtons(split, recipe)"
-                    @mouseout="hideLinkActionsButtons()"
+                    :key="recipe.id + split.id + (Math.ceil(Date.now() / 1000) + Math.random() * (100 - 1) + 1)"
+                    @mouseover="showLinkActionsButtons(split, recipe) && console.log('key', recipe.id + split.id + (Math.ceil(Date.now() / 1000) + Math.random() * (100 - 1) + 1))"
+                    @mouseleave="hideLinkActionsButtons()"
                   >
                     <span v-if="editingLink !== split.order + '|' + recipe.id">{{ recipe.name }}</span>
 
@@ -291,7 +291,7 @@
           <button disabled v-if="weekStatus === 'loading'" class="loading-button">
             <img src="../../assets/img/loading.svg" alt="Loading">
           </button>
-          <button v-else="editableData.name.length === 0" @click.prevent="updateDay">
+          <button v-else @click.prevent="updateDay">
             {{ $t("appPages.myeats.weekDetail.editSubmitButton") }}
           </button>
         </div>

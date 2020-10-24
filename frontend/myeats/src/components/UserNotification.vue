@@ -21,7 +21,7 @@
                 <div 
                     :class="'t-all-ease notification ' + notification.type"
                     v-for="notification in notifications"
-                    :key="Math.ceil(Date.now() / 1000) + Math.random() * (100 - 1) + 1"
+                    :key="notification.id + Math.ceil(Date.now() / 1000) + Math.random() * (100 - 1) + 1"
                 >
                     <div class="symbol"><img :src="require('../assets/img/ikonate/' + notification.symbol)" :alt="notification.type"></div>
 
