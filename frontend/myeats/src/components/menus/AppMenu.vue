@@ -63,13 +63,13 @@
         >
           <img src="../../assets/img/ikonate/user.svg"> {{ $t('appMenu.profile') }}
         </router-link>
-        <router-link 
+        <!-- <router-link 
           @click.native="toggleMenu()" 
           :to="$i18nRoute({ name: 'Help' })" 
           class="app-menu-item"
         >
           <img src="../../assets/img/ikonate/help.svg"> {{ $t('appMenu.help') }}
-        </router-link>
+        </router-link> -->
 
         <div class="separator"></div>
 

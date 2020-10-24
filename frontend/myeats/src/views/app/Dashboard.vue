@@ -45,7 +45,7 @@
                 :buttonRouteLink="$t('appPages.dashboard.cardProfileButtonRoute')"
             />
 
-            <CardBlock
+            <!-- <CardBlock
                 class="card-block" 
                 hoverIconName="help.svg"
                 imageName="dashboard-help.jpg"
@@ -53,7 +53,7 @@
                 :text="$t('appPages.dashboard.cardHelpText')"
                 :buttonText="$t('appPages.dashboard.cardHelpButtonText')"
                 :buttonRouteLink="$t('appPages.dashboard.cardHelpButtonRoute')"
-            />
+            /> -->
 
             
         </div>
