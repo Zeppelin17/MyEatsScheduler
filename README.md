@@ -1,12 +1,23 @@
 # MyEatsScheduler
-Food planner WebApp
+Food planner WebApp. You can create your recipes and then configure your calendar as you need, dividing days in splits like breakfast, lunch, dinner, etc. In every split you can put the recipes you want.
 
-# ...
+## Frontend
+Clone this repo.
+
+In the frontend/myeats folder, run:
+
+```npm install```
+
+Then run the development server:
+
+```npm run serve```
+
+The URL of the backend API is set in file src/appConfig.js
 
 ## Backend
 
 ### API Docs
-Assuming you are in development server, the API docs are at http://127.0.0.1:8000/api/docs/
+Assuming you are in development server, the API docs are at http://localhost:8000/api/docs/
 
 ### Instalation
 Clone this repo. 
