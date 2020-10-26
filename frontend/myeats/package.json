@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^2.6.5",
+    "register-service-worker": "^1.7.1",
     "vue": "^2.6.12",
     "vue-axios": "^2.1.5",
     "vue-i18n": "^8.22.1",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.0",
     "@vue/cli-plugin-eslint": "^3.12.0",
+    "@vue/cli-plugin-pwa": "^4.5.8",
     "@vue/cli-service": "^3.12.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",

@@ -20,6 +20,7 @@ import '@/assets/css/tailwind.css'
 
 import Application from './layouts/Application.vue'
 import Website from './layouts/Website.vue'
+import './registerServiceWorker'
 
 Vue.use(VueAxios, axios)
 
