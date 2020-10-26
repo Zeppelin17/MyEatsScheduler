@@ -15,9 +15,9 @@
       <router-link :to="$i18nRoute({ name: 'Home' })" >
         {{ $t('mainMenu.home') }}
       </router-link>
-      <router-link :to="$i18nRoute({ name: 'About' })" >
+      <!-- <router-link :to="$i18nRoute({ name: 'About' })" >
         {{ $t('mainMenu.about') }}
-      </router-link>
+      </router-link> -->
       <router-link :to="$i18nRoute({ name: 'Login' })" >
         {{ $t('mainMenu.login') }}
       </router-link>

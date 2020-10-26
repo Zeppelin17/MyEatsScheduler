@@ -15,9 +15,9 @@
       <router-link :to="$i18nRoute({ name: 'Home' })" class="primary-color-light menu-item ">
         {{ $t('mainMenu.home') }}
       </router-link>
-      <router-link :to="$i18nRoute({ name: 'About' })" class="primary-color-light menu-item">
+      <!-- <router-link :to="$i18nRoute({ name: 'About' })" class="primary-color-light menu-item">
         {{ $t('mainMenu.about') }}
-      </router-link>
+      </router-link> -->
       <router-link :to="$i18nRoute({ name: 'Login' })" class="primary-color-light menu-item">
         {{ $t('mainMenu.login') }}
       </router-link>
