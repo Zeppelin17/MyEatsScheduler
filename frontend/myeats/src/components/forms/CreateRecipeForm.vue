@@ -18,7 +18,7 @@
         <span>{{ validationMsg }}</span>
       </div>
 
-      <form>
+      <form autocomplete="off">
         <div class="form-col">
           <div class="form-group">
             <label for="recipe-name-input">
@@ -34,7 +34,9 @@
 
           <div class="form-group">
             <label for="recipe-categories-input">
-              <span>{{ $t("appPages.recipes.inputRecipeCategories") }}</span>
+
+              <span v-if="isSmartPhone">{{ $t("appPages.recipes.inputRecipeCategoriesSmallDevice") }}</span>
+              <span v-else>{{ $t("appPages.recipes.inputRecipeCategories") }}</span>
               
               <div class="input-tags">
                 <div v-for="(cat, index) in recipeCategories" :key="index" class="tag">
@@ -45,6 +47,7 @@
                 <input
                   name="recipe-categories-input"
                   type="text"
+                  @blur="addCategory"
                   @keydown.enter="addCategory"
                   @keydown.188="addCategory"
                   @keydown.delete='removeLastCategory'
@@ -214,9 +217,22 @@ export default {
           userId: 'userId',
           categoriesList: 'categoriesList',
           recipeStatus: 'recipeStatus'
-      })
+      }),
+
+      isSmartPhone() {
+        let userAgent = navigator.userAgent || navigator.vendor || window.opera
+        
+        if (/windows phone|android|iPad|iPhone|iPod/i.test(userAgent)) {
+          return true
+        }
+        return false
+      }
   },
   methods: {
+    alertEvent($event) {
+      console.log($event)
+      alert($event)
+    },
     resetValidationMsg() {
       this.validationMsg = ""
     },
@@ -240,13 +256,24 @@ export default {
       this.recipeIngredients.splice(index, 1)
     },
 
+    
     addCategory(event) {
       event.preventDefault()
       let val = event.target.value.trim()
-      if (val.length > 0) {
+      
+      if (val.length > 0 && !val.includes(",")) {
         this.recipeCategories.push(val)
-        event.target.value = ""
       }
+
+      // for mobile devices
+      if (val.length > 0 && val.includes(",")) {
+        const cats = val.split(",")
+        cats.forEach((cat) => {
+          this.recipeCategories.push(cat.trim())
+        })
+      }
+
+      event.target.value = ""
     },
 
     deleteCategory(index) {
@@ -434,7 +461,7 @@ export default {
 }
 
 .create-recipe-form .form-wrapper form .form-group .ingredients-list button.new-ingredient {
-  @apply mt-1 mb-3 mx-auto block text-xs text-blue-100 bg-blue-700 border-2 border-blue-700 px-1 rounded-sm outline-none
+  @apply mt-1 px-2 py-1 mb-3 mx-auto block text-xs text-blue-100 bg-blue-700 border-2 border-blue-700 rounded-sm outline-none
 }
 
 .create-recipe-form .form-wrapper form .form-group .ingredients-list button.new-ingredient:hover,
@@ -529,9 +556,11 @@ export default {
 }
 
 
-
-
-
+@media (min-width: 640px) {
+  .create-recipe-form .form-wrapper form .form-group .ingredients-list button.new-ingredient {
+    @apply px-1 py-0
+  }
+}
 
 @media (min-width: 768px) {
   .create-recipe-form .form-wrapper form {

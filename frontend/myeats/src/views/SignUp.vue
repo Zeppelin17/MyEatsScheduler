@@ -106,7 +106,11 @@ export default {
 }
 
 .img-form-wrapper >>> .login-form .form-wrapper .form-links {
-    @apply flex flex-col items-center text-xs mt-3
+    @apply flex flex-col items-center text-base mt-3
+}
+
+.img-form-wrapper >>> .login-form .form-wrapper .form-links a {
+    @apply p-2
 }
 
 .img-form-wrapper >>> .login-form .form-wrapper .form-links a:hover {
@@ -149,6 +153,14 @@ export default {
 @media (min-width: 640px) {
     .img-form-wrapper >>> .login-form .form-wrapper {
         @apply w-8/12 
+    }
+
+    .img-form-wrapper >>> .login-form .form-wrapper .form-links {
+        @apply text-xs
+    }
+
+    .img-form-wrapper >>> .login-form .form-wrapper .form-links a{
+        @apply p-0
     }
 }
 

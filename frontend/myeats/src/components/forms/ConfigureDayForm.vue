@@ -642,7 +642,7 @@ export default {
 }
 
 .configure-day-form .form-wrapper form button.btn-small {
-  @apply mt-1 mb-3 mx-auto block text-xs text-blue-100 bg-blue-700 border-2 border-blue-700 px-1 rounded-sm outline-none
+  @apply px-2 py-1 mt-1 mb-3 mx-auto block text-xs text-blue-100 bg-blue-700 border-2 border-blue-700 rounded-sm outline-none
 }
 
 .configure-day-form .form-wrapper form button.btn-small:hover,
@@ -729,6 +729,13 @@ export default {
 
 .configure-day-form .form-wrapper form .form-group .recipe-split-links .link ul.recipe-name li {
   @apply flex justify-between text-sm
+}
+
+
+@media (min-width: 640px) {
+  .configure-day-form .form-wrapper form button.btn-small {
+    @apply px-1 py-0
+  }
 }
 
 

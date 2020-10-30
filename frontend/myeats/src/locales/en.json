@@ -188,6 +188,7 @@
       "editRecipeFormTitle": "Edit Recipe data",
       "inputRecipeName": "Recipe's name",
       "inputRecipeCategories": "Categories (write name + hit enter)",
+      "inputRecipeCategoriesSmallDevice": "Categories (use comma for multiple values)",
       "inputRecipeDescription": "Description",
       "inputRecipeSteps": "Steps",
       "inputRecipeIngredientName": "Name",

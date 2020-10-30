@@ -49,6 +49,14 @@
                 >
                   {{ $t('appPages.myeats.weekDetail.editButton') }}
                 </button>
+
+                <button 
+                  v-if="Array.isArray(day.splits) && day.splits.length > 0"
+                  class="t-all-ease toggle-config"
+                  @click="(overDayId !== 0) ? overDayId = 0 : overDayId = day.id"
+                >
+                  &#9898;
+                </button>
               </span>
               <span class="name">{{ day.name }}</span>
             </div>
@@ -439,8 +447,13 @@ export default {
 }
 
 .week-detail .week .day .head .edit button {
-  @apply border-blue-300 border rounded-sm px-1 ml-1 text-xs outline-none
+  @apply border-blue-300 border rounded-sm px-2 py-1 ml-1 text-xs outline-none
 }
+
+.week-detail .week .day .head .edit button.toggle-config {
+  @apply inline
+}
+
 
 .week-detail .week .day .head .edit button:hover {
   @apply bg-blue-300 text-blue-900 shadow-md
@@ -511,6 +524,14 @@ export default {
 
   .week-detail .week .day {
     min-width: 33%;
+  }
+
+  .week-detail .week .day .head .edit button {
+    @apply px-1 py-0
+  }
+
+  .week-detail .week .day .head .edit button.toggle-config {
+    @apply hidden
   }
 }
 

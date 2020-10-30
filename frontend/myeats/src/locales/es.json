@@ -188,6 +188,7 @@
       "editRecipeFormTitle": "Editar información de receta",
       "inputRecipeName": "Nombre de la receta",
       "inputRecipeCategories": "Categorías (escribir nombre + presionar intro)",
+      "inputRecipeCategoriesSmallDevice": "Categorías (separadas por coma)",
       "inputRecipeDescription": "Descripción",
       "inputRecipeSteps": "Pasos",
       "inputRecipeIngredientName": "Nombre",
